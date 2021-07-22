@@ -1,0 +1,1 @@
+packageSearchIndex = [{"l":"All Packages","url":"allpackages-index.html"},{"l":"edu.uoc.uocnejitos.controller"},{"l":"edu.uoc.uocnejitos.model"},{"l":"edu.uoc.uocnejitos.model.tests"},{"l":"edu.uoc.uocnejitos.view.cmd"},{"l":"edu.uoc.uocnejitos.view.gui"}]
