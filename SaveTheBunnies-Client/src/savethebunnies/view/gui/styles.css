@@ -1,16 +1,16 @@
 .piece-movable-destination:hover{
-  -fx-border-style: solid;
-  -fx-border-color: orange;
-  -fx-border-width: 2; 
-  -fx-cursor: hand; 
+  	-fx-border-style: solid;
+  	-fx-border-color: orange;
+  	-fx-border-width: 2; 
+  	-fx-cursor: hand; 
   
 }
 
 .piece-movable:hover {
-  -fx-border-style: solid;
-  -fx-border-color: red;
-  -fx-border-width: 2; 
-  -fx-cursor: hand; 
+	-fx-border-style: solid;
+	-fx-border-color: red;
+	-fx-border-width: 2; 
+ 	-fx-cursor: hand; 
   
 }
 
@@ -24,3 +24,4 @@
 .board-background{
 	-fx-background-color: #009d3c;
 }
+

@@ -1,9 +1,10 @@
-package savethebunnies.view.gui;
+package savethebunnies.controller;
 
 import java.io.IOException;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import savethebunnies.view.gui.GuiApp;
 
 public class WelcomeController {
 

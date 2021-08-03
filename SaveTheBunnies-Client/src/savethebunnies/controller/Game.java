@@ -40,7 +40,7 @@ public class Game {
 	 * Level object that contains the information of the current level.
 	 */
 	private Level level;
-		
+
 	/**
 	 * Constructor
 	 * @param fileFolder Folder name where the configuration/level files are.	 

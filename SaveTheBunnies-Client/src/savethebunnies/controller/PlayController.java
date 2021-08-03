@@ -1,12 +1,12 @@
-package savethebunnies.view.gui;
+package savethebunnies.controller;
 
-import savethebunnies.controller.Game;
 import savethebunnies.model.Coordinate;
 import savethebunnies.model.Grass;
 import savethebunnies.model.Hole;
 import savethebunnies.model.LevelException;
 import savethebunnies.model.Movable;
 import savethebunnies.model.Move;
+import savethebunnies.view.gui.GuiApp;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Label;

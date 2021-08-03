@@ -6,6 +6,7 @@ import javafx.application.Application;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.Region;
 import javafx.stage.Stage;
@@ -24,7 +25,8 @@ public class GuiApp extends Application {
 	public void start(Stage primaryStage) throws IOException {		
 		main = this;
 		stage = primaryStage;
-		stage.setTitle("UOCnejitos");
+		stage.setTitle("Save the Bunnies");
+		stage.getIcons().add(new Image("file:///C:/Users/chris/eclipse-workspace/SaveTheBunnies/SaveTheBunnies-Client/img/SAVE_THE_BUNNIES"));
 		stage.setResizable(false);      
 		createView("Welcome.fxml");    	
 	}

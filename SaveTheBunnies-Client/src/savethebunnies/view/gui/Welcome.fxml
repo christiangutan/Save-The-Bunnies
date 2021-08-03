@@ -8,16 +8,16 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="675" maxWidth="825" minHeight="625" minWidth="825" prefHeight="625.0" prefWidth="825.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.uoc.uocnejitos.view.gui.WelcomeController">
+<AnchorPane maxHeight="645.0" maxWidth="825" minHeight="645.0" minWidth="825" prefHeight="645.0" prefWidth="825.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="savethebunnies.controller.WelcomeController">
    <children>
       <ImageView fitHeight="645.0" fitWidth="825.0" pickOnBounds="true">
          <image>
             <Image url="file:img/welcome-background.png" />            
          </image>
       </ImageView>
-      <Label layoutX="101.0" layoutY="204.0" text="UOCnejitos" textAlignment="CENTER" textFill="#07c3ed">
+      <Label layoutX="76.0" layoutY="143.0" prefHeight="109.0" prefWidth="710.0" text="Save the bunnies" textAlignment="CENTER" textFill="#07c3ed">
          <font>
-            <Font name="Arial Black" size="100.0" />
+            <Font name="Arial Black" size="75.0" />
          </font>
       </Label>
       <Button fx:id="buttonStart" alignment="CENTER" defaultButton="true" layoutX="330.0" layoutY="371.0" mnemonicParsing="false" onMouseReleased="#start" text="Start!" textAlignment="CENTER">
