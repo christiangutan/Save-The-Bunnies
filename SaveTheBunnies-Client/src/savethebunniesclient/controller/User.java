@@ -1,4 +1,4 @@
-package savethebunnies.controller;
+package savethebunniesclient.controller;
 
 import javafx.scene.image.Image;
 

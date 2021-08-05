@@ -1,4 +1,4 @@
-package savethebunnies.model;
+package savethebunniesclient.model;
 
 /**
  * This class represents the move coordinates for the game. Since move will be

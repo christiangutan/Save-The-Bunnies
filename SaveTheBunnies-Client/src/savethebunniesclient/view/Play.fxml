@@ -6,7 +6,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<SplitPane dividerPositions="0.25" maxHeight="675" maxWidth="825" minHeight="625" minWidth="825" prefHeight="625.0" prefWidth="825.0" stylesheets="@styles.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="savethebunnies.controller.PlayController">
+<SplitPane dividerPositions="0.25" maxHeight="675" maxWidth="825" minHeight="625" minWidth="825" prefHeight="625.0" prefWidth="825.0" stylesheets="@styles.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="savethebunniesclient.controller.PlayController">
    <items>
       <Pane id="menu" fx:id="menu" style="-fx-background-color: gray;">
          <children>

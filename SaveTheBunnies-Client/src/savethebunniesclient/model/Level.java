@@ -1,4 +1,4 @@
-package savethebunnies.model;
+package savethebunniesclient.model;
 
 import java.io.File;
 import java.io.FileNotFoundException;

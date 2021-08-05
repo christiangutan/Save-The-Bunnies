@@ -1,4 +1,4 @@
-package savethebunnies.model;
+package savethebunniesclient.model;
 
 /** 
 * A FoxHead piece class.

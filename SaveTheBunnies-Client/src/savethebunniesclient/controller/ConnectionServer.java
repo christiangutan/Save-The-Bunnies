@@ -1,4 +1,4 @@
-package savethebunnies.controller;
+package savethebunniesclient.controller;
 
 public class ConnectionServer {
 	

@@ -1,4 +1,4 @@
-package savethebunniesclient.app;
+package savethebunniesserver.app;
 
 import java.io.IOException;
 
@@ -16,7 +16,6 @@ public class GuiApp extends Application {
 
 	private Region rootLayout;	
 	private Stage stage;
-	private Image icon = new Image("File: Icon_bunny.png");
 	
 	@FXML
 	private Pane tankPane;
@@ -27,7 +26,7 @@ public class GuiApp extends Application {
 	public void start(Stage primaryStage) throws IOException {		
 		main = this;
 		stage = primaryStage;
-		stage.setTitle("Save the Bunnies - Login");
+		stage.setTitle("Save the Bunnies - Server");
 		
 		stage.setResizable(false);      
 		createView("login.fxml", "css-Login-Registration.css");    	
@@ -48,8 +47,6 @@ public class GuiApp extends Application {
         
         if(css!=null && css!="") scene.getStylesheets().add(Resources.CSS + css);
         
-        //stage.getIcons().add(new Image(getClass().getResourceAsStream("/Icon_bunny.png")));
-        //stage.getIcons().add(new Image("file: Icon_bunny(1).png"));
                
         stage.setScene(scene);	    
         stage.show();    

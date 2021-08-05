@@ -1,7 +1,7 @@
-package savethebunnies.util;
+package savethebunniesclient.util;
 
 public class Resources {
-	  public static final String FXML = "/savethebunnies/view/";
-	  public static final String IMG = "/savethebunnies/util/img/";
-	  public static final String CSS = "/savethebunnies/util/css/";
+	  public static final String FXML = "/savethebunniesclient/view/";
+	  public static final String IMG = "/savethebunniesclient/util/img/";
+	  public static final String CSS = "/savethebunniesclient/util/css/";
 }

@@ -1,13 +1,13 @@
-package savethebunnies.model.tests;
+package savethebunniesclient.model.tests;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import savethebunnies.model.Coordinate;
-import savethebunnies.model.Move;
-import savethebunnies.model.MoveDirection;
+import savethebunniesclient.model.Coordinate;
+import savethebunniesclient.model.Move;
+import savethebunniesclient.model.MoveDirection;
 
 class MoveTest {
 

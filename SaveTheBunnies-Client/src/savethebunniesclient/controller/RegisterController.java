@@ -1,4 +1,4 @@
-package savethebunnies.controller;
+package savethebunniesclient.controller;
 
 import java.io.IOException;
 
@@ -8,7 +8,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
-import savethebunnies.app.GuiApp;
+import savethebunniesclient.app.GuiApp;
 
 public class RegisterController {
 	@FXML

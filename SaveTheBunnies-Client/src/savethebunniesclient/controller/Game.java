@@ -1,17 +1,17 @@
-package savethebunnies.controller;
+package savethebunniesclient.controller;
 
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.List;
 
-import savethebunnies.model.Bunny;
-import savethebunnies.model.Level;
-import savethebunnies.model.LevelDifficulty;
-import savethebunnies.model.LevelException;
-import savethebunnies.model.Movable;
-import savethebunnies.model.Move;
-import savethebunnies.model.MoveDirection;
-import savethebunnies.model.Piece;
+import savethebunniesclient.model.Bunny;
+import savethebunniesclient.model.Level;
+import savethebunniesclient.model.LevelDifficulty;
+import savethebunniesclient.model.LevelException;
+import savethebunniesclient.model.Movable;
+import savethebunniesclient.model.Move;
+import savethebunniesclient.model.MoveDirection;
+import savethebunniesclient.model.Piece;
 
 public class Game {
 	

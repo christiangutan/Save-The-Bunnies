@@ -1,4 +1,4 @@
-package savethebunnies.model.tests;
+package savethebunniesclient.model.tests;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -6,13 +6,13 @@ import java.io.FileNotFoundException;
 
 import org.junit.jupiter.api.Test;
 
-import savethebunnies.model.Coordinate;
-import savethebunnies.model.Hole;
-import savethebunnies.model.Level;
-import savethebunnies.model.LevelDifficulty;
-import savethebunnies.model.LevelException;
-import savethebunnies.model.Piece;
-import savethebunnies.model.Symbol;
+import savethebunniesclient.model.Coordinate;
+import savethebunniesclient.model.Hole;
+import savethebunniesclient.model.Level;
+import savethebunniesclient.model.LevelDifficulty;
+import savethebunniesclient.model.LevelException;
+import savethebunniesclient.model.Piece;
+import savethebunniesclient.model.Symbol;
 
 
 class LevelTest {

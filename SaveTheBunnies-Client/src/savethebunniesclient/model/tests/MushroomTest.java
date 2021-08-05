@@ -1,12 +1,12 @@
-package savethebunnies.model.tests;
+package savethebunniesclient.model.tests;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.Test;
 
-import savethebunnies.model.Coordinate;
-import savethebunnies.model.Mushroom;
-import savethebunnies.model.Symbol;
+import savethebunniesclient.model.Coordinate;
+import savethebunniesclient.model.Mushroom;
+import savethebunniesclient.model.Symbol;
 
 class MushroomTest {
 	
