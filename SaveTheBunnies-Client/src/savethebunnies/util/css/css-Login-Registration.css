@@ -1,0 +1,43 @@
+.text-field:focused {
+    -fx-background-color: #d3fefc;
+}
+
+.text-field:hover {
+	-fx-background-color: #45adbe;
+}
+
+
+
+#buttonLogin:hover {
+	-fx-background-color: #d3fefc;
+}
+
+#buttonRegister:hover {
+	-fx-background-color:  #d3fefc;
+}
+
+#registerButton:hover {
+	-fx-background-color: #d3fefc;
+}
+
+#cancelButton:hover {
+	-fx-background-color: #d3fefc;
+}
+
+
+
+#buttonLogin {
+	-fx-background-color: #ef663d;
+}
+
+#buttonRegister {
+	-fx-background-color:  #fe8a69;
+}
+
+#registerButton {
+	-fx-background-color:  #fe8a69;
+}
+
+#cancelButton {
+	-fx-background-color:  #fe8a69;
+}

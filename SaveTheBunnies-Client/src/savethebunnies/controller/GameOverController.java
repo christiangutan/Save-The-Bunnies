@@ -4,7 +4,7 @@ import java.io.IOException;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
-import savethebunnies.view.gui.GuiApp;
+import savethebunnies.app.GuiApp;
 
 public class GameOverController {
 
@@ -14,7 +14,7 @@ public class GameOverController {
 	@FXML
 	public void back() {		
 		try{
-			GuiApp.main.createView("Welcome.fxml");
+			GuiApp.main.createView("Welcome.fxml","");
 		}catch(IOException e) {
 			e.printStackTrace();
 			System.exit(1);

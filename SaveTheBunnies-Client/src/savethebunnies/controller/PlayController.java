@@ -1,12 +1,12 @@
 package savethebunnies.controller;
 
+import savethebunnies.app.GuiApp;
 import savethebunnies.model.Coordinate;
 import savethebunnies.model.Grass;
 import savethebunnies.model.Hole;
 import savethebunnies.model.LevelException;
 import savethebunnies.model.Movable;
 import savethebunnies.model.Move;
-import savethebunnies.view.gui.GuiApp;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Label;
@@ -80,7 +80,7 @@ public class PlayController {
     		alert.showAndWait();    		
     		if(!game.nextLevel()) {
     			try {
-    				GuiApp.main.createView("GameOver.fxml");
+    				GuiApp.main.createView("GameOver.fxml","");
     			} catch (IOException e) {
     				e.printStackTrace();
     				System.exit(2);
@@ -105,7 +105,7 @@ public class PlayController {
     	    	
     	for(var piece : game.getPieces()){
     		StackPane sprite = new StackPane();    		
-    		ImageView spriteImage = new ImageView(new Image("file:img/"+piece.getSymbol().getImageSrc()));    		
+    		ImageView spriteImage = new ImageView(new Image("file:src/util/img/"+piece.getSymbol().getImageSrc()));    		
     		spriteImage.setFitWidth(120);
     		spriteImage.setFitHeight(120);
     		sprite.getChildren().add(spriteImage);
