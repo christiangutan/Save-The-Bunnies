@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.TextFlow?>
+
+<AnchorPane maxHeight="720.0" maxWidth="1280.0" minHeight="720.0" minWidth="1280.0" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="savethebunniesserver.controller.MainViewController">
+   <children>
+      <ImageView fitHeight="243.0" fitWidth="251.0" layoutX="38.0" layoutY="29.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../util/img/SAVE_THE_BUNNIES.png" />
+         </image>
+      </ImageView>
+      <Label layoutX="415.0" layoutY="120.0" text="SERVER">
+         <font>
+            <Font size="51.0" />
+         </font>
+      </Label>
+      <Label layoutX="163.0" layoutY="279.0" text="Activity Panel">
+         <font>
+            <Font size="44.0" />
+         </font>
+      </Label>
+      <Label layoutX="773.0" layoutY="286.0" prefHeight="50.0" prefWidth="91.0" text="Data">
+         <font>
+            <Font size="44.0" />
+         </font>
+      </Label>
+      <Separator layoutX="994.0" layoutY="10.0" orientation="VERTICAL" prefHeight="700.0" prefWidth="2.0" />
+      <Separator layoutX="1000.0" layoutY="90.0" prefHeight="2.0" prefWidth="274.0" />
+      <Label layoutX="1069.0" layoutY="24.0" text="Players">
+         <font>
+            <Font size="44.0" />
+         </font>
+      </Label>
+      <Separator layoutX="3.0" layoutY="285.0" prefHeight="0.0" prefWidth="989.0" />
+      <Separator layoutX="610.0" layoutY="288.0" orientation="VERTICAL" prefHeight="418.0" prefWidth="6.0" />
+      <Separator layoutX="614.0" layoutY="343.0" prefHeight="0.0" prefWidth="379.0" />
+      <Separator layoutX="2.0" layoutY="343.0" prefHeight="0.0" prefWidth="606.0" />
+      <TextFlow fx:id="textFlow" layoutX="12.0" layoutY="355.0" prefHeight="349.0" prefWidth="590.0" />
+      <Button fx:id="buttonStartStop" layoutX="685.0" layoutY="77.0" mnemonicParsing="false" onMouseReleased="#actionButtonStartStop" prefHeight="74.0" prefWidth="142.0" text="Button" />
+   </children>
+</AnchorPane>

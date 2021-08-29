@@ -1,6 +1,7 @@
 package savethebunniesclient.controller;
 
 import java.io.IOException;
+import java.util.concurrent.TimeUnit;
 
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -41,11 +42,14 @@ public class RegisterController {
 		
 	@FXML
 	public void initialize() {
-		System.out.println("EJECUTADO EL CONSTRUCTOR");
+		//System.out.println("EJECUTADO EL CONSTRUCTOR");
+		
+		exit = false;
+		
 		usernameTextField.focusedProperty().addListener(new ChangeListener<Boolean>() {
 			@Override
 			public void changed(ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) {
-				if(!newValue) {
+				if(newValue) {
 					ConnectionServer.checkUsername(usernameTextField.getText());
 				}
 			}			
@@ -55,11 +59,16 @@ public class RegisterController {
 			@Override
 			public void run() {
 				while(!exit) {
+					try {
+						TimeUnit.MILLISECONDS.sleep(100);
+					} catch (InterruptedException e) {
+						e.printStackTrace();
+					}
 					if(confirmPasswordTextField.getText().equals(passwordTextField.getText())) {
-						System.out.println("contraseñas iguales");
+						//System.out.println("contraseñas iguales");
 						registerButton.setDisable(false);
 					} else {
-						System.out.println("Contraseñas iguales");
+						//System.out.println("Contraseñas NO iguales");
 						registerButton.setDisable(true);
 					}
 				}
@@ -76,7 +85,7 @@ public class RegisterController {
 	
 	@FXML
 	private void actionRegistration() {
-		System.out.println("Registrar Usuario");
+		//System.out.println("Registrar Usuario");
 		Thread threadRegistrationUser = new Thread (new Runnable() {
 			@Override
 			public void run() {
@@ -99,11 +108,12 @@ public class RegisterController {
 	
 	@FXML
 	private void actionCancel() {
-		System.out.println("Cancel");
+		//System.out.println("Cancel");
 		try {
 			GuiApp.main.createView("Login.fxml","css-Login-Registration.css");
-			
+			exit = true;
 		} catch (IOException e) {
+			
 			e.printStackTrace();
 		}
 	}	

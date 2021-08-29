@@ -10,7 +10,8 @@ import javafx.scene.image.Image;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.Region;
 import javafx.stage.Stage;
-import savethebunniesclient.util.Resources;
+import savethebunniesserver.model.Server;
+import savethebunniesserver.util.Resources;
 
 public class GuiApp extends Application {
 
@@ -29,7 +30,7 @@ public class GuiApp extends Application {
 		stage.setTitle("Save the Bunnies - Server");
 		
 		stage.setResizable(false);      
-		createView("login.fxml", "css-Login-Registration.css");    	
+		createView("MainView.fxml", "");    	
 	}
 	
 	public static void main(String[] args) {
