@@ -10,6 +10,9 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import savethebunniesclient.app.GuiApp;
+import savethebunniesclient.util.OnActionData;
+import savethebunniesclient.view.ErrorPopUpWindow;
+import savethebunniesclient.view.InfoPopUpWindow;
 
 public class RegisterController {
 	@FXML
@@ -41,20 +44,19 @@ public class RegisterController {
 	private Thread threadCheckPasswords;
 		
 	@FXML
-	public void initialize() {
-		//System.out.println("EJECUTADO EL CONSTRUCTOR");
-		
+	public void initialize() {		
 		exit = false;
 		
 		usernameTextField.focusedProperty().addListener(new ChangeListener<Boolean>() {
 			@Override
 			public void changed(ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) {
 				if(newValue) {
-					ConnectionServer.checkUsername(usernameTextField.getText());
+					//ConnectionServer.checkUsername(usernameTextField.getText());
+					
+					//que se checkee si el username es correcto, yo creo que es mejo al final
 				}
 			}			
 		});
-		
 		threadCheckPasswords = new Thread (new Runnable() {
 			@Override
 			public void run() {
@@ -65,10 +67,8 @@ public class RegisterController {
 						e.printStackTrace();
 					}
 					if(confirmPasswordTextField.getText().equals(passwordTextField.getText())) {
-						//System.out.println("contraseñas iguales");
 						registerButton.setDisable(false);
 					} else {
-						//System.out.println("Contraseñas NO iguales");
 						registerButton.setDisable(true);
 					}
 				}
@@ -78,27 +78,36 @@ public class RegisterController {
 		threadCheckPasswords.setDaemon(true);
 		threadCheckPasswords.start();
 	}
-		
-	private void checkPassword() {
-		
-	}
 	
 	@FXML
 	private void actionRegistration() {
-		//System.out.println("Registrar Usuario");
 		Thread threadRegistrationUser = new Thread (new Runnable() {
 			@Override
 			public void run() {
-				boolean state = ConnectionServer.registerUser(usernameTextField.getText(), nameTextField.getText(), emailTextField.getText(), passwordTextField.getText());
-				
-				if(state) {
-					//Everything is right
-					//Create the message User Created
-				}else {
-					//Something has gone wrong
-					//User didn't created
+				String state = ConnectionServer.registerUser(usernameTextField.getText(), nameTextField.getText(), emailTextField.getText(), passwordTextField.getText());
+				System.out.println("Resultado del registro: " + state);
+				if(state.equals("")) {
+					InfoPopUpWindow window = new InfoPopUpWindow("User registered");
+					window.createView();
+					window.setOnAction(new OnActionData() {
+						@Override
+						public void onAction() {
+							try {
+								GuiApp.main.createView("Login.fxml", "css-Login-Registration.css");
+							} catch (IOException e) {
+								e.printStackTrace();
+							}
+						}
+					});
+				} else {
+					ErrorPopUpWindow window = new ErrorPopUpWindow(state);
+					window.createView();
+					window.setOnAction(new OnActionData() {
+						@Override
+						public void onAction() {
+						}
+					});
 				}
-				
 			}
 		});
 		
@@ -108,12 +117,10 @@ public class RegisterController {
 	
 	@FXML
 	private void actionCancel() {
-		//System.out.println("Cancel");
 		try {
 			GuiApp.main.createView("Login.fxml","css-Login-Registration.css");
 			exit = true;
 		} catch (IOException e) {
-			
 			e.printStackTrace();
 		}
 	}	

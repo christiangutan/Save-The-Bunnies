@@ -2,36 +2,81 @@
 
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="645.0" maxWidth="825" minHeight="645.0" minWidth="825" prefHeight="645.0" prefWidth="825.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="savethebunniesclient.controller.WelcomeController">
+<AnchorPane maxHeight="645.0" maxWidth="825" minHeight="645.0" minWidth="825" prefHeight="645.0" prefWidth="825.0" style="-fx-background-color: #1d7c2f;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="savethebunniesclient.controller.WelcomeController">
    <children>
-      <ImageView fitHeight="645.0" fitWidth="825.0" pickOnBounds="true">
-         <image>
-            <Image url="file:img/welcome-background.png" />            
-         </image>
-      </ImageView>
-      <Label layoutX="76.0" layoutY="143.0" prefHeight="109.0" prefWidth="710.0" text="Save the bunnies" textAlignment="CENTER" textFill="#07c3ed">
+      <AnchorPane prefHeight="104.0" prefWidth="825.0">
+         <children>
+            <ImageView fx:id="imageProfile" fitHeight="111.0" fitWidth="111.0" layoutX="43.0" layoutY="7.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../util/img/usernameIcon.png" />
+               </image></ImageView>
+            <Text fx:id="username" layoutX="203.0" layoutY="33.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Username" wrappingWidth="221.1279296875">
+               <font>
+                  <Font name="Times New Roman" size="21.0" />
+               </font>
+            </Text>
+            <ImageView fx:id="settingsButton" fitHeight="87.0" fitWidth="77.0" layoutX="616.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../util/img/configuration.png" />
+               </image>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor></ImageView>
+            <ImageView fx:id="infoButton" fitHeight="77.0" fitWidth="77.0" layoutX="495.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../util/img/infoButton.png" />
+               </image>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor></ImageView>
+            <Text fx:id="name" layoutX="203.0" layoutY="64.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Name" wrappingWidth="221.1279296875">
+               <font>
+                  <Font name="Times New Roman" size="17.0" />
+               </font>
+            </Text>
+            <ImageView fx:id="buttonPower" fitHeight="87.0" fitWidth="77.0" layoutX="737.0" layoutY="14.0" onMousePressed="#actionButtonPower" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../util/img/power.png" />
+               </image>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </ImageView>
+         </children>
+      </AnchorPane>
+      <Button fx:id="buttonStory" layoutX="545.0" layoutY="194.0" mnemonicParsing="false" onMouseReleased="#actionButtonStory" prefHeight="72.0" prefWidth="157.0" text="Story">
          <font>
-            <Font name="Arial Black" size="75.0" />
-         </font>
-      </Label>
-      <Button fx:id="buttonStart" alignment="CENTER" defaultButton="true" layoutX="330.0" layoutY="371.0" mnemonicParsing="false" onMouseReleased="#start" text="Start!" textAlignment="CENTER">
-         <font>
-            <Font size="39.0" />
+            <Font name="Times New Roman" size="29.0" />
          </font>
          <cursor>
             <Cursor fx:constant="HAND" />
-         </cursor>
-      </Button>
-      <Label layoutX="34.0" layoutY="560.0" text="dgarciaso@2021" textAlignment="CENTER" textFill="#f8f3f3">
+         </cursor></Button>
+      <Button fx:id="buttonOnline" layoutX="545.0" layoutY="323.0" mnemonicParsing="false" prefHeight="72.0" prefWidth="158.0" text="Online">
          <font>
-            <Font name="Arial Bold" size="34.0" />
+            <Font name="Times New Roman" size="26.0" />
          </font>
-      </Label>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor></Button>
+      <Button fx:id="buttonCreateLevels" layoutX="545.0" layoutY="452.0" mnemonicParsing="false" prefHeight="72.0" prefWidth="158.0" text="Create Levels">
+         <font>
+            <Font name="Times New Roman" size="22.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor></Button>
+      <Separator layoutX="5.0" layoutY="124.0" prefHeight="3.0" prefWidth="817.0" />
+      <ImageView fitHeight="313.0" fitWidth="318.0" layoutX="63.0" layoutY="184.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../util/img/Icon_bunny.png" />
+         </image>
+      </ImageView>
    </children>
 </AnchorPane>

@@ -54,4 +54,8 @@ public class GuiApp extends Application {
         stage.setScene(scene);	    
         stage.show();    
 	}	 
+	
+	public Stage getStage() {
+		return stage;
+	}
 }
