@@ -10,7 +10,7 @@ public class User {
 	private static String password;
 	private static int[] levelsBuilt;
 	private static int[] levelsPassed; 
-	private static int lastLevelStory;
+	private static int lastLevelPassedStory;
 	private static int idImageProfile;
 	
 	
@@ -47,11 +47,11 @@ public class User {
 	public static int[] getLevelsPassed() {
 		return levelsPassed;
 	}
-	public static int getLastLevelStory() {
-		return lastLevelStory;
+	public static int getLastLevelPassedStory() {
+		return lastLevelPassedStory;
 	}
-	public static void setLastLevelStory(int lastLevelStory) {
-		User.lastLevelStory = lastLevelStory;
+	public static void setLastLevelPassedStory(int lastLevelPassedStory) {
+		User.lastLevelPassedStory = lastLevelPassedStory;
 	}
 	public static int getIdImageProfile() {
 		return idImageProfile;

@@ -1,0 +1,16 @@
+#buttonOkey:focused {
+	 -fx-background-color: #d3fefc;
+}
+#buttonOkey:hover {
+	-fx-background-color: #45adbe;
+}
+#buttonOkey{
+	-fx-background-color: #55f063
+}
+#pane {
+	-fx-background-color: #d8c159;
+	-fx-background-radius: 18 18 18 18;
+	-fx-border-radius: 18 18 18 18;
+    -fx-border-width: 5;
+    -fx-border-color: #1e85d5;
+}

@@ -1,5 +1,5 @@
 5
-WIZARD
+EXPERT
 16
 Ha1
 wa4

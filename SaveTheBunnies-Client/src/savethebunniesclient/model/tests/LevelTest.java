@@ -67,7 +67,7 @@ class LevelTest {
 		assertEquals(LevelDifficulty.STARTER,level.getDifficulty());
 		try {
 			level = new Level("levels-tests/level2.txt");
-			assertEquals(LevelDifficulty.WIZARD,level.getDifficulty());
+			assertEquals(LevelDifficulty.EXPERT,level.getDifficulty());
 		} catch (FileNotFoundException | IllegalArgumentException | LevelException e) {			
 			e.printStackTrace();
 			fail("testGetDifficulty failed");

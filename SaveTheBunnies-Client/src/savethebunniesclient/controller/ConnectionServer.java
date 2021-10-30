@@ -132,7 +132,7 @@ public class ConnectionServer {
 						if (inputObjectData instanceof DataPackageLoggedUser) {
 							User.setEmail(((DataPackageLoggedUser) inputObjectData).getEmail());
 							User.setIdImageProfile(((DataPackageLoggedUser) inputObjectData).getIdImageProfile());
-							User.setLastLevelStory(((DataPackageLoggedUser) inputObjectData).getLastLevelStory());
+							User.setLastLevelPassedStory(((DataPackageLoggedUser) inputObjectData).getLastLevelPassedStory());
 							User.setName(((DataPackageLoggedUser) inputObjectData).getName());
 							User.setUsername(((DataPackageLoggedUser) inputObjectData).getUsername());
 							//User.setLevels(((DataPackageLoggedUser) inputObjectData).getLevelsBuilt());

@@ -1,14 +1,18 @@
 package savethebunniesserver.model;
 
-import java.io.DataInputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.net.ServerSocket;
 import java.net.Socket;
 
 import javafx.application.Platform;
 import javafx.scene.paint.Color;
+import savethebunniesclient.util.DataPackageLoginUser;
 import savethebunniesclient.util.DataPackageRegistrationUser;
+import savethebunniesserver.util.Resources;
+import savethebunniesserver.util.DataPackageLoggedUser;
+import savethebunniesserver.util.DataPackageRegisteredUser;
 
 public class Server {
 	
@@ -18,24 +22,15 @@ public class Server {
 	
 	private static Thread threadServer = new Thread (new Runnable() {
 		@Override
-		public void run() {
-			
-			Platform.runLater(() -> {
-				Log.startServices();
-			});
+		public void run(){
 			
 			stateServer = true;		//state of server; True = server on; False = server off
-			
 				try {
 					server= new ServerSocket(9999);
-					Platform.runLater(() -> {
-						Log.addInfoCorrect("Open connection on port 9999");
-					});
-					
+					Log.addInfoCorrect("Open connection on port 9999");
 				} catch (IOException e) {
-					Platform.runLater(() -> {
-						Log.addInfoError("ERROR - Connection on port 9999");
-					});
+					Log.addInfoError("ERROR - Connection on port 9999");
+					stateServer = false;
 					e.printStackTrace();
 				}
 				
@@ -44,9 +39,7 @@ public class Server {
 					try {
 						socket = server.accept();
 					} catch (IOException e) {
-						Platform.runLater(() -> {
-							Log.addInfoError("ERROR - Server.accept");
-						});
+						Log.addInfoError("ERROR - Server.accept");
 						e.printStackTrace();
 					}
 					
@@ -54,9 +47,7 @@ public class Server {
 					try {
 						inputStream = new ObjectInputStream(socket.getInputStream());
 					} catch (IOException e) {
-						Platform.runLater(() -> {
-							Log.addInfoError("ERROR - InputStream");
-						});
+						Log.addInfoError("ERROR - InputStream");
 						e.printStackTrace();
 					}
 					
@@ -72,10 +63,48 @@ public class Server {
 					}
 					
 					if (inputObjectData instanceof DataPackageRegistrationUser) {
-						registrationUser(inputObjectData);
+						String finalState = registrationUser(inputObjectData);
+						DataPackageRegisteredUser dataSend = null;		
+						
+						DataPackageRegistrationUser dataUser = null;
+						
+						dataUser = (DataPackageRegistrationUser) inputObjectData;
+						
+						if(finalState.equals("")) {
+							dataSend = new DataPackageRegisteredUser("", true);
+							Log.addInfoActivityPanel("User Registered - User: " + dataUser.getUsername() , Color.BLUE);	
+						} else {
+							dataSend = new DataPackageRegisteredUser(finalState, false);
+							Log.addInfoError("User NO Registered - User: " + dataUser.getUsername());
+						}
+						
+						try {
+							Log.addInfoCorrect("Sending to " + ((DataPackageRegistrationUser) inputObjectData).getIp() + " DataResgister");
+							sendData(dataSend, inputObjectData, ((DataPackageRegistrationUser) inputObjectData).getIp());
+						} catch (IOException e) {
+							Log.addInfoError("ERROR - Socket DataPackageRegisteredUser");
+							e.printStackTrace();
+						} 
+						
 					}
 					
-					//if (inputObjectData instanceof )
+					if (inputObjectData instanceof DataPackageLoginUser) {
+						String finalState = loginUser(inputObjectData);
+						DataPackageLoggedUser dataSend = null;
+						if(finalState.equals("")) {
+							dataSend = ConnectionDDBB.getLoggedInfo((DataPackageLoginUser) inputObjectData);
+						} else {
+							dataSend = new DataPackageLoggedUser("", "", "", "", 0, null, null, 0, null, "", false);
+						}
+						try {
+							Log.addInfoCorrect("Sending to " + ((DataPackageLoginUser) inputObjectData).getIp() + " DataLogin");
+							sendData(dataSend, inputObjectData, ((DataPackageLoginUser) inputObjectData).getIp());
+						} catch (IOException e) {
+							Log.addInfoError("ERROR - Socket DataPackageLoggedUser");
+							e.printStackTrace();
+						} 
+						
+					}
 					
 					
 					
@@ -91,9 +120,7 @@ public class Server {
 					try {
 						socket.close();
 					} catch (IOException e) {
-						Platform.runLater(() -> {
-							Log.addInfoError("ERROR - It's not possible to close the socket");
-						});
+						Log.addInfoError("ERROR - It's not possible to close the socket");
 						e.printStackTrace();
 					}
 				}
@@ -102,41 +129,48 @@ public class Server {
 		
 	});
 	
+	public static void sendData(Object dataSend, Object inputObjectData, String ip) throws IOException {
+		Socket socketSend;
+		socketSend = new Socket(/*((DataPackageRegistrationUser) inputObjectData).getIp()*/"192.168.56.1", Resources.PORTSOCKET);
+		ObjectOutputStream outputStream = new ObjectOutputStream(socketSend.getOutputStream());
+		outputStream.writeObject(dataSend);
+		socketSend.close();
+		
+	}
+	
 	public static void startServer() {
 		Server.stateServer = true;
 		threadServer.start();
+		Log.startServices();
 	}
 	
 	public static void stopServer() {
 		Server.stateServer = false;
+		Platform.runLater(() -> {
+			Server.stopServer();
+		});
+		Log.stopServices();
+						
 	}
 	
 	public static boolean serverState() {
 		return Server.stateServer;
 	}
 	
-	private static boolean registrationUser(Object inputObjectData) {
+	private static String registrationUser(Object inputObjectData) {
 		DataPackageRegistrationUser dataUser = null;
 		
 		dataUser = (DataPackageRegistrationUser) inputObjectData;
 		
-		System.out.println(dataUser.toString());
-		
-		//Activities to register User
-		
-		
-		
-		//Activities to register User
-		
-		Platform.runLater(() -> {
-			Log.addInfoActivityPanel("Usuario Registrado, se supone que correctamente" , Color.BLUE);
-		});
-		
-		return true;
+		return ConnectionDDBB.registerUser(dataUser);		
 	}
 	
-	private static boolean loginUser(Object inputObjectData) {
+	private static String loginUser(Object inputObjectData) {
+		DataPackageLoginUser dataUser = null;
 		
-		return true;
+		dataUser = (DataPackageLoginUser) inputObjectData;
+		
+		return ConnectionDDBB.loginUser(dataUser);
+
 	}
 }

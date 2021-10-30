@@ -8,7 +8,7 @@ import savethebunniesclient.app.GuiApp;
 
 public class WelcomeController {
 	@FXML
-	Button buttonStory;
+	private Button buttonStory;
 	
 	@FXML
 	public void actionButtonStory() {		

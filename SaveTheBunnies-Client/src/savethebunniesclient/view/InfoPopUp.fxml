@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.effect.Reflection?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane fx:id="pane" minHeight="167.0" minWidth="300.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="savethebunniesclient.controller.InfoPopUpController">
+   <children>
+      <Text fx:id="text" layoutX="2.0" layoutY="52.0" lineSpacing="1.0" strokeType="OUTSIDE" strokeWidth="0.0" text="text" textAlignment="CENTER" wrappingWidth="235.19998359680176" x="30.0" y="40.0">
+         <font>
+            <Font name="Footlight MT Light" size="14.0" />
+         </font>
+      </Text>
+      <ImageView fitHeight="70.0" fitWidth="66.0" layoutX="117.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../util/img/information.png" />
+         </image>
+         <effect>
+            <Reflection fraction="0.23" topOpacity="0.16" />
+         </effect>
+      </ImageView>
+      <Button fx:id="buttonOkey" layoutX="126.0" layoutY="118.0" mnemonicParsing="false" onAction="#actionButtonOkey" text="Okey!" />
+   </children>
+</AnchorPane>

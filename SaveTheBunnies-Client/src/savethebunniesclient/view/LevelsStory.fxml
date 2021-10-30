@@ -1,0 +1,238 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="savethebunniesclient.controller.LevelsStoryController">
+   <children>
+      <AnchorPane maxHeight="645.0" maxWidth="825" minHeight="645.0" minWidth="825" prefHeight="645.0" prefWidth="825.0" style="-fx-background-color: #1d7c2f;">
+         <children>
+            <AnchorPane prefHeight="104.0" prefWidth="825.0">
+               <children>
+                  <ImageView fx:id="imageProfile" fitHeight="111.0" fitWidth="111.0" layoutX="43.0" layoutY="7.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../util/img/usernameIcon.png" />
+                     </image>
+                  </ImageView>
+                  <Text fx:id="username" layoutX="203.0" layoutY="33.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Username" wrappingWidth="221.1279296875">
+                     <font>
+                        <Font name="Times New Roman" size="21.0" />
+                     </font>
+                  </Text>
+                  <ImageView fx:id="settingsButton" fitHeight="87.0" fitWidth="77.0" layoutX="616.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../util/img/configuration.png" />
+                     </image>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </ImageView>
+                  <ImageView fx:id="infoButton" fitHeight="77.0" fitWidth="77.0" layoutX="495.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../util/img/infoButton.png" />
+                     </image>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </ImageView>
+                  <Text fx:id="name" layoutX="203.0" layoutY="64.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Name" wrappingWidth="221.1279296875">
+                     <font>
+                        <Font name="Times New Roman" size="17.0" />
+                     </font>
+                  </Text>
+                  <ImageView fx:id="buttonPower" fitHeight="87.0" fitWidth="77.0" layoutX="737.0" layoutY="14.0" onMouseReleased="#actionButtonPower" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../util/img/power.png" />
+                     </image>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </ImageView>
+               </children>
+            </AnchorPane>
+            <Separator layoutX="5.0" layoutY="124.0" prefHeight="3.0" prefWidth="817.0" />
+            <AnchorPane fx:id="paneChooseLevel" layoutX="63.0" layoutY="172.0" prefHeight="97.0" prefWidth="179.0">
+               <children>
+                  <Button fx:id="buttonPlay" layoutX="113.0" layoutY="58.0" mnemonicParsing="false" onMouseReleased="#actionButtonPlay" text="Play!!">
+                     <font>
+                        <Font name="Times New Roman" size="14.0" />
+                     </font>
+                  </Button>
+                  <Label layoutX="62.0" layoutY="6.0" text="LEVEL ">
+                     <font>
+                        <Font name="Times New Roman" size="19.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="11.0" layoutY="41.0" prefHeight="18.0" prefWidth="50.0" text="Bunnies:">
+                     <font>
+                        <Font name="Times New Roman" size="14.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="11.0" layoutY="57.0" prefHeight="18.0" prefWidth="50.0" text="Foxes:">
+                     <font>
+                        <Font name="Times New Roman" size="14.0" />
+                     </font>
+                  </Label>
+                  <ImageView fx:id="dificulty1" fitHeight="26.0" fitWidth="17.0" layoutX="11.0" layoutY="75.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../util/img/rabbit-brown-icon.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fx:id="dificulty2" fitHeight="26.0" fitWidth="17.0" layoutX="30.0" layoutY="75.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../util/img/rabbit-gray-icon.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fx:id="dificulty3" fitHeight="26.0" fitWidth="17.0" layoutX="50.0" layoutY="76.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../util/img/rabbit-white-icon.png" />
+                     </image>
+                  </ImageView>
+                  <Label layoutX="63.0" layoutY="41.0" prefHeight="18.0" prefWidth="23.0">
+                     <font>
+                        <Font name="Times New Roman" size="14.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="63.0" layoutY="57.0" prefHeight="18.0" prefWidth="23.0">
+                     <font>
+                        <Font name="Times New Roman" size="14.0" />
+                     </font>
+                  </Label>
+                  <ImageView fitHeight="21.0" fitWidth="23.0" layoutX="129.0" layoutY="38.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../util/img/passwordIcon.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </AnchorPane>
+            <AnchorPane fx:id="paneChooseLevel" layoutX="323.0" layoutY="172.0" prefHeight="97.0" prefWidth="179.0">
+               <children>
+                  <Button layoutX="113.0" layoutY="58.0" mnemonicParsing="false" onMouseReleased="#actionButtonPlay" text="Play!!">
+                     <font>
+                        <Font name="Times New Roman" size="14.0" />
+                     </font>
+                  </Button>
+                  <Label layoutX="62.0" layoutY="6.0" text="LEVEL 2">
+                     <font>
+                        <Font name="Times New Roman" size="19.0" />
+                     </font>
+                  </Label>
+               </children>
+            </AnchorPane>
+            <AnchorPane fx:id="paneChooseLevel" layoutX="582.0" layoutY="172.0" prefHeight="97.0" prefWidth="179.0">
+               <children>
+                  <Button layoutX="113.0" layoutY="58.0" mnemonicParsing="false" text="Play!!">
+                     <font>
+                        <Font name="Times New Roman" size="14.0" />
+                     </font>
+                  </Button>
+                  <Label layoutX="62.0" layoutY="6.0" text="LEVEL 3">
+                     <font>
+                        <Font name="Times New Roman" size="19.0" />
+                     </font>
+                  </Label>
+               </children>
+            </AnchorPane>
+            <AnchorPane fx:id="paneChooseLevel" layoutX="323.0" layoutY="323.0" prefHeight="97.0" prefWidth="179.0">
+               <children>
+                  <Button layoutX="113.0" layoutY="58.0" mnemonicParsing="false" text="Play!!">
+                     <font>
+                        <Font name="Times New Roman" size="14.0" />
+                     </font>
+                  </Button>
+                  <Label layoutX="62.0" layoutY="6.0" text="LEVEL 5">
+                     <font>
+                        <Font name="Times New Roman" size="19.0" />
+                     </font>
+                  </Label>
+               </children>
+            </AnchorPane>
+            <AnchorPane fx:id="paneChooseLevel" layoutX="63.0" layoutY="323.0" prefHeight="97.0" prefWidth="179.0">
+               <children>
+                  <Button layoutX="113.0" layoutY="58.0" mnemonicParsing="false" text="Play!!">
+                     <font>
+                        <Font name="Times New Roman" size="14.0" />
+                     </font>
+                  </Button>
+                  <Label layoutX="62.0" layoutY="6.0" text="LEVEL 4">
+                     <font>
+                        <Font name="Times New Roman" size="19.0" />
+                     </font>
+                  </Label>
+               </children>
+            </AnchorPane>
+            <AnchorPane fx:id="paneChooseLevel" layoutX="582.0" layoutY="323.0" prefHeight="97.0" prefWidth="179.0">
+               <children>
+                  <Button layoutX="113.0" layoutY="58.0" mnemonicParsing="false" text="Play!!">
+                     <font>
+                        <Font name="Times New Roman" size="14.0" />
+                     </font>
+                  </Button>
+                  <Label layoutX="62.0" layoutY="6.0" text="LEVEL 6">
+                     <font>
+                        <Font name="Times New Roman" size="19.0" />
+                     </font>
+                  </Label>
+               </children>
+            </AnchorPane>
+            <AnchorPane fx:id="paneChooseLevel" layoutX="63.0" layoutY="474.0" prefHeight="97.0" prefWidth="179.0">
+               <children>
+                  <Button layoutX="113.0" layoutY="58.0" mnemonicParsing="false" text="Play!!">
+                     <font>
+                        <Font name="Times New Roman" size="14.0" />
+                     </font>
+                  </Button>
+                  <Label layoutX="62.0" layoutY="6.0" text="LEVEL 7">
+                     <font>
+                        <Font name="Times New Roman" size="19.0" />
+                     </font>
+                  </Label>
+               </children>
+            </AnchorPane>
+            <AnchorPane fx:id="paneChooseLevel" layoutX="323.0" layoutY="474.0" prefHeight="97.0" prefWidth="179.0">
+               <children>
+                  <Button layoutX="113.0" layoutY="58.0" mnemonicParsing="false" text="Play!!">
+                     <font>
+                        <Font name="Times New Roman" size="14.0" />
+                     </font>
+                  </Button>
+                  <Label layoutX="62.0" layoutY="6.0" text="LEVEL 8">
+                     <font>
+                        <Font name="Times New Roman" size="19.0" />
+                     </font>
+                  </Label>
+               </children>
+            </AnchorPane>
+            <AnchorPane fx:id="paneChooseLevel" layoutX="582.0" layoutY="474.0" prefHeight="97.0" prefWidth="179.0">
+               <children>
+                  <Button layoutX="113.0" layoutY="58.0" mnemonicParsing="false" text="Play!!">
+                     <font>
+                        <Font name="Times New Roman" size="14.0" />
+                     </font>
+                  </Button>
+                  <Label layoutX="62.0" layoutY="6.0" text="LEVEL 9">
+                     <font>
+                        <Font name="Times New Roman" size="19.0" />
+                     </font>
+                  </Label>
+               </children>
+            </AnchorPane>
+            <ImageView fitHeight="63.0" fitWidth="88.0" layoutX="376.0" layoutY="572.0" onMouseReleased="#actionButtonBack" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../util/img/back.png" />
+               </image>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </ImageView>
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>

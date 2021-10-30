@@ -6,11 +6,9 @@ import javafx.application.Application;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
-import javafx.scene.image.Image;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.Region;
 import javafx.stage.Stage;
-import savethebunniesserver.model.Server;
 import savethebunniesserver.util.Resources;
 
 public class GuiApp extends Application {

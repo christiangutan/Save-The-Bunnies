@@ -1,0 +1,30 @@
+#buttonStory:hover {
+	-fx-background-color: #45adbe;
+}
+#buttonStory{
+	-fx-background-color: #55f063;
+}
+
+#buttonOnline:hover {
+	-fx-background-color: #45adbe;
+}
+#buttonOnline{
+	-fx-background-color: #55f063;
+}
+
+#buttonCreateLevels:hover {
+  	 -fx-background-color: #45adbe;
+}
+#buttonCreateLevels{
+	-fx-background-color: #55f063;
+}
+
+#buttonPower:focused {
+	-fx-image: url("../img/power3.png");
+}
+#buttonPower:hover {
+	-fx-image: url("../img/power2.png");
+}
+#buttonPower {
+	-fx-image: url("../img/power.png");
+}

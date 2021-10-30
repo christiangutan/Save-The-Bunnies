@@ -2,11 +2,8 @@ package savethebunniesserver.controller;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
-import javafx.scene.paint.Color;
-import javafx.scene.text.Font;
-import javafx.scene.text.FontPosture;
-import javafx.scene.text.Text;
 import javafx.scene.text.TextFlow;
+import savethebunniesserver.model.ConnectionDDBB;
 import savethebunniesserver.model.Log;
 import savethebunniesserver.model.Server;
 
@@ -27,8 +24,12 @@ public class MainViewController {
 	public void actionButtonStartStop() {
 		if (Server.serverState()) {
 			Server.stopServer();
+			buttonStartStop.setText("Start!!");
+			ConnectionDDBB.closeConnection();
 		} else {
 			Server.startServer();
+			ConnectionDDBB.openConnection();
+			buttonStartStop.setText("Stop");
 		}
 	}
 }

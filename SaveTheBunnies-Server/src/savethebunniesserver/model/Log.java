@@ -29,7 +29,7 @@ public class Log {
 		Platform.runLater(new Runnable() {                          
             @Override
             public void run() {
-            	System.out.println("Esto se está ejecutando");
+            	//System.out.println("Esto se está ejecutando");
             	textFlow.getChildren().add(finaltext);
             }
         });
@@ -40,7 +40,9 @@ public class Log {
 		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
 		
 		Font font = Font.font("Ubuntu Mono", FontPosture.REGULAR, 18);
-		Text finaltext = new Text( "-------------------------------------------------------------\n" + "[" + dtf.format(LocalDateTime.now()) + "] --> " + "Stopping services" + "\n-------------------------------------------------------------\n");
+		Text finaltext = new Text( "-------------------------------------------------------------\n" 
+		+ "[" + dtf.format(LocalDateTime.now()) + "] --> " + "Stopping services" 
+		+ "\n-------------------------------------------------------------\n");
 		finaltext.setFont(font);
 		finaltext.setFill(Color.SILVER);
 		
@@ -48,14 +50,16 @@ public class Log {
 	}
 	
 	public static void addInfoActivityPanel(String text, Color color) {
-		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
+		Platform.runLater(() -> {
+			DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
+			
+			Font font = Font.font("Ubuntu Mono", FontPosture.REGULAR, 14);
+			Text finaltext = new Text( "[" + dtf.format(LocalDateTime.now()) + "] --> " + text + "\n");
+			finaltext.setFont(font);
+			finaltext.setFill(color);
 		
-		Font font = Font.font("Ubuntu Mono", FontPosture.REGULAR, 14);
-		Text finaltext = new Text( "[" + dtf.format(LocalDateTime.now()) + "] --> " + text + "\n");
-		finaltext.setFont(font);
-		finaltext.setFill(color);
-		
-		textFlow.getChildren().add(finaltext);
+			textFlow.getChildren().add(finaltext);
+		});	
 	}
 	
 	public static void addInfoError(String text) {

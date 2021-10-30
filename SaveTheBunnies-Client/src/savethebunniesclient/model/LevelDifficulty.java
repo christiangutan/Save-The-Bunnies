@@ -2,13 +2,11 @@ package savethebunniesclient.model;
 
 /** 
  * LevelDifficulty enumeration.
- * @author David García Solórzano
+ * @author Christian Gutiérrez Antolín
  * @version 1.0  
  */
-public enum LevelDifficulty {
+public enum LevelDifficulty {	
 	STARTER,
 	JUNIOR,
 	EXPERT,
-	MASTER,
-	WIZARD;
 }

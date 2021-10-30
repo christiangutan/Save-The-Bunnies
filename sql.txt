@@ -1,9 +1,0 @@
-CREATE TABLE `savethebunnies`.`users`
-	(`idUser` INT NOT NULL AUTO_INCREMENT ,
-     `username` VARCHAR(35) NOT NULL ,
-     `name` VARCHAR(40) NOT NULL ,
-     `password` VARCHAR(40) NOT NULL ,
-     `lastLevenStory` INT NOT NULL ,
-     `imageProfile` INT NOT NULL ,
-     `dateRegistration` DATE NOT NULL,
-     PRIMARY KEY (`idUser`)); 
