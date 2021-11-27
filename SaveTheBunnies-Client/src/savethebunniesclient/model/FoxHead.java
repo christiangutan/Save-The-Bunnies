@@ -1,5 +1,7 @@
 package savethebunniesclient.model;
 
+import savethebunniesclient.controller.ToPlay;
+
 /** 
 * A FoxHead piece class.
 * @author David García Solórzano
@@ -34,25 +36,25 @@ public class FoxHead extends Fox{
 	 * @return true if the move was successful, false if parameters are invalid or
      * the move was unsuccessful. It also returns "false" if there doesn't exist a reference to the tail.
 	 */
-	public boolean move(Coordinate destination, Level level) {
+	public boolean move(Coordinate destination, ToPlay toPlay) {
 				
-		if (getCoord()!= null && destination != null && level != null) {
-			if (isValidMove(destination, level)) {
+		if (getCoord()!= null && destination != null && toPlay != null) {
+			if (isValidMove(destination, toPlay)) {
 				
 				Coordinate headCoordinate = new Coordinate(getCoord().getRow(),getCoord().getColumn());
 				Coordinate tailCoordinate = new Coordinate(getOtherHalf().getCoord().getRow(),getOtherHalf().getCoord().getColumn());
 								
 				try{
 					//We put grass in the fox's head
-					level.setPiece(headCoordinate, new Grass(headCoordinate));
+					toPlay.setPiece(headCoordinate, new Grass(headCoordinate));
 					//We put grass in the fox's tail
-					level.setPiece(tailCoordinate, new Grass(tailCoordinate));
+					toPlay.setPiece(tailCoordinate, new Grass(tailCoordinate));
 					
 					//We put fox's head in the new position
-					level.setPiece(destination, this);
+					toPlay.setPiece(destination, this);
 					
 					//We put fox's tail in the new position
-					level.setPiece(((FoxTail)getOtherHalf()).calculateCoord(destination), getOtherHalf());	
+					toPlay.setPiece(((FoxTail)getOtherHalf()).calculateCoord(destination), getOtherHalf());	
 					
 				}catch(Exception e) {
 					return false;
@@ -73,17 +75,17 @@ public class FoxHead extends Fox{
      * the move is invalid. It also returns "false" if there doesn't exist a reference to the head.
 	 */
 	@Override
-	public boolean isValidMove(Coordinate destination, Level level) {
+	public boolean isValidMove(Coordinate destination, ToPlay toPlay) {
 		
-		if(destination.getRow()<0 || destination.getColumn()>level.getSize()) return false;
+		if(destination.getRow()<0 || destination.getColumn()>toPlay.getSize()) return false;
 
 		Move move = new Move(getCoord(),destination);		
 		
 		switch(move.getDirection()) {
 			case HORIZONTAL:
-					return isValidHorizontalMove(move,level) ;
+					return isValidHorizontalMove(move,toPlay) ;
 			case VERTICAL:
-					return isValidVerticalMove(move,level);
+					return isValidVerticalMove(move,toPlay);
 			case INVALID: //Invalid move (user wants to move the piece in a no-diagonal path)
 			default:
 					return false;					
@@ -96,7 +98,7 @@ public class FoxHead extends Fox{
 	 * @param level Level object of the current level.
 	 * @return True if the horizontal move is correct. Otherwise, false.
 	 */
-	private boolean isValidHorizontalMove(Move move, Level level){
+	private boolean isValidHorizontalMove(Move move, ToPlay toPlay){
 		FoxDirection direction = getDirection();
 		//Cost O(1) | Fox is not orientated horizontally
 		if(direction!=FoxDirection.LEFT && direction!=FoxDirection.RIGHT) return false;
@@ -105,9 +107,9 @@ public class FoxHead extends Fox{
 		//Cost O(1) | End occupied or no move
 			try {
 				if(
-					(level.isObstacle(move.getEnd())
+					(toPlay.isObstacle(move.getEnd())
 							&& 
-							!(level.getPiece(move.getEnd()) instanceof Fox)
+							!(toPlay.getPiece(move.getEnd()) instanceof Fox)
 					) 
 					|| Math.abs(distance) == 0
 					) return false;
@@ -116,7 +118,7 @@ public class FoxHead extends Fox{
 			}
 		
 		//Cost O(1) | We check limits taking the tail into account
-		if((direction==FoxDirection.RIGHT && move.getColumnEnd()<=0) || (direction==FoxDirection.LEFT && move.getColumnEnd()>=level.getSize()-1)){
+		if((direction==FoxDirection.RIGHT && move.getColumnEnd()<=0) || (direction==FoxDirection.LEFT && move.getColumnEnd()>=toPlay.getSize()-1)){
 			return false;
 		}
 		
@@ -127,7 +129,7 @@ public class FoxHead extends Fox{
 		while(condition) {
 			//No occupied and different from its tail 
 			 try {
-				if (level.isObstacle(move.getRowStart(),i) && level.getPiece(move.getRowStart(),i)!=getOtherHalf()) {
+				if (toPlay.isObstacle(move.getRowStart(),i) && toPlay.getPiece(move.getRowStart(),i)!=getOtherHalf()) {
 				    	return false;
 				 }
 			} catch (LevelException e) {
@@ -168,7 +170,7 @@ public class FoxHead extends Fox{
 	 * @param level Level object of the current level.
 	 * @return True if the vertical move is correct. Otherwise, false.
 	 */
-	private boolean isValidVerticalMove(Move move, Level level){
+	private boolean isValidVerticalMove(Move move, ToPlay toPlay){
 		FoxDirection direction = getDirection();
 		//Cost O(1) | Fox is not orientated vertically
 		if(direction!=FoxDirection.UP && direction!=FoxDirection.DOWN) return false;
@@ -178,9 +180,9 @@ public class FoxHead extends Fox{
 		//Cost O(1) | End occupied or no move
 		try {
 			if(
-					(level.isObstacle(move.getEnd())
+					(toPlay.isObstacle(move.getEnd())
 							&& 
-							!(level.getPiece(move.getEnd()) instanceof Fox)
+							!(toPlay.getPiece(move.getEnd()) instanceof Fox)
 					) 
 					|| Math.abs(distance) == 0
 					) return false;
@@ -189,7 +191,7 @@ public class FoxHead extends Fox{
 		}
 		
 		//Cost O(1) | We check limits taking the tail into account
-		if((direction==FoxDirection.DOWN && move.getRowEnd()<=0) || (direction==FoxDirection.UP && move.getRowEnd()>=level.getSize()-1)){
+		if((direction==FoxDirection.DOWN && move.getRowEnd()<=0) || (direction==FoxDirection.UP && move.getRowEnd()>=toPlay.getSize()-1)){
 			return false;
 		}
 		
@@ -201,7 +203,7 @@ public class FoxHead extends Fox{
 		while(condition) {
 			//No occupied and different from its tail			
 			 try {
-				if (level.isObstacle(i,move.getColumnStart()) && level.getPiece(i,move.getColumnStart())!=getOtherHalf()) {				 
+				if (toPlay.isObstacle(i,move.getColumnStart()) && toPlay.getPiece(i,move.getColumnStart())!=getOtherHalf()) {				 
 				    	return false;
 				 }
 			} catch (LevelException e) {

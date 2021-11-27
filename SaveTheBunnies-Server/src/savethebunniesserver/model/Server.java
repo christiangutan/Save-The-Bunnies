@@ -87,13 +87,17 @@ public class Server {
 						} 
 						
 					}
-					
+					Log.addInfoCorrect("Antes de comprobar DataPackageLoginUser");
 					if (inputObjectData instanceof DataPackageLoginUser) {
 						String finalState = loginUser(inputObjectData);
 						DataPackageLoggedUser dataSend = null;
+						Log.addInfoCorrect("Antes del if");
+						Log.addInfoCorrect(finalState);
 						if(finalState.equals("")) {
+							Log.addInfoCorrect("Correcto");
 							dataSend = ConnectionDDBB.getLoggedInfo((DataPackageLoginUser) inputObjectData);
 						} else {
+							Log.addInfoCorrect("Incorrecto");
 							dataSend = new DataPackageLoggedUser("", "", "", "", 0, null, null, 0, null, "", false);
 						}
 						try {

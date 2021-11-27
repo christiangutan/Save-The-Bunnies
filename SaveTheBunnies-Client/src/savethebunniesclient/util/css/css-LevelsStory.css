@@ -1,24 +1,24 @@
-#paneChooseLevel:hover {
+#pane:hover{
 	-fx-background-color: linear-gradient(from 25px 25px to 100px 100px, #dc143c, #32cd32);
 }
-#paneChooseLevel{
+#pane{
 	-fx-background-color: #55f063;
 	-fx-background-radius: 15 15 15 15;
 }
 
-#buttonPlay:hover {
-	-fx-background-color : linear-gradient(from 25px 25px to 100px 100px, #daea3c, #06b298);
+#button:hover{
+	-fx-background-color: linear-gradient(from 10px 15px to 25px 35px, #daea3c, #06b298);
 }
-#buttonPlay {
-	-fx-background-color : #6de4e6;
+#button{
+	-fx-background-color: #6de4e6;
 }
 
-#buttonPower:focused {
+#buttonPower:focused{
 	-fx-image: url("../img/power3.png");
 }
-#buttonPower:hover {
+#buttonPower:hover{
 	-fx-image: url("../img/power2.png");
 }
-#buttonPower {
+#buttonPower{
 	-fx-image: url("../img/power.png");
 }

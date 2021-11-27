@@ -1,16 +1,23 @@
 package savethebunniesclient.app;
 
+import java.io.FileNotFoundException;
 import java.io.IOException;
 
 import javafx.application.Application;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.Rectangle2D;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.Region;
+import javafx.stage.Screen;
 import javafx.stage.Stage;
+import savethebunniesclient.controller.InfoController;
+import savethebunniesclient.model.LevelException;
+import savethebunniesclient.util.OnActionData;
 import savethebunniesclient.util.Resources;
+import savethebunniesclient.view.model.ErrorPopUpWindow;
 
 public class GuiApp extends Application {
 
@@ -30,7 +37,20 @@ public class GuiApp extends Application {
 		stage.setTitle("Save the Bunnies - Login");
 		
 		stage.setResizable(false);      
-		createView("login.fxml", "css-Login-Registration.css");    	
+		createView("login.fxml", "css-Login-Registration.css"); 
+		try {
+			InfoController.loadMainInformation();
+		} catch (FileNotFoundException | IllegalArgumentException | LevelException e) {
+			ErrorPopUpWindow popUp = new ErrorPopUpWindow("ERROR - CONFIGURATION");
+			popUp.setOnAction(new OnActionData(){
+				@Override
+				public void onAction() {
+					System.exit(1);
+				}
+			});
+			popUp.createView();
+			e.printStackTrace();
+		}
 	}
 	
 	public static void main(String[] args) {
@@ -51,8 +71,11 @@ public class GuiApp extends Application {
         //stage.getIcons().add(new Image(getClass().getResourceAsStream("/Icon_bunny.png")));
         //stage.getIcons().add(new Image("file: Icon_bunny(1).png"));
                
-        stage.setScene(scene);	    
+        stage.setScene(scene);	
         stage.show();    
+        Rectangle2D primScreenBounds = Screen.getPrimary().getVisualBounds();
+        stage.setX((primScreenBounds.getWidth() - stage.getWidth()) / 2);
+        stage.setY((primScreenBounds.getHeight() - stage.getHeight()) / 2);
 	}	 
 	
 	public Stage getStage() {

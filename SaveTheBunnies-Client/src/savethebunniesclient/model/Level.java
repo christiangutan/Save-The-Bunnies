@@ -8,7 +8,7 @@ import java.util.Scanner;
 
 /** 
  * Level class.
- * @author David García Solórzano
+ * @author Christian Gutiérrez Antolín
  * @version 1.0  
  */
 public class Level {
@@ -20,14 +20,15 @@ public class Level {
 	 * Level's difficulty
 	 */
 	private final LevelDifficulty DIFFICULTY;
-	/**
-	 * Number minimum of moves that are required in order to beat the level/challenge.
-	 */
-	private final int MIN_MOVES;
-	/**
-	 * List of pieces that are on the board.	
-	 */
+	
+	private final LevelType LEVELTYPE;
+	
 	private List<Piece> board;
+	
+	private String name;
+	
+	private int numTotalBunnies = 0;
+	private int numTotalFoxes = 0;
 	
 	/**
 	 * Constructor
@@ -42,22 +43,20 @@ public class Level {
 		int row = 0, column = 0;
 		char pieceSymbol = ' ';
 		Piece piece = null;
-		
-		
+
 		try(Scanner sc = new Scanner(new File(fileName))){
+			
+			LEVELTYPE = LevelType.valueOf(sc.nextLine().toUpperCase());
+			
 			SIZE = Integer.parseInt(sc.nextLine());
 			
-			if(getSize()<3)
-				throw new LevelException(LevelException.ERROR_SIZE);
+			if(getSize()<3) throw new LevelException(LevelException.ERROR_SIZE);
 			
 			DIFFICULTY = LevelDifficulty.valueOf(sc.nextLine().toUpperCase());
 			
-			MIN_MOVES = Integer.parseInt(sc.nextLine());
-			
-			if(getMinMoves()<1)
-				throw new LevelException(LevelException.ERROR_MIN_MOVES);
-			
 			board = new ArrayList<Piece>(SIZE*SIZE);
+			
+			name = "Level " + LEVELTYPE + sc.nextLine().toUpperCase();
 			
 			//We populate the whole list with Grass pieces.			
 			for(int i = 0; i < getSize(); i++) {
@@ -96,6 +95,7 @@ public class Level {
 					case BUNNY_GRAY:
 					case BUNNY_GRAY_HOLE:
 						piece = new Bunny(new Coordinate(row,column),Symbol.getName(pieceSymbol));
+						numTotalBunnies++;
 						break;
 					case FOX_HEAD_UP:
 					case FOX_HEAD_DOWN:
@@ -107,6 +107,7 @@ public class Level {
 						piece = fox;
 						FoxTail tail = fox.getTail();						
 						board.set((tail.getCoord().getRow()*getSize())+tail.getCoord().getColumn(),tail);
+						numTotalFoxes++;
 						break;
 				default:
 					break;					
@@ -115,8 +116,8 @@ public class Level {
 				board.set((row*getSize())+column,piece);
 			}
 						
-			numBunnies = getBoard1D().stream().filter(p -> p instanceof Bunny).count();
-			numHoles = getBoard1D().stream().filter(p -> p instanceof Hole || p.getSymbol().getImageSrc().contains("-hole")).count();
+			numBunnies = getBoard().stream().filter(p -> p instanceof Bunny).count();
+			numHoles = getBoard().stream().filter(p -> p instanceof Hole || p.getSymbol().getImageSrc().contains("-hole")).count();
 			
 			if(numBunnies==0)		
 			 throw new LevelException(LevelException.ERROR_NO_BUNNIES);
@@ -146,11 +147,8 @@ public class Level {
 		return DIFFICULTY;				
 	}	
 	
-	 /** Getter of MIN_MOVES.
-	 * @return Value of the field "MIN_MOVES".
-	 */
-	public int getMinMoves() {
-		return MIN_MOVES;
+	public LevelType getLevelType() {
+		return LEVELTYPE;
 	}
 	
 	/**
@@ -160,7 +158,7 @@ public class Level {
 	 * @param column Index of the column on the board.
 	 * @return True if the cell (row,column) exists on the board. Otherwise, false.
 	 */
-	private boolean validatePosition(int row, int column) {
+	public boolean validatePosition(int row, int column) {
 	   	 return row >= 0 && column >= 0 && row < SIZE && column < SIZE;        
 	}
 	
@@ -195,130 +193,24 @@ public class Level {
 		
 		throw new LevelException(LevelException.ERROR_INCORRECT_COLUMN);
 	}
-		
-	/**
-     * Determines if the specified position (coord) is an obstacle that can be jumped over, i.e. bunny, mushroom or fox.
-     *
-     * @param coord Coordinate object that represents an object of the board.  
-     * @return True if the position is occupied, false otherwise.
-     */
-    
-    public boolean isObstacle(Coordinate coord) {
-        return isObstacle(coord.getRow(), coord.getColumn());
-    }
-    
-    /**
-     * Determines if the specified position (coord) is an obstacle that can be jumped over, i.e. bunny, mushroom or fox.
-     * 
-     * @param row The y-coordinate (row) of the position.
-     * @param column The x-coordinate (column) of the position.
-     * @return True if the position is occupied, false otherwise.
-     */
-    public boolean isObstacle(int row, int column) {
-        return validatePosition(row,column) && 
-        		(board.get((row*getSize())+column) instanceof Bunny || board.get((row*getSize())+column) instanceof Mushroom 
-        				|| board.get((row*getSize())+column) instanceof Fox);
-    }
        
    	/**
 	 * This method returns a 1-D list with all the pieces which are on the board.  
 	 * @return 1-D board in the format of a List. 
 	 */
-	public List<Piece> getBoard1D(){
+	public List<Piece> getBoard(){
 		return board;
 	}
-	
-	/**
-	 * This method returns a 2-D array with all the pieces which are on the board.  
-	 * @return 2-D board in the format of an array [row][column]. 
-	 */
-	public Piece[][] getBoard2D() {
-		Piece[][] board2D = new Piece[getSize()][getSize()];
-		
-		for(var i = 0; i<getSize(); i++) {
-			for(var j = 0; j<getSize(); j++) {
-				board2D[i][j] = board.get((i*getSize())+j);
-			}
-		}
-		
-		return board2D;
+
+	public String getName() {
+		return name;
+	}
+
+	public int getNumTotalBunnies() {
+		return numTotalBunnies;
+	}
+	public int getNumTotalFoxes() {
+		return numTotalFoxes;
 	}
 	
-	/**
-	 * Retrieve the piece which is in the cell "coord".
-	 * @param coord Coordinate object with the information of the cell (row,col) where the piece is.
-	 * @return Piece which is in the cell "coord".
-	 * @throws LevelException When the coordinate is invalid for the board.
-	 */
-	public Piece getPiece(Coordinate coord) throws LevelException{
-		if(!validatePosition(coord.getRow(), coord.getColumn())){
-			throw new LevelException(LevelException.ERROR_COORDINATE);
-		}
-		return getPiece(coord.getRow(), coord.getColumn());
-	}
-	
-	/**
-	 * Retrieve the piece which is in the cell (row,column).
-	 * @param row Index of the row in which the piece is.
-	 * @param column Index of the column in which the piece is.
-	 * @return Piece which is in the cell (row,column).
-	 * @throws LevelException When the coordinate/cell (row,column) is invalid for the board.
-	 */
-	public Piece getPiece(int row, int column) throws LevelException{
-		if(!validatePosition(row, column)){
-			throw new LevelException(LevelException.ERROR_COORDINATE);
-		}
-		return board.get((row*getSize())+column);
-	}
-	
-	/**
-	 * Sets the "piece" in the specific cell indicated by "coord".
-	 * @param coord Coordinate object with the information of the cell in which the piece must be.
-	 * @param piece Piece to put into the cell indicated by "coord".
-	 * @throws LevelException When the coordinate is invalid for the board.
-	 */
-	public void setPiece(Coordinate coord, Piece piece) throws LevelException{
-		if(!validatePosition(coord.getRow(), coord.getColumn())){
-			throw new LevelException(LevelException.ERROR_COORDINATE);
-		}	    
-		board.set((coord.getRow()*getSize())+coord.getColumn(), piece);
-	    piece.setCoord(coord);
-	}
-    
-	/**
-	 * Indicates if the level is beaten/finished, i.e. all the bunnies are in a hole.
-	 * @return True if the level is beaten/finished. Otherwise, false.
-	 */
-    public boolean isFinished() {
-    	return getBoard1D().stream()
-    			.filter(piece -> piece instanceof Bunny)
-    			.map(piece -> (Bunny)piece)
-    			.allMatch(bunny -> bunny.isInHole());    			
-    }
-    
-    /**
-	 * Returns a String with board's information.
-	 * @return Text-based board.
-	 */
-	@Override
-	public String toString() {
-		StringBuilder str = new StringBuilder();	
-		Piece[][] board2D = getBoard2D();
-		
-		str.append("  ");
-		for(int i = 0; i<SIZE; i++)			
-			str.append(i+1);
-		
-		str.append("\n");
-			
-		for(int row = 0; row<SIZE; row++) {	
-			str.append((char)(row+97)+"|");
-			for(int column = 0; column<SIZE; column++) {				
-				str.append(board2D[row][column]);
-			}
-			str.append("\n");
-		}
-		
-		return str.toString();		
-	}
 }

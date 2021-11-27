@@ -1,0 +1,14 @@
+STORY
+5
+EXPERT
+8
+Ha1
+Ma3
+Ha5
+wb3
+Hc3
+Mc5
+Md3
+Vd4
+He1
+He5

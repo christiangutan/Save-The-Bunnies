@@ -1,0 +1,22 @@
+
+.pane :hover {
+	-fx-background-color: linear-gradient(from 25px 25px to 100px 100px, #dc143c, #32cd32);
+}
+.pane {
+	-fx-background-color: #55f063;
+	-fx-background-radius: 15 15 15 15;
+}
+/* 
+.label :hover {
+	-fx-background-color : transparent;
+}
+.label {
+	-fx-background-color : transparent;
+}
+.button :hover  pane{
+	-fx-background-color : linear-gradient(from 25px 25px to 100px 100px, #daea3c, #06b298);
+}
+.button {
+	-fx-background-color : #6de4e6;
+}*/
+

@@ -130,6 +130,7 @@ public class ConnectionServer {
 						inputObjectData = inputStream.readObject();
 						
 						if (inputObjectData instanceof DataPackageLoggedUser) {
+							System.out.println("Email de la base de datos: " + ((DataPackageLoggedUser) inputObjectData).getEmail());
 							User.setEmail(((DataPackageLoggedUser) inputObjectData).getEmail());
 							User.setIdImageProfile(((DataPackageLoggedUser) inputObjectData).getIdImageProfile());
 							User.setLastLevelPassedStory(((DataPackageLoggedUser) inputObjectData).getLastLevelPassedStory());

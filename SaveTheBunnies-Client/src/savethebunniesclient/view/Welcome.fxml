@@ -9,7 +9,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="645.0" maxWidth="825" minHeight="645.0" minWidth="825" prefHeight="645.0" prefWidth="825.0" style="-fx-background-color: #1d7c2f;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="savethebunniesclient.controller.WelcomeController">
+<AnchorPane maxHeight="645.0" maxWidth="825" minHeight="645.0" minWidth="825" prefHeight="645.0" prefWidth="825.0" style="-fx-background-color: #1d7c2f;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="savethebunniesclient.controller.gui.WelcomeController">
    <children>
       <AnchorPane prefHeight="104.0" prefWidth="825.0">
          <children>
@@ -17,7 +17,7 @@
                <image>
                   <Image url="@../util/img/usernameIcon.png" />
                </image></ImageView>
-            <Text fx:id="username" layoutX="203.0" layoutY="33.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Username" wrappingWidth="221.1279296875">
+            <Text fx:id="username" layoutX="163.0" layoutY="49.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Username" wrappingWidth="221.1279296875">
                <font>
                   <Font name="Times New Roman" size="21.0" />
                </font>
@@ -36,7 +36,7 @@
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor></ImageView>
-            <Text fx:id="name" layoutX="203.0" layoutY="64.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Name" wrappingWidth="221.1279296875">
+            <Text fx:id="name" layoutX="163.0" layoutY="90.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Name" wrappingWidth="221.1279296875">
                <font>
                   <Font name="Times New Roman" size="17.0" />
                </font>
@@ -44,6 +44,14 @@
             <ImageView fx:id="buttonPower" fitHeight="87.0" fitWidth="77.0" layoutX="737.0" layoutY="14.0" onMousePressed="#actionButtonPower" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../util/img/power.png" />
+               </image>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </ImageView>
+            <ImageView fx:id="saveTheBunniesProject" fitHeight="77.0" fitWidth="77.0" layoutX="374.0" layoutY="14.0" onMouseReleased="#actionLinkProjectSaveTheBunnies" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../util/img/icon.png" />
                </image>
                <cursor>
                   <Cursor fx:constant="HAND" />

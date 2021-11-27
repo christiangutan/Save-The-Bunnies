@@ -1,10 +1,7 @@
-#buttonOkey:focused {
-	 -fx-background-color: #d3fefc;
-}
-#buttonOkey:hover {
+.button:hover {
 	-fx-background-color: #45adbe;
 }
-#buttonOkey{
+.button{
 	-fx-background-color: #55f063
 }
 #pane {

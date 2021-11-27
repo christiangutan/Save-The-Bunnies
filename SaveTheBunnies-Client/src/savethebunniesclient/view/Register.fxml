@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="645.0" maxWidth="825.0" minHeight="482.0" minWidth="265.0" prefHeight="482.0" prefWidth="307.0" style="-fx-background-color: #74cb56;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="savethebunniesclient.controller.RegisterController">
+<AnchorPane maxHeight="645.0" maxWidth="825.0" minHeight="482.0" minWidth="265.0" prefHeight="482.0" prefWidth="307.0" style="-fx-background-color: #74cb56;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="savethebunniesclient.controller.gui.RegisterController">
    <children>
       <TextField fx:id="usernameTextField" layoutX="48.0" layoutY="92.0" prefHeight="26.0" prefWidth="212.0" promptText="Username" />
       <TextField fx:id="nameTextField" cacheShape="false" layoutX="48.0" layoutY="157.0" prefHeight="26.0" prefWidth="212.0" promptText="Name" />

@@ -1,7 +1,5 @@
 package savethebunniesclient.controller;
 
-import javafx.scene.image.Image;
-
 public class User {
 	
 	private static String username;

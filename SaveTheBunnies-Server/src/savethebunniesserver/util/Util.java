@@ -5,7 +5,12 @@ public class Util {
 		String[] chain = chainFromDataBase.split(";");
 		int [] intChain = new int[chain.length];
 		for (int i = 0; i < chain.length ; i++) {
-			intChain[i] = Integer.parseInt(chain[i]);
+			if(chain[i].equals("")){
+				intChain[i] = 0;
+			} else {
+				intChain[i] = Integer.parseInt(chain[i]);
+			}
+			
 		}
 		return intChain;
 	}

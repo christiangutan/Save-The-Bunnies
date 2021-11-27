@@ -1,8 +1,10 @@
 package savethebunniesclient.model;
 
+import savethebunniesclient.controller.ToPlay;
+
 /** 
 * A FoxTail piece class.
-* @author David García Solórzano
+* @author Christian Gutiérrez Antolín
 * @version 1.0 
 */
 public class FoxTail extends Fox{
@@ -88,10 +90,10 @@ public class FoxTail extends Fox{
 	 * @param level {@inheritDoc} 
 	 * @return {@inheritDoc}
 	 */
-	public boolean isValidMove(Coordinate destination, Level level) {
-		Coordinate headDestination = getHeadEndCoordinate(destination,level.getSize());
+	public boolean isValidMove(Coordinate destination, ToPlay toPlay) {
+		Coordinate headDestination = getHeadEndCoordinate(destination,toPlay.getSize());
 		if(headDestination==null) return false;
-		return getOtherHalf().isValidMove(headDestination, level);
+		return getOtherHalf().isValidMove(headDestination, toPlay);
 		
 	}
 	
@@ -102,10 +104,10 @@ public class FoxTail extends Fox{
 	 * @return {@inheritDoc} It also returns "false" if there doesn't exist a reference to the head.
 	 */
 	@Override
-	public boolean move(Coordinate destination, Level level) {		
-		if(isValidMove(destination,level)) {
-			Coordinate headDestination  = getHeadEndCoordinate(destination,level.getSize());
-			return getOtherHalf().move(headDestination, level);
+	public boolean move(Coordinate destination, ToPlay toPlay) {		
+		if(isValidMove(destination,toPlay)) {
+			Coordinate headDestination  = getHeadEndCoordinate(destination,toPlay.getSize());
+			return getOtherHalf().move(headDestination, toPlay);
 		}else {
 			return false;
 		}

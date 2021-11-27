@@ -1,8 +1,10 @@
 package savethebunniesclient.model;
 
+import savethebunniesclient.controller.ToPlay;
+
 /** 
  * Movable interface.
- * @author David García Solórzano
+ * @author Christian Gutiérrez Antolín
  * @version 1.0  
  */
 public interface Movable {
@@ -15,7 +17,7 @@ public interface Movable {
      * @return true if the move was successful, false if parameters are invalid or
      * the move was unsuccessful. 
      */
-	public boolean move(Coordinate destination, Level level);
+	public boolean move(Coordinate destination, ToPlay toPlay);
 	
 	/**
 	 * Checks if the move is valid according to the game's rules.
@@ -25,5 +27,5 @@ public interface Movable {
      * @return true if the move is valid, false if parameters are invalid or
      * the move is invalid. 
      */
-	public boolean isValidMove(Coordinate destination, Level level) ;
+	public boolean isValidMove(Coordinate destination, ToPlay toPlay) ;
 }

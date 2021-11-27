@@ -75,18 +75,6 @@ class LevelTest {
 	}
 
 	@Test
-	void testGetMinMoves() {
-		assertEquals(1,level.getMinMoves());
-		try {
-			level = new Level("levels-tests/level2.txt");
-			assertEquals(16,level.getMinMoves());
-		} catch (FileNotFoundException | IllegalArgumentException | LevelException e) {			
-			e.printStackTrace();
-			fail("testGetMinMoves failed");
-		}
-	}
-
-	@Test
 	void testIsObstacleCoordinate() {
 		assertTrue(level.isObstacle(new Coordinate(0,0))); //bunny
 		assertTrue(level.isObstacle(new Coordinate(1,1))); //mushroom

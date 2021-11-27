@@ -5,7 +5,8 @@ package savethebunniesclient.model;
  * @author Christian Gutiérrez Antolín
  * @version 1.0  
  */
-public enum LevelDifficulty {	
+public enum LevelDifficulty {
+	BUILDERMODE,
 	STARTER,
 	JUNIOR,
 	EXPERT,

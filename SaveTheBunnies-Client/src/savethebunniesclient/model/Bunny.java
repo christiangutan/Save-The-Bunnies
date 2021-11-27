@@ -1,8 +1,10 @@
 package savethebunniesclient.model;
 
+import savethebunniesclient.controller.ToPlay;
+
 /** 
 * A Bunny piece class.
-* @author David García Solórzano
+* @author Christian Gutiérrez Antolín
 * @version 1.0 
 */
 public class Bunny extends Piece implements Movable{
@@ -43,17 +45,17 @@ public class Bunny extends Piece implements Movable{
 	 * @return true if the move was successful, false if parameters are invalid or
      * the move was unsuccessful. It also returns "false" if there is any exception.
 	 */
-	public boolean move(Coordinate destination, Level level) {
+	public boolean move(Coordinate destination, ToPlay toPlay) {
 		
-		if (getCoord()!= null && destination != null && level != null) {
-			if (isValidMove(destination, level)) {
+		if (getCoord()!= null && destination != null && toPlay != null) {
+			if (isValidMove(destination, toPlay)) {
 				
 				Coordinate start = new Coordinate(this.getCoord().getRow(), this.getCoord().getColumn());																
 				Piece endCell;
 				
 				try {
-					endCell = level.getPiece(destination);
-					level.setPiece(start, this.isInHole()?new Hole(start):new Grass(start));
+					endCell = toPlay.getPiece(destination);
+					toPlay.setPiece(start, this.isInHole()?new Hole(start):new Grass(start));
 					if(endCell instanceof Hole) { //Add "_HOLE" if the symbols doesn't have "_HOLE". 
 						if(!getSymbol().name().contains("_HOLE")){
 							this.setSymbol(Symbol.valueOf(getSymbol().name()+"_HOLE"));
@@ -61,7 +63,7 @@ public class Bunny extends Piece implements Movable{
 					}else {//Remove "_HOLE"
 						this.setSymbol(Symbol.valueOf(getSymbol().name().replace("_HOLE","")));					
 					}
-					level.setPiece(destination, this);
+					toPlay.setPiece(destination, this);
 				} catch (LevelException e) {
 					return false;
 				}								
@@ -81,17 +83,17 @@ public class Bunny extends Piece implements Movable{
      * @return True if the path for this move is valid for the object (i.e. horizontal or vertical), false otherwise.
      */
 	@Override
-	public boolean isValidMove(Coordinate destination, Level level) {
+	public boolean isValidMove(Coordinate destination, ToPlay toPlay) {
 		
-		if(destination.getRow()<0 || destination.getColumn()>level.getSize()) return false;
+		if(destination.getRow()<0 || destination.getColumn()>toPlay.getSize()) return false;
 		
 		Move move = new Move(getCoord(),destination);
 		
 		switch(move.getDirection()) {
 			case HORIZONTAL:
-					return isValidHorizontalMove(move,level) ;
+					return isValidHorizontalMove(move,toPlay) ;
 			case VERTICAL:
-					return isValidVerticalMove(move,level);
+					return isValidVerticalMove(move,toPlay);
 			case INVALID: //No-Invalid move (user wants to move the piece in a no-diagonal path)
 			default:
 					return false;					
@@ -105,19 +107,19 @@ public class Bunny extends Piece implements Movable{
 	 * @param level Level object of the current level.
 	 * @return True if the horizontal move is correct. Otherwise, false.
 	 */
-	private boolean isValidHorizontalMove(Move move, Level level){
+	private boolean isValidHorizontalMove(Move move, ToPlay toPlay){
 		
 		int distance = move.getHorizontalDistance();
 		
 		//Cost O(1) | End no occupied and bunny move two squares, at least.
-		if(level.isObstacle(move.getEnd()) || Math.abs(distance) <= 1) return false;
+		if(toPlay.isObstacle(move.getEnd()) || Math.abs(distance) <= 1) return false;
 		
 		//Go to left from next square; else: go to right from next square		
 		int i = distance < 0 ? move.getColumnStart() - 1 : move.getColumnStart() + 1;
 		boolean condition = distance < 0 ? i > move.getColumnEnd() : i < move.getColumnEnd();
 				
 		while(condition) {
-			 if (!level.isObstacle(move.getRowStart(),i)) {
+			 if (!toPlay.isObstacle(move.getRowStart(),i)) {
                 	return false;
              }
 			i = distance < 0 ? i-1: i+1;			
@@ -133,19 +135,19 @@ public class Bunny extends Piece implements Movable{
 	 * @param level Level object of the current level.
 	 * @return True if the vertical move is correct. Otherwise, false.
 	 */
-	private boolean isValidVerticalMove(Move move, Level level){
+	private boolean isValidVerticalMove(Move move, ToPlay toPlay){
 		
 		int distance = move.getVerticalDistance();
 		
 		//Cost O(1) | End no occupied and bunny move two squares, at least.
-		if(level.isObstacle(move.getEnd()) || Math.abs(distance) <= 1) return false;
+		if(toPlay.isObstacle(move.getEnd()) || Math.abs(distance) <= 1) return false;
 		
 		//Go to up from next square; else: go to down from next square		
 		int i = distance < 0 ? move.getRowStart() - 1 : move.getRowStart() + 1;
 		boolean condition = distance < 0 ? i > move.getRowEnd() : i < move.getRowEnd();
 				
 		while(condition) {
-			 if (!level.isObstacle(i,move.getColumnStart())) {				
+			 if (!toPlay.isObstacle(i,move.getColumnStart())) {				
                 	return false;
              }
 			i = distance < 0 ? i-1: i+1;			

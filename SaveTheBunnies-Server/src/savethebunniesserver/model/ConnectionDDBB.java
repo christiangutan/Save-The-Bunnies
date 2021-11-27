@@ -40,7 +40,6 @@ public class ConnectionDDBB {
 			
 			PreparedStatement statement = ConnectionDDBB.getConnection()
 					.prepareStatement("INSERT INTO USERS VALUE (null, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
-			
 			statement.setString(1, info.getUsername());	// username
 			statement.setString(2, info.getName());		// name
 			statement.setString(3, info.getPassword());	// password
@@ -59,7 +58,7 @@ public class ConnectionDDBB {
 			return "";
 			
 		} catch (SQLException e) {
-			Log.addInfoError(e.getMessage() + "xd");
+			Log.addInfoError(e.getMessage());
 			
 			if(e.getMessage().contains("for key 'username'")) return "This username is not available";
 			
@@ -73,14 +72,13 @@ public class ConnectionDDBB {
 		try {
 			PreparedStatement statement = ConnectionDDBB.getConnection()
 					.prepareStatement("SELECT COUNT(*) FROM savethebunnies.users WHERE username = ?");
-			System.out.println(info.getUsername());
 			statement.setString(1, info.getUsername());	//username
 			System.out.println(statement.toString());
 			ResultSet rs = statement.executeQuery();
 			
 			rs.next();
 			
-			if(rs.getInt(1) != 0) return "No user exists";
+			if(rs.getInt(1) != 1) return "No user exists";
 			
 		} catch (SQLException e) {
 			Log.addInfoError(e.getMessage());
@@ -98,7 +96,7 @@ public class ConnectionDDBB {
 			
 			rs.next();
 			
-			if(rs.getInt(0)==1) return "User logged";
+			if(rs.getInt(1)==1) return "";
 			else return "Incorrect password";
 		} catch (SQLException e) {
 			Log.addInfoError(e.getMessage());
@@ -117,18 +115,20 @@ public class ConnectionDDBB {
 			ResultSet rs = statement.executeQuery();
 			
 			rs.next();
-			String username = rs.getString(1);
-			String name = rs.getString(2);
-			String password = rs.getString(3);
-			String email = rs.getString(4);
-			int lastLevenPassedStory = rs.getInt(5);
-			String levelsBuiltString = rs.getString(6);
-			String levelsPassedString = rs.getString(7);
-			int idProfile = rs.getInt(8);
-			Date dateRegistration = rs.getDate(9);
+			String username = rs.getString(2);
+			String name = rs.getString(3);
+			String password = rs.getString(4);
+			String email = rs.getString(5);
+			int lastLevenPassedStory = rs.getInt(6);
+			String levelsBuiltString = rs.getString(7);
+			String levelsPassedString = rs.getString(8);
+			int idProfile = rs.getInt(9);
+			Date dateRegistration = rs.getDate(10);
 			
 			int[] levelsBuilt = Util.conversorStringToIntArrayLevels(levelsBuiltString);
 			int[] levelsPassed = Util.conversorStringToIntArrayLevels(levelsPassedString);
+			
+			Log.addInfoError("Username: " + username + "; Name: " + name);
 			
 			return new DataPackageLoggedUser (username, name, password, email, lastLevenPassedStory,
 					levelsBuilt, levelsPassed, idProfile, dateRegistration, "User info correct", false);
