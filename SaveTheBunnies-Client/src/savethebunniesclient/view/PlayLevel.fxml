@@ -20,7 +20,7 @@
                         <Image url="@../util/img/usernameIcon.png" />
                      </image>
                   </ImageView>
-                  <ImageView fx:id="buttonSettings" fitHeight="87.0" fitWidth="77.0" layoutX="14.0" layoutY="554.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="buttonSettings" fitHeight="87.0" fitWidth="77.0" layoutX="14.0" layoutY="554.0" onMousePressed="#actionButtonConfiguration" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../util/img/configuration.png" />
                      </image>

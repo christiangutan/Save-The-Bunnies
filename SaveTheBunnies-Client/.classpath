@@ -22,5 +22,6 @@
 	<classpathentry kind="lib" path="C:/Users/chris/eclipse-workspace/SaveTheBunnies/Jars/DataPackageRegisteredUser.jar"/>
 	<classpathentry kind="lib" path="C:/Users/chris/eclipse-workspace/SaveTheBunnies/Jars/jfoenix-9.0.10.jar"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/JavaFX16"/>
+	<classpathentry kind="lib" path="C:/Users/chris/eclipse-workspace/SaveTheBunnies/Jars/mp3agic-0.9.1.jar"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>

@@ -6,13 +6,13 @@ import java.io.FileNotFoundException;
 
 import org.junit.jupiter.api.Test;
 
-import savethebunniesclient.model.Coordinate;
-import savethebunniesclient.model.Hole;
-import savethebunniesclient.model.Level;
-import savethebunniesclient.model.LevelDifficulty;
-import savethebunniesclient.model.LevelException;
-import savethebunniesclient.model.Piece;
-import savethebunniesclient.model.Symbol;
+import savethebunniesclient.model.game.Coordinate;
+import savethebunniesclient.model.game.Hole;
+import savethebunniesclient.model.game.Level;
+import savethebunniesclient.model.game.LevelDifficulty;
+import savethebunniesclient.model.game.LevelException;
+import savethebunniesclient.model.game.Piece;
+import savethebunniesclient.model.game.Symbol;
 
 
 class LevelTest {

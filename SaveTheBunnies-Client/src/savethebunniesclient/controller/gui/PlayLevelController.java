@@ -19,14 +19,15 @@ import savethebunniesclient.app.GuiApp;
 import savethebunniesclient.controller.InfoController;
 import savethebunniesclient.controller.ToPlay;
 import savethebunniesclient.controller.User;
-import savethebunniesclient.model.Coordinate;
-import savethebunniesclient.model.Grass;
-import savethebunniesclient.model.Hole;
-import savethebunniesclient.model.LevelException;
-import savethebunniesclient.model.Movable;
-import savethebunniesclient.model.Move;
+import savethebunniesclient.model.game.Coordinate;
+import savethebunniesclient.model.game.Grass;
+import savethebunniesclient.model.game.Hole;
+import savethebunniesclient.model.game.LevelException;
+import savethebunniesclient.model.game.Movable;
+import savethebunniesclient.model.game.Move;
+import savethebunniesclient.model.view.ConfigurationPopUpWindow;
+import savethebunniesclient.model.view.DoubleOptionPopUpWindow;
 import savethebunniesclient.util.OnActionData;
-import savethebunniesclient.view.model.DoubleOptionPopUpWindow;
 
 public class PlayLevelController {
 
@@ -40,30 +41,30 @@ public class PlayLevelController {
 	@FXML
 	private Pane canvas;
 	
-	private boolean builtMode;
+	private boolean onlineMode;
 	private int idLevel = -1; 
 	
 	@FXML
-	private Text labelLevel1;
+	private Text labelLevelName;
 	@FXML
-	private Text labelLevel2;
+	private Text labelLeveDifficulty;
 	
 	@FXML
     private void initialize() throws FileNotFoundException, LevelException{  
     	move = new ArrayList<Coordinate>();
     	idLevel = InfoController.getCurrentLevelId();
     	
-    	builtMode = idLevel > InfoController.getNumlevelstory();
+    	onlineMode = idLevel > InfoController.getNumlevelstory();
     	
     	loadLevel();
     	
-    	if(builtMode) {
+    	if(onlineMode) {
     		//labelLevel1.setText("LEVEL " + idLevel);
     		//labelLevel2.setText();						//username of who has built the level
     		
     	} else {
-    		labelLevel1.setText("LEVEL " + idLevel);
-    		labelLevel2.setText(toPlay.getDifficulty().toString().toUpperCase());
+    		labelLevelName.setText("LEVEL " + idLevel);
+    		labelLeveDifficulty.setText(toPlay.getDifficulty().toString().toUpperCase());
     	}
     }
 	
@@ -78,7 +79,7 @@ public class PlayLevelController {
     		
     		DoubleOptionPopUpWindow window = new DoubleOptionPopUpWindow("WELL DONE!!!");
     		
-    		if(builtMode) {
+    		if(onlineMode) {
     			window.setTextButton1("Reset level");
     			window.setTextButton2("Levels");
     			window.setOnAction1(new OnActionData() {
@@ -225,7 +226,7 @@ public class PlayLevelController {
     
     @FXML
     private void back(){    	
-    	if(builtMode) {
+    	if(onlineMode) {
     	} else {
     		try {
     			GuiApp.main.createView("LevelsStory.fxml","css-LevelsStory.css");
@@ -254,8 +255,14 @@ public class PlayLevelController {
 		window.createView();
 	}
     
+	@FXML
+	public void actionButtonConfiguration() {
+		ConfigurationPopUpWindow window = new ConfigurationPopUpWindow();
+		window.createView();
+	}
+	
     private void loadLevel() throws FileNotFoundException, LevelException{
-    	if(builtMode) {
+    	if(onlineMode) {
     		//TODO
     		//pedir nivel InfoController.currentLevelId
     		//al servidor

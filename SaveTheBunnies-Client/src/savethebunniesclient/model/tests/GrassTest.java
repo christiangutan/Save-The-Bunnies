@@ -4,9 +4,9 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.Test;
 
-import savethebunniesclient.model.Coordinate;
-import savethebunniesclient.model.Grass;
-import savethebunniesclient.model.Symbol;
+import savethebunniesclient.model.game.Coordinate;
+import savethebunniesclient.model.game.Grass;
+import savethebunniesclient.model.game.Symbol;
 
 class GrassTest {
 

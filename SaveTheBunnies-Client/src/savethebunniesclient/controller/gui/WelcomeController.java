@@ -10,8 +10,10 @@ import javafx.scene.control.Button;
 import javafx.scene.text.Text;
 import savethebunniesclient.app.GuiApp;
 import savethebunniesclient.controller.User;
+import savethebunniesclient.model.view.ConfigurationPopUpWindow;
+import savethebunniesclient.model.view.DoubleOptionPopUpWindow;
+import savethebunniesclient.model.view.InformationPopUpWindow;
 import savethebunniesclient.util.OnActionData;
-import savethebunniesclient.view.model.DoubleOptionPopUpWindow;
 
 public class WelcomeController {
 	@FXML
@@ -31,6 +33,26 @@ public class WelcomeController {
 	public void actionButtonStory() {		
 		try{
 			GuiApp.main.createView("LevelsStory.fxml","css-LevelsStory.css");
+		}catch(IOException e) {
+			e.printStackTrace();
+			System.exit(1);
+		}
+	}
+	
+	@FXML
+	public void actionButtonOnline() {
+		try{
+			GuiApp.main.createView("LevelsOnline.fxml","css-LevelsOnline.css");
+		}catch(IOException e) {
+			e.printStackTrace();
+			System.exit(1);
+		}
+	}
+	
+	@FXML
+	public void actionButtonMyLevels() {
+		try{
+			GuiApp.main.createView("MyLevels.fxml","css-MyLevels.css");
 		}catch(IOException e) {
 			e.printStackTrace();
 			System.exit(1);
@@ -65,4 +87,17 @@ public class WelcomeController {
 		}
 	}
 	
+	@FXML
+	public void actionButtonConfiguration() {
+		ConfigurationPopUpWindow window = new ConfigurationPopUpWindow();
+		window.createView();
+	}
+	
+	@FXML
+	public void actionButtonInformation() {
+		InformationPopUpWindow window = new InformationPopUpWindow();
+		window.createView();
+	}
+	
+
 }

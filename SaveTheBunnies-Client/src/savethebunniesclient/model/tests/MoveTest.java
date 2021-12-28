@@ -5,9 +5,9 @@ import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import savethebunniesclient.model.Coordinate;
-import savethebunniesclient.model.Move;
-import savethebunniesclient.model.MoveDirection;
+import savethebunniesclient.model.game.Coordinate;
+import savethebunniesclient.model.game.Move;
+import savethebunniesclient.model.game.MoveDirection;
 
 class MoveTest {
 

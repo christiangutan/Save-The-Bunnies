@@ -9,7 +9,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane fx:id="pane" minHeight="167.0" minWidth="300.0" prefHeight="426.0" prefWidth="300.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane fx:id="pane" minHeight="167.0" minWidth="300.0" prefHeight="426.0" prefWidth="300.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="savethebunniesclient.controller.gui.InformationPopUpController">
    <children>
       <Text fx:id="text" layoutX="3.0" layoutY="55.0" lineSpacing="1.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Information" textAlignment="CENTER" wrappingWidth="235.19998359680176" x="30.0" y="40.0">
          <font>
@@ -24,36 +24,14 @@
             <Reflection fraction="0.23" topOpacity="0.16" />
          </effect>
       </ImageView>
-      <Button fx:id="button2" layoutX="104.0" layoutY="379.0" mnemonicParsing="false" onAction="#actionButton2" prefHeight="25.0" prefWidth="94.0" text="Back">
+      <Button fx:id="buttonBack" layoutX="104.0" layoutY="379.0" mnemonicParsing="false" onAction="#actionBack" prefHeight="25.0" prefWidth="94.0" text="Back">
          <font>
             <Font name="Times New Roman" size="13.0" />
          </font>
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor></Button>
-      <ImageView fx:id="muteIcon" fitHeight="25.0" fitWidth="24.0" layoutX="45.0" layoutY="144.0" pickOnBounds="true" preserveRatio="true" visible="false">
-         <image>
-            <Image url="@../util/img/mutedSpeaker.png" />
-         </image>
-         <cursor>
-            <Cursor fx:constant="HAND" />
-         </cursor>
-         <effect>
-            <Reflection />
-         </effect>
-      </ImageView>
-      <ImageView fx:id="muteIcon1" fitHeight="25.0" fitWidth="24.0" layoutX="45.0" layoutY="217.0" pickOnBounds="true" preserveRatio="true" visible="false">
-         <image>
-            <Image url="@../util/img/mutedSpeaker.png" />
-         </image>
-         <cursor>
-            <Cursor fx:constant="HAND" />
-         </cursor>
-         <effect>
-            <Reflection />
-         </effect>
-      </ImageView>
-      <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="76.0" layoutY="217.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="76.0" layoutY="217.0" onMousePressed="#actionLinkProjectSaveTheBunnies" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../util/img/Icon_bunny.png" />
          </image>
@@ -81,7 +59,7 @@
             <Font name="Times New Roman" size="13.0" />
          </font>
       </Text>
-      <Text fill="#005986" layoutX="10.0" layoutY="182.0" strokeType="OUTSIDE" strokeWidth="0.0" text="https://github.com/christiangutan/Save-The-Bunnies" textAlignment="CENTER" wrappingWidth="280.19998359680176">
+      <Text fill="#005986" layoutX="10.0" layoutY="182.0" onMousePressed="#actionLinkProjectSaveTheBunnies" strokeType="OUTSIDE" strokeWidth="0.0" text="https://github.com/christiangutan/Save-The-Bunnies" textAlignment="CENTER" wrappingWidth="280.19998359680176">
          <font>
             <Font name="Times New Roman" size="13.0" />
          </font>

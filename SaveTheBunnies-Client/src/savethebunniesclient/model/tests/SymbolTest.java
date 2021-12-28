@@ -4,7 +4,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.Test;
 
-import savethebunniesclient.model.Symbol;
+import savethebunniesclient.model.game.Symbol;
 
 class SymbolTest {
 

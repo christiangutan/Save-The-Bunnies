@@ -2,16 +2,16 @@ package savethebunniesclient.controller;
 
 import java.util.List;
 
-import savethebunniesclient.model.Bunny;
-import savethebunniesclient.model.Coordinate;
-import savethebunniesclient.model.Fox;
-import savethebunniesclient.model.Level;
-import savethebunniesclient.model.LevelDifficulty;
-import savethebunniesclient.model.LevelException;
-import savethebunniesclient.model.Movable;
-import savethebunniesclient.model.Move;
-import savethebunniesclient.model.Mushroom;
-import savethebunniesclient.model.Piece;
+import savethebunniesclient.model.game.Bunny;
+import savethebunniesclient.model.game.Coordinate;
+import savethebunniesclient.model.game.Fox;
+import savethebunniesclient.model.game.Level;
+import savethebunniesclient.model.game.LevelDifficulty;
+import savethebunniesclient.model.game.LevelException;
+import savethebunniesclient.model.game.Movable;
+import savethebunniesclient.model.game.Move;
+import savethebunniesclient.model.game.Mushroom;
+import savethebunniesclient.model.game.Piece;
 
 public class ToPlay {
 	private Level level;
@@ -26,14 +26,7 @@ public class ToPlay {
 	public ToPlay(Level level) {
 		this.level = level;
 		board = level.getBoard();
-		this.size = level.getSize();		
-		
-		//controlar despues de cada movimiento si se ha acabado el juego
-		//en caso de que sea así pasar al siguiente nivel (si existe) en modo historia
-		//y si es en modo multiplayer volver a la pantalla de niveles.
-		//todo esto con sus correspondientes mensajes
-		
-		
+		this.size = level.getSize();				
 	}
 	
 	/**
@@ -108,11 +101,9 @@ public class ToPlay {
 		} catch (LevelException e) {
 			return false;
 		}
-		
 		if (piece instanceof Movable && ((Movable) piece).move(move.getEnd(), this)) {
 			return true;
 		}
-		
         return false;
     }
     

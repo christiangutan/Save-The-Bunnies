@@ -4,7 +4,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.Test;
 
-import savethebunniesclient.model.Coordinate;
+import savethebunniesclient.model.game.Coordinate;
 
 class CoordinateTest {
 

@@ -586,7 +586,7 @@
                   <Font name="Times New Roman" size="21.0" />
                </font>
             </Text>
-            <ImageView fx:id="settingsButton" fitHeight="87.0" fitWidth="77.0" layoutX="616.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="settingsButton" fitHeight="87.0" fitWidth="77.0" layoutX="616.0" layoutY="14.0" onMousePressed="#actionButtonConfiguration" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../util/img/configuration.png" />
                </image>
@@ -594,7 +594,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </ImageView>
-            <ImageView fx:id="infoButton" fitHeight="77.0" fitWidth="77.0" layoutX="495.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="infoButton" fitHeight="77.0" fitWidth="77.0" layoutX="495.0" layoutY="14.0" onMousePressed="#actionButtonInformation" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../util/img/infoButton.png" />
                </image>

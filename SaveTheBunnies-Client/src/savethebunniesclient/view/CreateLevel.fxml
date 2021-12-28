@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="savethebunniesclient.controller.gui.CreateLevelController">
+   <children>
+      <AnchorPane maxHeight="645.0" maxWidth="825" minHeight="645.0" minWidth="825" prefHeight="645.0" prefWidth="825.0" style="-fx-background-color: #1d7c2f;">
+         <children>
+            <AnchorPane prefHeight="645.0" prefWidth="200.0">
+               <children>
+                  <ImageView fx:id="imageProfile" fitHeight="111.0" fitWidth="111.0" layoutX="43.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../util/img/usernameIcon.png" />
+                     </image>
+                  </ImageView>
+                  <Separator layoutX="9.0" layoutY="137.0" prefHeight="1.0" prefWidth="180.0" />
+                  <Text fx:id="labelLevelName" layoutX="49.0" layoutY="178.0" strokeType="OUTSIDE" strokeWidth="0.0" text="LEVEL " textAlignment="CENTER" wrappingWidth="101.1279296875">
+                     <font>
+                        <Font name="Times New Roman" size="21.0" />
+                     </font>
+                  </Text>
+                  <Text fx:id="labelLeveDifficulty" fill="#ff0707" layoutX="32.0" layoutY="215.0" strokeType="OUTSIDE" strokeWidth="0.0" text="STARTER" textAlignment="CENTER" wrappingWidth="133.1279296875">
+                     <font>
+                        <Font name="Times New Roman" size="21.0" />
+                     </font>
+                  </Text>
+                  <ImageView fx:id="buttonReset" fitHeight="77.0" fitWidth="77.0" layoutX="60.0" layoutY="263.0" onMouseReleased="#resetLevel" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../util/img/reset.png" />
+                     </image>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </ImageView>
+                  <ImageView fx:id="buttonBack" fitHeight="91.0" fitWidth="111.0" layoutX="47.0" layoutY="405.0" onMouseReleased="#back" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../util/img/back.png" />
+                     </image>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </ImageView>
+                  <ImageView fx:id="buttonSettings" fitHeight="87.0" fitWidth="77.0" layoutX="14.0" layoutY="554.0" onMousePressed="#actionButtonConfiguration" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../util/img/configuration.png" />
+                     </image>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </ImageView>
+                  <ImageView fx:id="buttonPower" fitHeight="87.0" fitWidth="77.0" layoutX="109.0" layoutY="554.0" onMouseReleased="#actionButtonPower" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../util/img/power.png" />
+                     </image>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </ImageView>
+               </children>
+            </AnchorPane>
+            <Pane id="canvas" fx:id="canvas" layoutX="201.0" layoutY="10.0" prefHeight="416.6666666666667" prefWidth="416.6666666666667" styleClass="board-background" />
+            <Separator layoutX="193.0" layoutY="529.0" prefHeight="3.0" prefWidth="618.0" />
+            <Button layoutX="278.0" layoutY="564.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="146.0" text="Play" />
+            <Button layoutX="610.0" layoutY="564.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="146.0" text="Save" />
+            <Text layoutX="671.0" layoutY="44.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Level name" textAlignment="CENTER" wrappingWidth="101.1279296875">
+               <font>
+                  <Font name="Times New Roman" size="19.0" />
+               </font>
+            </Text>
+            <TextField fx:id="textFieldNameLevel" alignment="CENTER" layoutX="647.0" layoutY="61.0" promptText="Name" />
+            <AnchorPane layoutX="622.0" layoutY="84.0" prefHeight="448.0" prefWidth="200.0">
+               <children>
+                  <RadioButton fx:id="RadioButtonGrass" layoutX="22.0" layoutY="39.0" mnemonicParsing="false" text="Grass">
+                     <font>
+                        <Font name="Times New Roman" size="12.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </RadioButton>
+                  <Separator layoutX="10.0" layoutY="86.0" prefHeight="1.0" prefWidth="180.0" />
+                  <RadioButton fx:id="radioButtonBunnie" layoutX="22.0" layoutY="145.0" mnemonicParsing="false" text="Bunnie">
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </RadioButton>
+                  <RadioButton fx:id="radioButtonBunnieWhite" layoutX="100.0" layoutY="111.0" mnemonicParsing="false" text="White">
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </RadioButton>
+                  <RadioButton fx:id="radioButtonBunnieBrown" layoutX="100.0" layoutY="145.0" mnemonicParsing="false" text="Brown">
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </RadioButton>
+                  <RadioButton fx:id="radioButtonBunnieBlack" layoutX="100.0" layoutY="179.0" mnemonicParsing="false" text="Black">
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </RadioButton>
+                  <Separator layoutX="10.0" layoutY="236.0" prefHeight="1.0" prefWidth="180.0" />
+                  <RadioButton fx:id="radioButtonFox" layoutX="22.0" layoutY="314.0" mnemonicParsing="false" text="Fox">
+                     <cursor>
+                        <Cursor fx:constant="MOVE" />
+                     </cursor>
+                  </RadioButton>
+                  <RadioButton fx:id="radioButtonFoxHorizontal" layoutX="81.0" layoutY="276.0" mnemonicParsing="false" text="Horizontal">
+                     <font>
+                        <Font name="Times New Roman" size="12.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </RadioButton>
+                  <RadioButton fx:id="radioButtonFoxVertical" layoutX="81.0" layoutY="352.0" mnemonicParsing="false" text="Vertical">
+                     <font>
+                        <Font name="Times New Roman" size="12.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </RadioButton>
+               </children>
+            </AnchorPane>
+            <AnchorPane layoutX="196.0" layoutY="427.0" prefHeight="97.0" prefWidth="428.0">
+               <children>
+                  <RadioButton fx:id="radioButtonDifficultyStarter" layoutX="52.0" layoutY="14.0" mnemonicParsing="false" text="STARTER">
+                     <font>
+                        <Font name="Times New Roman" size="12.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </RadioButton>
+                  <ImageView fitHeight="26.0" fitWidth="17.0" layoutX="81.0" layoutY="51.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../util/img/rabbit-brown-icon.png" />
+                     </image>
+                  </ImageView>
+                  <RadioButton layoutX="171.0" layoutY="14.0" mnemonicParsing="false" text="JUNIOR">
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </RadioButton>
+                  <ImageView fitHeight="26.0" fitWidth="17.0" layoutX="196.0" layoutY="51.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../util/img/rabbit-brown-icon.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fitHeight="26.0" fitWidth="17.0" layoutX="215.0" layoutY="51.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../util/img/rabbit-gray-icon.png" />
+                     </image>
+                  </ImageView>
+                  <RadioButton layoutX="290.0" layoutY="14.0" mnemonicParsing="false" text="EXPERT">
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </RadioButton>
+                  <ImageView fitHeight="26.0" fitWidth="17.0" layoutX="291.0" layoutY="51.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../util/img/rabbit-brown-icon.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fitHeight="26.0" fitWidth="17.0" layoutX="310.0" layoutY="51.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../util/img/rabbit-gray-icon.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fitHeight="26.0" fitWidth="17.0" layoutX="330.0" layoutY="52.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../util/img/rabbit-white-icon.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </AnchorPane>
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>

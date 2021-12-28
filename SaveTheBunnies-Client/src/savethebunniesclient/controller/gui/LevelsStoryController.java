@@ -2,9 +2,11 @@ package savethebunniesclient.controller.gui;
 
 import savethebunniesclient.app.GuiApp;
 import savethebunniesclient.controller.User;
+import savethebunniesclient.model.view.ConfigurationPopUpWindow;
+import savethebunniesclient.model.view.DoubleOptionPopUpWindow;
+import savethebunniesclient.model.view.InformationPopUpWindow;
+import savethebunniesclient.model.view.MenuStoryLevel;
 import savethebunniesclient.util.OnActionData;
-import savethebunniesclient.view.model.DoubleOptionPopUpWindow;
-import savethebunniesclient.view.model.MenuStoryLevel;
 
 import java.awt.Desktop;
 import java.io.IOException;
@@ -111,6 +113,16 @@ public class LevelsStoryController {
 			e.printStackTrace();
 		}
 	}
-	
+	@FXML
+	public void actionButtonConfiguration() {
+		ConfigurationPopUpWindow window = new ConfigurationPopUpWindow();
+		window.createView();
+	}
+		
+	@FXML
+	public void actionButtonInformation() {
+		InformationPopUpWindow window = new InformationPopUpWindow();
+		window.createView();
+	}
 }
 

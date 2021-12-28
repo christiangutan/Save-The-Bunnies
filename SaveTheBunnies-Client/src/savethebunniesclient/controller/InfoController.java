@@ -3,14 +3,13 @@ package savethebunniesclient.controller;
 import java.io.File;
 import java.io.FileNotFoundException;
 
-import savethebunniesclient.model.Level;
-import savethebunniesclient.model.LevelException;
+import savethebunniesclient.model.game.Level;
+import savethebunniesclient.model.game.LevelException;
+import savethebunniesclient.util.Resources;
 
 public class InfoController {
-	
-	private static final String FILENAMESSTORYLEVELS = "src/savethebunniesclient/util/storylevels/";
 
-	public static final int NUMLEVELSTORY = new File(FILENAMESSTORYLEVELS).list().length - 1;
+	public static final int NUMLEVELSTORY = new File(Resources.STORYLEVELS).list().length - 1;
 	
 	private static Level[] storyLevels = new Level[NUMLEVELSTORY];
 	
@@ -25,7 +24,7 @@ public class InfoController {
 	
 	private static void loadLevelsStory() throws FileNotFoundException, IllegalArgumentException, LevelException {
 		for(int i = 0; i < NUMLEVELSTORY; i++) {
-			storyLevels[i] = new Level(FILENAMESSTORYLEVELS + "level" + (i+1) + ".txt");
+			storyLevels[i] = new Level(Resources.STORYLEVELS + "level" + (i+1) + ".txt");
 		}
 	}
 

@@ -14,10 +14,10 @@ import javafx.scene.layout.Region;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
 import savethebunniesclient.controller.InfoController;
-import savethebunniesclient.model.LevelException;
+import savethebunniesclient.model.game.LevelException;
+import savethebunniesclient.model.view.ErrorPopUpWindow;
 import savethebunniesclient.util.OnActionData;
 import savethebunniesclient.util.Resources;
-import savethebunniesclient.view.model.ErrorPopUpWindow;
 
 public class GuiApp extends Application {
 

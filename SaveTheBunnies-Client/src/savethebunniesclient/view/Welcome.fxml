@@ -22,14 +22,14 @@
                   <Font name="Times New Roman" size="21.0" />
                </font>
             </Text>
-            <ImageView fx:id="settingsButton" fitHeight="87.0" fitWidth="77.0" layoutX="616.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="settingsButton" fitHeight="87.0" fitWidth="77.0" layoutX="616.0" layoutY="14.0" onMousePressed="#actionButtonConfiguration" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../util/img/configuration.png" />
                </image>
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor></ImageView>
-            <ImageView fx:id="infoButton" fitHeight="77.0" fitWidth="77.0" layoutX="495.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="infoButton" fitHeight="77.0" fitWidth="77.0" layoutX="495.0" layoutY="14.0" onMousePressed="#actionButtonInformation" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../util/img/infoButton.png" />
                </image>
@@ -59,21 +59,21 @@
             </ImageView>
          </children>
       </AnchorPane>
-      <Button fx:id="buttonStory" layoutX="545.0" layoutY="194.0" mnemonicParsing="false" onMouseReleased="#actionButtonStory" prefHeight="72.0" prefWidth="157.0" text="Story">
+      <Button fx:id="buttonStory" layoutX="545.0" layoutY="194.0" mnemonicParsing="false" onMousePressed="#actionButtonStory" prefHeight="72.0" prefWidth="157.0" text="Story">
          <font>
             <Font name="Times New Roman" size="29.0" />
          </font>
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor></Button>
-      <Button fx:id="buttonOnline" layoutX="545.0" layoutY="323.0" mnemonicParsing="false" prefHeight="72.0" prefWidth="158.0" text="Online">
+      <Button fx:id="buttonOnline" layoutX="545.0" layoutY="323.0" mnemonicParsing="false" onMousePressed="#actionButtonOnline" prefHeight="72.0" prefWidth="158.0" text="Online">
          <font>
             <Font name="Times New Roman" size="26.0" />
          </font>
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor></Button>
-      <Button fx:id="buttonCreateLevels" layoutX="545.0" layoutY="452.0" mnemonicParsing="false" prefHeight="72.0" prefWidth="158.0" text="Create Levels">
+      <Button fx:id="buttonMyLevels" layoutX="545.0" layoutY="452.0" mnemonicParsing="false" onMousePressed="#actionButtonMyLevels" prefHeight="72.0" prefWidth="158.0" text="My levels">
          <font>
             <Font name="Times New Roman" size="22.0" />
          </font>

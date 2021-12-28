@@ -8,9 +8,9 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import savethebunniesclient.app.GuiApp;
 import savethebunniesclient.controller.ConnectionServer;
+import savethebunniesclient.model.view.ErrorPopUpWindow;
+import savethebunniesclient.model.view.InfoPopUpWindow;
 import savethebunniesclient.util.OnActionData;
-import savethebunniesclient.view.model.ErrorPopUpWindow;
-import savethebunniesclient.view.model.InfoPopUpWindow;
 
 public class LoginController {
 	

@@ -37,16 +37,15 @@ public class ConfigurationPopUpController{
 
 	@FXML
 	public void actionLogOut(ActionEvent event) {
-		try{
-			GuiApp.main.createView("Welcome.fxml","css-Welcome.css");
-		}catch(IOException e) {
-			e.printStackTrace();
-			System.exit(1);
-		} 
 		Node source = (Node) event.getSource();
 		Stage stage = (Stage) source.getScene().getWindow();
 		stage.close();
-		
+		try{
+			GuiApp.main.createView("Login.fxml","css-Login-Registration.css");
+		}catch(IOException e) {
+			e.printStackTrace();
+			System.exit(1);
+		}
 	}
 	
 	@FXML
@@ -54,6 +53,30 @@ public class ConfigurationPopUpController{
 		Node source = (Node) event.getSource();
 		Stage stage = (Stage) source.getScene().getWindow();
 		stage.close();
+	}
+	
+	public JFXSlider getSliderMusic() {
+		return sliderMusic;
+	}
+	
+	public JFXSlider getSliderEffects() {
+		return sliderEffects;
+	}
+	
+	public ImageView getVolumeIconMusic() {
+		return volumeIconMusic;
+	}
+	
+	public ImageView getMuteIconMusic() {
+		return muteIconMusic;
+	}
+	
+	public ImageView getVolumeIconEffects() {
+		return volumeIconEffects;
+	}
+	
+	public ImageView getMuteIconEffects() {
+		return muteIconEffects;
 	}
 	
 	public Stage getStage() {
