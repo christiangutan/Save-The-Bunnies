@@ -11,6 +11,9 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import savethebunniesclient.app.GuiApp;
 import savethebunniesclient.controller.ConnectionServer;
+import savethebunniesclient.controller.music.Music;
+import savethebunniesclient.model.music.SoundType;
+import savethebunniesclient.model.view.DoubleOptionPopUpWindow;
 import savethebunniesclient.model.view.ErrorPopUpWindow;
 import savethebunniesclient.model.view.InfoPopUpWindow;
 import savethebunniesclient.util.OnActionData;
@@ -82,6 +85,7 @@ public class RegisterController {
 	
 	@FXML
 	private void actionRegistration() {
+		Music.playSound(SoundType.BUTTON);
 		Thread threadRegistrationUser = new Thread (new Runnable() {
 			@Override
 			public void run() {
@@ -118,6 +122,7 @@ public class RegisterController {
 	
 	@FXML
 	private void actionCancel() {
+		Music.playSound(SoundType.BUTTON);
 		try {
 			GuiApp.main.createView("Login.fxml","css-Login-Registration.css");
 			exit = true;
@@ -125,4 +130,24 @@ public class RegisterController {
 			e.printStackTrace();
 		}
 	}	
+	
+	@FXML
+	public void close() {
+		Music.playSound(SoundType.BUTTON);
+		DoubleOptionPopUpWindow window = new DoubleOptionPopUpWindow("ARE YOU SURE?");
+		window.setTextButton1("YES");
+		window.setTextButton2("NO");
+		window.setOnAction1(new OnActionData() {
+			@Override
+			public void onAction() {
+				System.exit(0);
+			}
+		});
+		window.setOnAction2(new OnActionData() {
+			@Override
+			public void onAction() {
+			}
+		});
+		window.createView();
+	}
 }

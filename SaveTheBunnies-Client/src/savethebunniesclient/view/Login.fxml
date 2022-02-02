@@ -11,11 +11,11 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="645.0" maxWidth="825.0" minHeight="482.0" minWidth="265.0" prefHeight="482.0" prefWidth="307.0" style="-fx-background-color: #74cb56;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="savethebunniesclient.controller.gui.LoginController">
+<AnchorPane maxHeight="645.0" maxWidth="825.0" minHeight="482.0" minWidth="265.0" prefHeight="482.0" prefWidth="307.0" style="-fx-background-color: #74cb56; -fx-background-radius: 20;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="savethebunniesclient.controller.gui.LoginController">
    <children>
-      <ImageView fitHeight="203.0" fitWidth="267.0" layoutX="52.0" layoutY="29.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="mainImage" fitHeight="203.0" fitWidth="267.0" layoutX="52.0" layoutY="29.0" pickOnBounds="true" preserveRatio="true" style="-fx-background-radius: 100;">
          <image>
-            <Image url="@../util/img/SAVE_THE_BUNNIES.png" />
+            <Image url="@../util/img/SAVE_THE_BUNNIES-R.png" />
          </image></ImageView>
       <TextField fx:id="usernameTextField" layoutX="52.0" layoutY="281.0" prefHeight="26.0" prefWidth="212.0" promptText="Username" />
       <PasswordField fx:id="passwordTextField" layoutX="52.0" layoutY="351.0" prefHeight="26.0" prefWidth="212.0" promptText="Password" />
@@ -31,7 +31,7 @@
       </Label>
       <Button fx:id="buttonLogin" layoutX="101.0" layoutY="395.0" mnemonicParsing="false" onMouseReleased="#actionLogin" prefHeight="26.0" prefWidth="114.0" text="Login">
          <font>
-            <Font size="14.0" />
+            <Font name="Times New Roman" size="14.0" />
          </font>
          <cursor>
             <Cursor fx:constant="HAND" />
@@ -57,7 +57,18 @@
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
+         <font>
+            <Font name="Times New Roman" size="13.0" />
+         </font>
       </Button>
+      <ImageView fitHeight="31.0" fitWidth="31.0" layoutX="269.0" layoutY="7.0" onMouseReleased="#close" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../util/img/close.png" />
+         </image>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </ImageView>
    </children>
  
 </AnchorPane>

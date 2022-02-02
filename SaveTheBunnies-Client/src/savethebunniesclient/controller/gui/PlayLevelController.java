@@ -16,15 +16,20 @@ import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.text.Text;
 import savethebunniesclient.app.GuiApp;
+import savethebunniesclient.controller.ConnectionServer;
 import savethebunniesclient.controller.InfoController;
 import savethebunniesclient.controller.ToPlay;
 import savethebunniesclient.controller.User;
+import savethebunniesclient.controller.music.Music;
 import savethebunniesclient.model.game.Coordinate;
 import savethebunniesclient.model.game.Grass;
 import savethebunniesclient.model.game.Hole;
+import savethebunniesclient.model.game.Level;
 import savethebunniesclient.model.game.LevelException;
+import savethebunniesclient.model.game.LevelType;
 import savethebunniesclient.model.game.Movable;
 import savethebunniesclient.model.game.Move;
+import savethebunniesclient.model.music.SoundType;
 import savethebunniesclient.model.view.ConfigurationPopUpWindow;
 import savethebunniesclient.model.view.DoubleOptionPopUpWindow;
 import savethebunniesclient.util.OnActionData;
@@ -41,32 +46,43 @@ public class PlayLevelController {
 	@FXML
 	private Pane canvas;
 	
-	private boolean onlineMode;
-	private int idLevel = -1; 
+	private boolean onlineMode = false;
+	private boolean testMode = false;
+	private boolean storyMode = false;
+	private int idLevel; 
 	
 	@FXML
 	private Text labelLevelName;
 	@FXML
-	private Text labelLeveDifficulty;
+	private Text labelLevelDifficulty;
 	
 	@FXML
     private void initialize() throws FileNotFoundException, LevelException{  
     	move = new ArrayList<Coordinate>();
     	idLevel = InfoController.getCurrentLevelId();
     	
-    	onlineMode = idLevel > InfoController.getNumlevelstory();
+    	if(InfoController.isTesting()) {
+    		testMode = true;
+    	} else {
+        	onlineMode = idLevel > InfoController.getNumlevelstory();
+        	storyMode = idLevel > -1 && idLevel <= InfoController.getNumlevelstory(); 
+        	testMode = idLevel == -1;
+    	}
     	
     	loadLevel();
     	
     	if(onlineMode) {
-    		//labelLevel1.setText("LEVEL " + idLevel);
-    		//labelLevel2.setText();						//username of who has built the level
-    		
-    	} else {
-    		labelLevelName.setText("LEVEL " + idLevel);
-    		labelLeveDifficulty.setText(toPlay.getDifficulty().toString().toUpperCase());
+    		System.out.println("Online Level");
+			labelLevelName.setText(InfoController.getCurrentLevel().getName());
+			labelLevelDifficulty.setText(InfoController.getCurrentLevel().getDifficulty().toString().toUpperCase());						
+    	} else if (storyMode){
+        	labelLevelName.setText("LEVEL " + idLevel);
+    		labelLevelDifficulty.setText(toPlay.getDifficulty().toString().toUpperCase());
+    	} else if (testMode) {
+    		labelLevelName.setText(InfoController.getCurrentLevel().getName().toUpperCase());
+    		labelLevelDifficulty.setText(InfoController.getCurrentLevel().getDifficulty().toString().toUpperCase());
     	}
-    }
+	}
 	
 	/**
      * Updates the status of the level (i.e. the flow of the game). It also paints the game in the GUI.
@@ -85,6 +101,7 @@ public class PlayLevelController {
     			window.setOnAction1(new OnActionData() {
 					@Override
 					public void onAction() {
+				    	Music.playSound(SoundType.BUTTON);
 						try {
 							GuiApp.main.createView("PlayLevel.fxml", "css-PlayLevel.css");
 						} catch (IOException e) {
@@ -96,36 +113,37 @@ public class PlayLevelController {
 					@Override
 					public void onAction() {
 						try {
-							GuiApp.main.createView("LevelsBuiltMode.fxml","cssCorrespondiente.css"); 
+					    	Music.playSound(SoundType.BUTTON);
+							Music.playSound(SoundType.MUSICMENU);
+
+							GuiApp.main.createView("LevelsOnline.fxml","css-LevelsOnline.css"); 
 						} catch (IOException e) {
 							e.printStackTrace();
 						}
 					}
     			});
-    		} else {
+    		} else if (storyMode){
     			window.setTextButton1("Next Level");
     			window.setTextButton2("Levels");
     			window.setOnAction1(new OnActionData() {
 					@Override
 					public void onAction() {
+				    	Music.playSound(SoundType.BUTTON);
 						if(idLevel > User.getLastLevelPassedStory()) {
     						User.setLastLevelPassedStory(idLevel);
-    						//actualizar en Servidor el dato
-    						//
-    						//TODO
-    						//
-    						//
-    						//
-    						//
-    						//
-    						//
+    						ConnectionServer.updateStoryLevel(User.getUsername(), User.getLastLevelPassedStory());
     					}
 						try {
 	    					toPlay = null;
 	    					System.gc();
-	    					InfoController.setCurrentLevelId(++idLevel);
-	    					GuiApp.main.createView("PlayLevel.fxml","css-PlayLevel.css");
-							
+	    					idLevel++;
+	    					if(idLevel <= InfoController.getNumlevelstory()) {
+	    						InfoController.setCurrentLevelId(idLevel);
+	    						GuiApp.main.createView("PlayLevel.fxml","css-PlayLevel.css");
+	    					} else {
+	    						GuiApp.main.createView("Congratulations.fxml","css-Congratulations.css");
+	    						
+	    					}
 						} catch (IOException e) {
 							e.printStackTrace();
 						}					
@@ -134,10 +152,11 @@ public class PlayLevelController {
     			window.setOnAction2(new OnActionData() {
 					@Override
 					public void onAction() {
+				    	Music.playSound(SoundType.BUTTON);
+						Music.playSound(SoundType.MUSICMENU);
 						if(idLevel > User.getLastLevelPassedStory()) {
     						User.setLastLevelPassedStory(idLevel);
-    						//TODO
-    						//actualizar en Servidor el dato
+    						ConnectionServer.updateStoryLevel(User.getUsername(), User.getLastLevelPassedStory());
     					}
 						try {
 							GuiApp.main.createView("LevelsStory.fxml","css-LevelsStory.css");
@@ -148,7 +167,32 @@ public class PlayLevelController {
     				
     			});
     			
-    			
+    		} else if(testMode) {
+    			InfoController.setTestedLevel(true);
+    			window.setTextButton1("Reset level");
+    			window.setTextButton2("Back");
+    			window.setOnAction1(new OnActionData() {
+					@Override
+					public void onAction() {
+				    	Music.playSound(SoundType.BUTTON);
+						try {
+							GuiApp.main.createView("PlayLevel.fxml", "css-PlayLevel.css");
+						} catch (IOException e) {
+							e.printStackTrace();
+						}
+					}
+    			});
+    			window.setOnAction2(new OnActionData() {
+					@Override
+					public void onAction() {
+				    	Music.playSound(SoundType.BUTTON);
+						try {
+							GuiApp.main.createView("CreateLevel.fxml","css-CreateLevel.css"); 
+						} catch (IOException e) {
+							e.printStackTrace();
+						}
+					}
+    			});
     		}
     		
     		window.createView();
@@ -185,12 +229,9 @@ public class PlayLevelController {
     		
     		sprite.setOnMouseClicked(e ->{    			
     			onClick(piece.getCoord());
-    		}); 		
-    		
+    		}); 			
     	}
-    	
     	canvas.getChildren().addAll(nodeList);
-    	
     }
     
     /**
@@ -226,10 +267,25 @@ public class PlayLevelController {
     
     @FXML
     private void back(){    	
+
+    	Music.playSound(SoundType.BUTTON);
     	if(onlineMode) {
-    	} else {
+    		Music.playSound(SoundType.MUSICMENU);
+    		try {
+    			GuiApp.main.createView("LevelsOnline.fxml","css-LevelsOnline.css");
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+    	} else if (storyMode) {
+    		Music.playSound(SoundType.MUSICMENU);
     		try {
     			GuiApp.main.createView("LevelsStory.fxml","css-LevelsStory.css");
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+    	} else if (testMode) {
+    		try {
+    			GuiApp.main.createView("CreateLevel.fxml","css-CreateLevel.css");
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
@@ -238,6 +294,7 @@ public class PlayLevelController {
     
 	@FXML
 	public void actionButtonPower() {
+		Music.playSound(SoundType.BUTTON);
 		DoubleOptionPopUpWindow window = new DoubleOptionPopUpWindow("ARE YOU SURE?");
 		window.setTextButton1("YES");
 		window.setTextButton2("NO");
@@ -257,20 +314,22 @@ public class PlayLevelController {
     
 	@FXML
 	public void actionButtonConfiguration() {
+		Music.playSound(SoundType.BUTTON);
 		ConfigurationPopUpWindow window = new ConfigurationPopUpWindow();
 		window.createView();
 	}
 	
-    private void loadLevel() throws FileNotFoundException, LevelException{
+    private void loadLevel() throws FileNotFoundException, LevelException {
     	if(onlineMode) {
-    		//TODO
-    		//pedir nivel InfoController.currentLevelId
-    		//al servidor
-    		//cargarlo como cualquier otro
-    	} else {
+    		toPlay = new ToPlay(InfoController.getCurrentLevel());
+    		paint();
+    	} else if(storyMode) {
     		InfoController.loadMainInformation();
     		toPlay = new ToPlay(InfoController.getStoryLevels()[idLevel-1]);
     		paint();
-    	}    
+    	} else if(testMode) {
+    		toPlay = new ToPlay(InfoController.getCurrentLevel());
+    		paint();
+    	}
     }
 }

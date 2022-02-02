@@ -8,7 +8,9 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.Region;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 import savethebunniesserver.util.Resources;
 
 public class GuiApp extends Application {
@@ -28,7 +30,9 @@ public class GuiApp extends Application {
 		stage.setTitle("Save the Bunnies - Server");
 		
 		stage.setResizable(false);      
-		createView("MainView.fxml", "");    	
+		getStage().initStyle(StageStyle.UNDECORATED);
+		getStage().initStyle(StageStyle.TRANSPARENT);
+		createView("MainView.fxml", "css-MainView.css");    	
 	}
 	
 	public static void main(String[] args) {
@@ -43,11 +47,16 @@ public class GuiApp extends Application {
 	    
         // Show the scene containing the root layout.	    	    
         Scene scene = new Scene(rootLayout);  
+        scene.setFill(Color.TRANSPARENT);
         
         if(css!=null && css!="") scene.getStylesheets().add(Resources.CSS + css);
         
                
         stage.setScene(scene);	    
         stage.show();    
-	}	 
+	}	
+	
+	public Stage getStage() {
+		return stage;
+	}
 }

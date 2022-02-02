@@ -1,0 +1,9 @@
+#buttonPower:focused{
+	-fx-image: url("../img/power3.png");
+}
+#buttonPower:hover{
+	-fx-image: url("../img/power2.png");
+}
+#buttonPower{
+	-fx-image: url("../img/power.png");
+}

@@ -6,6 +6,11 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
+import savethebunniesclient.controller.User;
+import savethebunniesclient.util.CreateFile;
+
 /** 
  * Level class.
  * @author Christian Gutiérrez Antolín
@@ -25,10 +30,17 @@ public class Level {
 	
 	private List<Piece> board;
 	
-	private String name;
+	private String name = "";
 	
 	private int numTotalBunnies = 0;
 	private int numTotalFoxes = 0;
+	private int numTotalHoles = 0;
+		
+	private int id;
+	private String autor;
+	
+	private StringProperty nameProperty;
+	
 	
 	/**
 	 * Constructor
@@ -39,8 +51,6 @@ public class Level {
 	 */
 	public Level(String fileName) throws FileNotFoundException, IllegalArgumentException, LevelException {
 		String line = null;
-		long numBunnies = 0, numHoles = 0;
-		int row = 0, column = 0;
 		char pieceSymbol = ' ';
 		Piece piece = null;
 
@@ -52,88 +62,126 @@ public class Level {
 			
 			if(getSize()<3) throw new LevelException(LevelException.ERROR_SIZE);
 			
+		
 			DIFFICULTY = LevelDifficulty.valueOf(sc.nextLine().toUpperCase());
-			
+						
 			board = new ArrayList<Piece>(SIZE*SIZE);
 			
-			name = "Level " + LEVELTYPE + sc.nextLine().toUpperCase();
+			for (int i = 0; i < SIZE; i++) {
+				for(int j = 0; j<SIZE; j++) {
+					board.add(new Grass(new Coordinate(i,j)));
+				}
+			}
+			
+			name = sc.nextLine().toUpperCase();
+			setNameProperty(name);
+			
+			autor = sc.nextLine().toUpperCase();
 			
 			//We populate the whole list with Grass pieces.			
 			for(int i = 0; i < getSize(); i++) {
+				line = sc.nextLine();
 				for(int j = 0; j < getSize(); j++) {
-					board.add(new Grass(new Coordinate(i, j)));
+					pieceSymbol= line.charAt(j);
+					
+					switch(pieceSymbol) {
+						case '#':
+							piece = new Grass(new Coordinate(i, j));
+							break;
+						case 'H':
+							piece = new Hole(new Coordinate(i,j));
+							numTotalHoles++;
+							break;
+						case 'M':
+							piece = new Mushroom(new Coordinate(i,j));
+							break;
+						case 'w':		
+							piece = new Bunny(new Coordinate(i,j), Symbol.BUNNY_WHITE);
+							numTotalBunnies++;
+							break;
+						case 'W':
+							piece = new Bunny(new Coordinate(i,j), Symbol.BUNNY_WHITE_HOLE);
+							numTotalBunnies++;
+							numTotalHoles++;
+							break;
+						case 'b':
+							piece = new Bunny(new Coordinate(i,j), Symbol.BUNNY_BROWN);
+							numTotalBunnies++;
+							break;
+						case 'B':
+							piece = new Bunny(new Coordinate(i,j), Symbol.BUNNY_BROWN_HOLE);
+							numTotalBunnies++;
+							numTotalHoles++;
+							break;
+						case 'g':
+							piece = new Bunny(new Coordinate(i,j), Symbol.BUNNY_GRAY);
+							numTotalBunnies++;
+							break;
+						case 'G':
+							piece = new Bunny(new Coordinate(i,j), Symbol.BUNNY_GRAY_HOLE);
+							numTotalBunnies++;
+							numTotalHoles++;
+							break;
+						case '^':
+						case 'V':
+						case '<':
+						case '>':						
+							String direction = Symbol.getName(pieceSymbol).getImageSrc().split("-")[2];
+							direction = direction.substring(0,direction.indexOf(".")).toUpperCase();
+							FoxHead fox = new FoxHead(new Coordinate(i,j),FoxDirection.valueOf(direction));
+							piece = fox;
+							board.set((fox.getCoord().getRow()*getSize())+fox.getCoord().getColumn(),fox);
+							FoxTail tail = fox.getTail();	
+							piece = tail;
+							board.set((tail.getCoord().getRow()*getSize())+tail.getCoord().getColumn(),tail);
+							//board.set((tail.getCoord().getRow()*getSize())+tail.getCoord().getColumn(),tail);
+							numTotalFoxes++;
+							break;
+						default:
+							break;					
+					}		
+										
+					board.set(piece.getCoord().getRow()*getSize()+piece.getCoord().getColumn(),piece);
 				}
 			}			
-			
-			
-			while(sc.hasNext()) {
-				line = sc.nextLine();
-				pieceSymbol= line.charAt(0);
+			if(LEVELTYPE != LevelType.BUILDERMODE) {
+				if(numTotalBunnies==0)		
+				 throw new LevelException(LevelException.ERROR_NO_BUNNIES);
 				
-				if(pieceSymbol != 'b' && pieceSymbol != 'B'
-						&&
-						pieceSymbol != 'w' && pieceSymbol != 'W'
-						&&
-						pieceSymbol != 'g' && pieceSymbol != 'g') { 
-					pieceSymbol = Character.toUpperCase(pieceSymbol); 
-				}
-					
-				row = calculateRow(line.toLowerCase().charAt(1)); 
-				column = calculateColumn(line.toLowerCase().charAt(2));
+				if(numTotalHoles==0)
+					throw new LevelException(LevelException.ERROR_NO_HOLES);
 				
-				switch(Symbol.getName(pieceSymbol)) {
-					case HOLE:
-						piece = new Hole(new Coordinate(row,column));
-						break;
-					case MUSHROOM:
-						piece = new Mushroom(new Coordinate(row,column));
-						break;
-					case BUNNY_WHITE:						
-					case BUNNY_WHITE_HOLE:
-					case BUNNY_BROWN:
-					case BUNNY_BROWN_HOLE:
-					case BUNNY_GRAY:
-					case BUNNY_GRAY_HOLE:
-						piece = new Bunny(new Coordinate(row,column),Symbol.getName(pieceSymbol));
-						numTotalBunnies++;
-						break;
-					case FOX_HEAD_UP:
-					case FOX_HEAD_DOWN:
-					case FOX_HEAD_LEFT:
-					case FOX_HEAD_RIGHT:						
-						String direction = Symbol.getName(pieceSymbol).getImageSrc().split("-")[2];
-						direction = direction.substring(0,direction.indexOf(".")).toUpperCase();
-						FoxHead fox = new FoxHead(new Coordinate(row,column),FoxDirection.valueOf(direction));
-						piece = fox;
-						FoxTail tail = fox.getTail();						
-						board.set((tail.getCoord().getRow()*getSize())+tail.getCoord().getColumn(),tail);
-						numTotalFoxes++;
-						break;
-				default:
-					break;					
-				}			
-				
-				board.set((row*getSize())+column,piece);
+				if(numTotalHoles<numTotalBunnies) throw new LevelException(LevelException.ERROR_MORE_BUNNIES_THAN_HOLES);
 			}
-						
-			numBunnies = getBoard().stream().filter(p -> p instanceof Bunny).count();
-			numHoles = getBoard().stream().filter(p -> p instanceof Hole || p.getSymbol().getImageSrc().contains("-hole")).count();
-			
-			if(numBunnies==0)		
-			 throw new LevelException(LevelException.ERROR_NO_BUNNIES);
-			
-			if(numHoles==0)
-				throw new LevelException(LevelException.ERROR_NO_HOLES);
-			
-			if(numHoles<numBunnies) throw new LevelException(LevelException.ERROR_MORE_BUNNIES_THAN_HOLES);
-			             
+		
 		}catch(FileNotFoundException e) {
 			throw e;
 		}
 		
 	}
 	
-	 /** Getter of SIZE.
+		
+	 public Level(Piece[][] table, LevelType type, int size, LevelDifficulty difficulty, String nameLevel) {
+		 LEVELTYPE = type;
+		 SIZE = size;
+		 DIFFICULTY = difficulty;
+		 name = nameLevel;
+		 setNameProperty(name);
+		 board = new ArrayList<Piece>(SIZE*SIZE);
+		 
+		for(int i = 0; i < getSize(); i++) {
+			for(int j = 0; j < getSize(); j++) {
+				board.add(table[i][j]);
+			}
+		}		
+	}
+
+	public Level (Piece[][] table, LevelType type, int size, LevelDifficulty difficulty, String nameLevel, String autor, int id) {
+		this(table, type, size, difficulty, nameLevel);
+		this.id = id;
+	}
+	 
+	/** Getter of SIZE.
 	 * @return Value of the field "SIZE".
 	 */
 	public int getSize() {
@@ -161,45 +209,29 @@ public class Level {
 	public boolean validatePosition(int row, int column) {
 	   	 return row >= 0 && column >= 0 && row < SIZE && column < SIZE;        
 	}
-	
-	/**
-	 * Given a letter, it returns integer index corresponding to the board.
-	 *   
-	 * @param letter Letter that is required to convert into an integer. 
-	 * @return Row integer index corresponding to the board. The first letter is 'a'.
-	 * @throws LevelException When the position does not exist on the board.
-	 */
-	private int calculateRow(char letter) throws LevelException{
-		int row = letter-97;
-		if(validatePosition(row,0)) {
-			return row;
-		}
-		
-		throw new LevelException(LevelException.ERROR_INCORRECT_ROW);
-	}
-	
-	/**
-	 * Given a letter that represents an integer, it returns integer index corresponding to the board.
-	 * 
-	 * @param columnChar Index in char format that is required to convert into an integer.
-	 * @return Column integer index corresponding to the board. The first char is '0' (zero).
-	 * @throws LevelException When the position does not exist on the board.
-	 */
-	private int calculateColumn(char columnChar) throws LevelException{
-		int column = columnChar-49;
-		if(validatePosition(0,column)) {
-			return column;
-		}
-		
-		throw new LevelException(LevelException.ERROR_INCORRECT_COLUMN);
-	}
-       
+	       
    	/**
 	 * This method returns a 1-D list with all the pieces which are on the board.  
 	 * @return 1-D board in the format of a List. 
 	 */
 	public List<Piece> getBoard(){
 		return board;
+	}
+	
+	/**
+	 * This method returns a 2-D array with all the pieces which are on the board.
+	 * @return 2-D board in the format of an array [row][column].
+	 */
+	public Piece[][] getBoard2D(){
+		int ind=0;
+		Piece[][] boardPieces = new Piece[this.getSize()][this.getSize()];
+		for(int i=0; i<this.getSize(); i++) {
+			for(int j=0; j< this.getSize(); j++) {
+				boardPieces[i][j]=board.get(ind); 
+				ind++;
+			}
+		}
+		return boardPieces;
 	}
 
 	public String getName() {
@@ -211,6 +243,58 @@ public class Level {
 	}
 	public int getNumTotalFoxes() {
 		return numTotalFoxes;
+	}
+	
+	public void createFileOfLevel() {
+
+		CreateFile.createFile(this.toString(), this.getId());
+	}
+	
+	public String toString() {
+		String level = LEVELTYPE.toString() + "\n" + "5" + "\n" + DIFFICULTY.toString() + "\n" + name + "\n" + autor + "\n";
+
+		for(int i = 0; i < 5; i++) {
+			for(int j = 0; j < 5; j++) {
+				level += this.getBoard2D()[i][j];	
+			}
+			level+="\n";
+		}
+		return level;	
+	}
+	
+	public static void createNewFileOfLevel() {
+		String level = LevelType.BUILDERMODE.toString() + "\n" + "5" + "\n" + LevelDifficulty.STARTER.toString() + "\n" + "\n" + User.getUsername() + "\n" ;
+
+		for(int i = 0; i < 5; i++) {
+			for(int j = 0; j < 5; j++) {
+				level += "#";	
+			}
+			level+="\n";
+		}
+		CreateFile.createFile(level, -1);
+	}
+	
+	public void setId(int id) {
+		this.id = id;
+	}
+	
+	public int getId() {
+		return id;
+	}
+	
+	public StringProperty getNameProperty() {
+		return nameProperty;
+	}
+	
+	public void setNameProperty(String nameProperty) {
+		this.nameProperty =  new SimpleStringProperty(nameProperty);;
+	}
+	
+	public void setAutor(String autor) {
+		this.autor = autor;
+	}
+	public String getAutor() {
+		return autor;
 	}
 	
 }

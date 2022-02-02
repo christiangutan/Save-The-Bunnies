@@ -1,7 +1,12 @@
 package savethebunniesclient.controller.gui;
 
 import savethebunniesclient.app.GuiApp;
+import savethebunniesclient.controller.ConnectionServer;
+import savethebunniesclient.controller.InfoController;
 import savethebunniesclient.controller.User;
+import savethebunniesclient.controller.music.Music;
+import savethebunniesclient.model.game.Level;
+import savethebunniesclient.model.music.SoundType;
 import savethebunniesclient.model.view.ConfigurationPopUpWindow;
 import savethebunniesclient.model.view.DoubleOptionPopUpWindow;
 import savethebunniesclient.model.view.InformationPopUpWindow;
@@ -14,6 +19,8 @@ import java.net.URI;
 import java.net.URISyntaxException;
 
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
 
@@ -61,7 +68,17 @@ public class LevelsOnlineController {
 	private Text name;
 	
 	@FXML
+	private ImageView buttonPreviousPage;
+	@FXML
+	private ImageView buttonNextPage;
+	
+	private int numLevels;
+	private int countPages = 0;
+	
+	@FXML
     public void initialize() {
+		InfoController.setTesting(false);
+		
 		menuOnlineLevel1 = new MenuOnlineLevel(paneChooseLevel1);
 		menuOnlineLevel2 = new MenuOnlineLevel(paneChooseLevel2);
 		menuOnlineLevel3 = new MenuOnlineLevel(paneChooseLevel3);
@@ -72,13 +89,19 @@ public class LevelsOnlineController {
 		menuOnlineLevel8 = new MenuOnlineLevel(paneChooseLevel8);
 		menuOnlineLevel9 = new MenuOnlineLevel(paneChooseLevel9);
 		
-	    username.setText(User.getUsername());
-	    name.setText(User.getName());
+	    username.setText(User.getUsername().toUpperCase());
+	    name.setText(User.getName().toUpperCase());
 	    
+	    ConnectionServer.getAvailableLevels(User.getUsername());
+	    
+	    numLevels = InfoController.getOnlineLevels().length;	
+	    
+	    updatePage();
     }
 		
 	@FXML
 	public void actionButtonBack() {
+		Music.playSound(SoundType.BUTTON);
 		try{
 			GuiApp.main.createView("Welcome.fxml","css-Welcome.css");
 		}catch(IOException e) {
@@ -89,6 +112,7 @@ public class LevelsOnlineController {
 	
 	@FXML
 	public void actionButtonPower() {
+		Music.playSound(SoundType.BUTTON);
 		DoubleOptionPopUpWindow window = new DoubleOptionPopUpWindow("ARE YOU SURE?");
 		window.setTextButton1("YES");
 		window.setTextButton2("NO");
@@ -107,6 +131,7 @@ public class LevelsOnlineController {
 	}
 	@FXML
 	public void actionLinkProjectSaveTheBunnies() {
+		Music.playSound(SoundType.BUTTON);
 		try {
 			Desktop.getDesktop().browse(new URI("https://github.com/christiangutan/Save-The-Bunnies"));
 		} catch (IOException | URISyntaxException e) {
@@ -115,14 +140,86 @@ public class LevelsOnlineController {
 	}
 	@FXML
 	public void actionButtonConfiguration() {
+		Music.playSound(SoundType.BUTTON);
 		ConfigurationPopUpWindow window = new ConfigurationPopUpWindow();
 		window.createView();
 	}
 		
 	@FXML
 	public void actionButtonInformation() {
+		Music.playSound(SoundType.BUTTON);
 		InformationPopUpWindow window = new InformationPopUpWindow();
 		window.createView();
+	}
+	
+	@FXML
+	public void actionButtonNextPage() {
+		countPages++;
+		updatePage();
+	}
+	
+	@FXML
+	public void actionButtonPreviousPage() {
+		countPages--;
+		updatePage();
+	}
+	
+	private void updatePage() {
+		if (0 + countPages*9 < numLevels) {
+			updatePane(menuOnlineLevel1, InfoController.getOnlineLevels()[0 + countPages*9]);
+			menuOnlineLevel1.setVisible(true);
+		} else menuOnlineLevel1.setVisible(false);
+		if (1 + countPages*9 < numLevels) {
+			updatePane(menuOnlineLevel2, InfoController.getOnlineLevels()[1 + countPages*9]);
+			menuOnlineLevel2.setVisible(true);
+		} else menuOnlineLevel2.setVisible(false);
+		if (2 + countPages*9 < numLevels) {
+			updatePane(menuOnlineLevel3, InfoController.getOnlineLevels()[2 + countPages*9]);
+			menuOnlineLevel3.setVisible(true);
+		} else menuOnlineLevel3.setVisible(false);
+		if (3 + countPages*9 < numLevels) {
+			updatePane(menuOnlineLevel4, InfoController.getOnlineLevels()[3 + countPages*9]);
+			menuOnlineLevel4.setVisible(true);
+		} else menuOnlineLevel4.setVisible(false);
+		if (4 + countPages*9 < numLevels) {
+			updatePane(menuOnlineLevel5, InfoController.getOnlineLevels()[4 + countPages*9]);
+			menuOnlineLevel5.setVisible(true);
+		} else menuOnlineLevel5.setVisible(false);
+		if (5 + countPages*9 < numLevels) {
+			updatePane(menuOnlineLevel6, InfoController.getOnlineLevels()[5 + countPages*9]);
+			menuOnlineLevel6.setVisible(true);
+		} else menuOnlineLevel6.setVisible(false);
+		if (6 + countPages*9 < numLevels) {
+			updatePane(menuOnlineLevel7, InfoController.getOnlineLevels()[6 + countPages*9]);
+			menuOnlineLevel7.setVisible(true);
+		} else menuOnlineLevel7.setVisible(false);
+		if (7 + countPages*9 < numLevels) {
+			updatePane(menuOnlineLevel8, InfoController.getOnlineLevels()[7 + countPages*9]);
+			menuOnlineLevel8.setVisible(true);
+		} else menuOnlineLevel8.setVisible(false);
+		if (8 + countPages*9 < numLevels) {
+			updatePane(menuOnlineLevel9, InfoController.getOnlineLevels()[8 + countPages*9]);
+			menuOnlineLevel9.setVisible(true);
+		} else menuOnlineLevel9.setVisible(false);
+		
+		updateButtonsPreviousAndNextPage();
+	}
+	
+	private void updatePane(MenuOnlineLevel menu, Level level) {
+		menu.setDifficulty(level.getDifficulty());
+		menu.setIdLevel(level.getId());
+		menu.setNumBunnies(level.getNumTotalBunnies());
+		menu.setNumFoxes(level.getNumTotalFoxes());
+		menu.setUsername(level.getAutor());
+		menu.setLevelName(level.getName());
+	}
+	
+	private void updateButtonsPreviousAndNextPage() {
+		if(countPages == 0 ) this.buttonPreviousPage.setVisible(false);
+		else this.buttonPreviousPage.setVisible(true);
+				
+		if(((double)numLevels / (double)((countPages + 1) * 9)) > 1 ) buttonNextPage.setVisible(true); 
+		else buttonNextPage.setVisible(false); 
 	}
 }
 

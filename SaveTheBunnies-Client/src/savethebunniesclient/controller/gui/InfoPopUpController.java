@@ -7,6 +7,8 @@ import javafx.scene.control.Button;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import savethebunniesclient.controller.music.Music;
+import savethebunniesclient.model.music.SoundType;
 import savethebunniesclient.util.OnActionData;
 
 public class InfoPopUpController{
@@ -24,6 +26,7 @@ public class InfoPopUpController{
 	
 	@FXML
 	public void actionButtonOkey(ActionEvent event) {
+		Music.playSound(SoundType.BUTTON);
 		this.getActionButton().onAction();
 		Node source = (Node) event.getSource();
 		Stage stage = (Stage) source.getScene().getWindow();

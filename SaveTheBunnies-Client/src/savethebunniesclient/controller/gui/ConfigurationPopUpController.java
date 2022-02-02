@@ -12,6 +12,8 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import savethebunniesclient.app.GuiApp;
+import savethebunniesclient.controller.music.Music;
+import savethebunniesclient.model.music.SoundType;
 
 public class ConfigurationPopUpController{
 	
@@ -40,6 +42,7 @@ public class ConfigurationPopUpController{
 		Node source = (Node) event.getSource();
 		Stage stage = (Stage) source.getScene().getWindow();
 		stage.close();
+		Music.playSound(SoundType.BUTTON);
 		try{
 			GuiApp.main.createView("Login.fxml","css-Login-Registration.css");
 		}catch(IOException e) {
@@ -50,6 +53,7 @@ public class ConfigurationPopUpController{
 	
 	@FXML
 	public void actionBack(ActionEvent event) {
+		Music.playSound(SoundType.BUTTON);
 		Node source = (Node) event.getSource();
 		Stage stage = (Stage) source.getScene().getWindow();
 		stage.close();

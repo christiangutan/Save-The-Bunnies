@@ -11,6 +11,8 @@ import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import savethebunniesclient.controller.music.Music;
+import savethebunniesclient.model.music.SoundType;
 
 public class InformationPopUpController{
 	
@@ -23,6 +25,7 @@ public class InformationPopUpController{
 	
 	@FXML
 	public void actionBack(ActionEvent event) {
+		Music.playSound(SoundType.BUTTON);
 		Node source = (Node) event.getSource();
 		Stage stage = (Stage) source.getScene().getWindow();
 		stage.close();
@@ -34,6 +37,7 @@ public class InformationPopUpController{
 	
 	@FXML
 	public void actionLinkProjectSaveTheBunnies() {
+		Music.playSound(SoundType.BUTTON);
 		try {
 			Desktop.getDesktop().browse(new URI("https://github.com/christiangutan/Save-The-Bunnies"));
 		} catch (IOException | URISyntaxException e) {

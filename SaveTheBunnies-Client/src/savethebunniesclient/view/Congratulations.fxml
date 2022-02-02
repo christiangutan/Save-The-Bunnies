@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane style="-fx-background-color: #1d7c2f; -fx-background-radius: 30;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="savethebunniesclient.controller.gui.CongratulationsController">
+   <children>
+      <AnchorPane maxHeight="645.0" maxWidth="825" minHeight="645.0" minWidth="825" prefHeight="645.0" prefWidth="825.0" style="-fx-background-color: #1d7c2f; -fx-background-radius: 30;">
+         <children>
+            <Separator layoutX="5.0" layoutY="124.0" prefHeight="3.0" prefWidth="817.0" />
+            <ImageView fitHeight="63.0" fitWidth="88.0" layoutX="376.0" layoutY="572.0" onMouseReleased="#actionButtonBack" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../util/img/back.png" />
+               </image>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </ImageView>
+            <ImageView fitHeight="244.0" fitWidth="714.0" layoutX="56.0" layoutY="97.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../util/img/Congratulations.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="217.0" fitWidth="277.0" layoutX="303.0" layoutY="229.0" onMouseReleased="#actionLinkProjectSaveTheBunnies" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../util/img/Icon_bunny.png" />
+               </image>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </ImageView>
+            <ImageView fitHeight="86.0" fitWidth="246.0" layoutX="290.0" layoutY="463.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../util/img/Developed%20by%20Christian_gutan.png" />
+               </image>
+            </ImageView>
+         </children>
+      </AnchorPane>
+      <AnchorPane prefHeight="104.0" prefWidth="825.0">
+         <children>
+            <ImageView fx:id="imageProfile" fitHeight="111.0" fitWidth="111.0" layoutX="43.0" layoutY="7.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../util/img/usernameIcon.png" />
+               </image>
+            </ImageView>
+            <Text fx:id="username" layoutX="163.0" layoutY="49.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Username" wrappingWidth="221.1279296875">
+               <font>
+                  <Font name="Times New Roman" size="21.0" />
+               </font>
+            </Text>
+            <ImageView fx:id="settingsButton" fitHeight="87.0" fitWidth="77.0" layoutX="616.0" layoutY="14.0" onMousePressed="#actionButtonConfiguration" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../util/img/configuration.png" />
+               </image>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </ImageView>
+            <ImageView fx:id="infoButton" fitHeight="77.0" fitWidth="77.0" layoutX="495.0" layoutY="14.0" onMousePressed="#actionButtonInformation" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../util/img/infoButton.png" />
+               </image>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </ImageView>
+            <Text fx:id="name" layoutX="163.0" layoutY="90.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Name" wrappingWidth="221.1279296875">
+               <font>
+                  <Font name="Times New Roman" size="17.0" />
+               </font>
+            </Text>
+            <ImageView fx:id="buttonPower" fitHeight="87.0" fitWidth="77.0" layoutX="737.0" layoutY="14.0" onMousePressed="#actionButtonPower" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../util/img/power.png" />
+               </image>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </ImageView>
+            <ImageView fx:id="saveTheBunniesProject" fitHeight="77.0" fitWidth="77.0" layoutX="374.0" layoutY="14.0" onMouseReleased="#actionLinkProjectSaveTheBunnies" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../util/img/icon.png" />
+               </image>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </ImageView>
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>

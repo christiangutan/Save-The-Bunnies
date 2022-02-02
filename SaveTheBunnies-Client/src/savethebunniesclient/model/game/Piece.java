@@ -5,7 +5,7 @@ package savethebunniesclient.model.game;
  * @author David García Solórzano
  * @version 1.0  
  */
-public abstract class Piece{
+public abstract class Piece implements Cloneable{
 	
 	/**
 	 * Coordinate object in which the piece is. 
@@ -88,4 +88,13 @@ public abstract class Piece{
     public String toString() {
     	return getSymbol().toString();
     }
+	
+	public Piece clone() throws CloneNotSupportedException{
+		 return (Piece)super.clone();
+	}
+	
+	
+	
+	
+	
 }

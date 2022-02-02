@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Separator?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
@@ -10,7 +11,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="645.0" maxWidth="825" minHeight="645.0" minWidth="825" prefHeight="645.0" prefWidth="825.0" style="-fx-background-color: #1d7c2f;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="savethebunniesclient.controller.gui.MyLevelsController">
+<AnchorPane maxHeight="645.0" maxWidth="825" minHeight="645.0" minWidth="825" prefHeight="645.0" prefWidth="825.0" style="-fx-background-color: #1d7c2f; -fx-background-radius: 30;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="savethebunniesclient.controller.gui.MyLevelsController">
    <children>
       <AnchorPane prefHeight="104.0" prefWidth="825.0">
          <children>
@@ -61,12 +62,9 @@
          </children>
       </AnchorPane>
       <Separator layoutX="5.0" layoutY="124.0" prefHeight="3.0" prefWidth="817.0" />
-      <TableView layoutX="135.0" layoutY="149.0" prefHeight="368.0" prefWidth="575.0">
+      <TableView fx:id="table" layoutX="104.0" layoutY="146.0" onMouseClicked="#updateButtons" prefHeight="368.0" prefWidth="249.0">
         <columns>
-          <TableColumn editable="false" prefWidth="72.0" text="ID" />
-          <TableColumn editable="false" prefWidth="168.0" text="Name" />
-            <TableColumn editable="false" prefWidth="107.0" sortable="false" text="Last Modification" />
-            <TableColumn editable="false" prefWidth="116.33334350585938" sortable="false" text="Creation Date" />
+          <TableColumn fx:id="nameColumn" editable="false" prefWidth="247.0" text="Name" />
         </columns>
       </TableView>
       <ImageView fx:id="buttonBack" fitHeight="91.0" fitWidth="111.0" layoutX="373.0" layoutY="528.0" onMouseReleased="#actionButtonBack" pickOnBounds="true" preserveRatio="true">
@@ -77,5 +75,19 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </ImageView>
+      <Button fx:id="buttonNewLevel" layoutX="493.0" layoutY="183.0" mnemonicParsing="false" onAction="#newLevel" prefHeight="40.0" prefWidth="242.0" text="New level">
+         <font>
+            <Font name="Times New Roman" size="18.0" />
+         </font></Button>
+      <Button fx:id="buttonModifyLevel" layoutX="493.0" layoutY="293.0" mnemonicParsing="false" onAction="#modifyLevel" prefHeight="40.0" prefWidth="242.0" text="Modify Level">
+         <font>
+            <Font name="Times New Roman" size="18.0" />
+         </font>
+      </Button>
+      <Button fx:id="buttonDeleteLevel" layoutX="493.0" layoutY="403.0" mnemonicParsing="false" onAction="#deleteLevel" prefHeight="40.0" prefWidth="242.0" text="Delete Level">
+         <font>
+            <Font name="Times New Roman" size="18.0" />
+         </font>
+      </Button>
    </children>
 </AnchorPane>

@@ -10,6 +10,8 @@ import javafx.scene.control.Button;
 import javafx.scene.text.Text;
 import savethebunniesclient.app.GuiApp;
 import savethebunniesclient.controller.User;
+import savethebunniesclient.controller.music.Music;
+import savethebunniesclient.model.music.SoundType;
 import savethebunniesclient.model.view.ConfigurationPopUpWindow;
 import savethebunniesclient.model.view.DoubleOptionPopUpWindow;
 import savethebunniesclient.model.view.InformationPopUpWindow;
@@ -25,12 +27,13 @@ public class WelcomeController {
 	
 	@FXML
     public void initialize() {
-        username.setText(User.getUsername());
-        name.setText(User.getName());
+        username.setText(User.getUsername().toUpperCase());
+        name.setText(User.getName().toUpperCase());
     }
 	
 	@FXML
 	public void actionButtonStory() {		
+		Music.playSound(SoundType.BUTTON);
 		try{
 			GuiApp.main.createView("LevelsStory.fxml","css-LevelsStory.css");
 		}catch(IOException e) {
@@ -41,6 +44,7 @@ public class WelcomeController {
 	
 	@FXML
 	public void actionButtonOnline() {
+		Music.playSound(SoundType.BUTTON);
 		try{
 			GuiApp.main.createView("LevelsOnline.fxml","css-LevelsOnline.css");
 		}catch(IOException e) {
@@ -51,6 +55,7 @@ public class WelcomeController {
 	
 	@FXML
 	public void actionButtonMyLevels() {
+		Music.playSound(SoundType.BUTTON);
 		try{
 			GuiApp.main.createView("MyLevels.fxml","css-MyLevels.css");
 		}catch(IOException e) {
@@ -61,6 +66,7 @@ public class WelcomeController {
 	
 	@FXML
 	public void actionButtonPower() {
+		Music.playSound(SoundType.BUTTON);
 		DoubleOptionPopUpWindow window = new DoubleOptionPopUpWindow("ARE YOU SURE?");
 		window.setTextButton1("YES");
 		window.setTextButton2("NO");
@@ -80,6 +86,7 @@ public class WelcomeController {
 	
 	@FXML
 	public void actionLinkProjectSaveTheBunnies() {
+		Music.playSound(SoundType.BUTTON);
 		try {
 			Desktop.getDesktop().browse(new URI("https://github.com/christiangutan/Save-The-Bunnies"));
 		} catch (IOException | URISyntaxException e) {

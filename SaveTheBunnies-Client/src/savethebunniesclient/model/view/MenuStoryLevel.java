@@ -13,7 +13,9 @@ import savethebunniesclient.app.GuiApp;
 import savethebunniesclient.controller.InfoController;
 import savethebunniesclient.controller.ToPlay;
 import savethebunniesclient.controller.User;
+import savethebunniesclient.controller.music.Music;
 import savethebunniesclient.model.game.LevelDifficulty;
+import savethebunniesclient.model.music.SoundType;
 import savethebunniesclient.util.OnActionData;
 
 public class MenuStoryLevel {
@@ -29,9 +31,7 @@ public class MenuStoryLevel {
 	private ImageView imageDifficulty3;	// 6
 	private Label labelNumBunnies;		// 7
 	private Label labelNumFoxes;		// 8
-	private ImageView imageLock;		// 9
-
-	
+	private ImageView imageLock;		// 9	
 	
 	public MenuStoryLevel(Pane pane) {
 		List<?> list = pane.getChildren();
@@ -56,7 +56,6 @@ public class MenuStoryLevel {
 		setDifficulty(InfoController.getStoryLevels()[level-1].getDifficulty());
 		
 		if(level <= User.getLastLevelPassedStory() + 1) {
-			
 			imageLock.setVisible(false);
 		} else {
 			imageLock.setVisible(true);
@@ -71,6 +70,7 @@ public class MenuStoryLevel {
 			new EventHandler<MouseEvent>() {
 					@Override
 					public void handle(MouseEvent event) {
+						Music.playSound(SoundType.BUTTON);
 						play(level);
 					}
 			});
@@ -152,6 +152,7 @@ public class MenuStoryLevel {
 		if (level <= User.getLastLevelPassedStory() + 1) {
 			InfoController.setCurrentLevelId(level);
 			try {
+				Music.playSound(SoundType.MUSICGAME);
 				GuiApp.main.createView("PlayLevel.fxml", "css-PlayLevel.css");
 			} catch (IOException e) {
 				e.printStackTrace();

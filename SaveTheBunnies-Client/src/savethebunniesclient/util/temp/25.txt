@@ -1,0 +1,10 @@
+BUILDERMODE
+5
+STARTER
+SIMPLE LEVEL
+isma
+##MM#
+#M##M
+#MHM#
+#M#M#
+M#Mb#

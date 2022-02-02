@@ -2,33 +2,52 @@
   -fx-border-style: solid;
   -fx-border-color: orange;
   -fx-border-width: 2; 
-  -fx-cursor: hand; 
-  
+  -fx-cursor: hand;   
 }
-.piece-movable:hover {
+
+.piece-selectable:hover {
   -fx-border-style: solid;
   -fx-border-color: red;
   -fx-border-width: 2; 
-  -fx-cursor: hand; 
-  
+  -fx-cursor: hand;
 }
-.piece-movable.clicked{
+
+.piece-selectable-clicked{
+	-fx-border-style: solid;
 	-fx-border-color: white;
 	-fx-border-width: 2;
 	-fx-cursor: pointer; 
-	
 }
+
 .board-background{
-	
 	-fx-background-color: #009d3c;
 }
 
 #buttonPower:focused {
 	-fx-image: url("../img/power3.png");
 }
+
 #buttonPower:hover {
 	-fx-image: url("../img/power2.png");
 }
+
 #buttonPower {
 	-fx-image: url("../img/power.png");
+}
+
+#buttonPlay {
+	-fx-background-color: #55f063;
+	-fx-background-radius: 15 15 15 15;
+}
+
+#buttonPlay:hover{
+	-fx-background-color: linear-gradient(from 25px 25px to 100px 100px, #dc143c, #32cd32);
+}
+
+#buttonSave {
+	-fx-background-color: #55f063;
+	-fx-background-radius: 15 15 15 15;
+}
+#buttonSave:hover {
+	-fx-background-color: linear-gradient(from 25px 25px to 100px 100px, #dc143c, #32cd32);
 }

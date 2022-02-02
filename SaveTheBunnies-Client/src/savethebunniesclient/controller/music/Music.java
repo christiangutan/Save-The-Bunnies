@@ -20,11 +20,18 @@ public class Music {
 			public void run() {
 				File file = new File(Resources.SOUNDS +  sound.toString().toLowerCase() + ".mp3");				
 				Media media = new Media (file.toURI().toString());
-				if(sound == SoundType.BUNNY || sound == SoundType.FOX) {
+				if(sound == SoundType.BUNNY || sound == SoundType.FOX
+						|| sound == SoundType.BUTTON) {
 					mediaPlayerEffects = new MediaPlayer(media);
 					mediaPlayerEffects.setVolume(volumeEffects);
 					mediaPlayerEffects.play();
 				} else {
+					if(mediaPlayerMusic != null) {
+						mediaPlayerMusic.pause();
+						mediaPlayerMusic = null;
+						System.gc();
+					}
+
 					mediaPlayerMusic = new MediaPlayer(media);
 					mediaPlayerMusic.setVolume(volumeMusic);				
 					mediaPlayerMusic.setOnEndOfMedia(new Runnable() {
@@ -56,7 +63,6 @@ public class Music {
 	}
 	
 	public static void setVolumeEffects(double volume) {
-		System.out.println("Le estoy poniendo este valor: " + volume);
 		mediaPlayerEffects.setVolume(volume);
 	}
 	public static void setVolumeEffectsValue(double volume) {

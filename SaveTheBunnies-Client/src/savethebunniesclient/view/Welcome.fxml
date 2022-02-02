@@ -9,7 +9,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="645.0" maxWidth="825" minHeight="645.0" minWidth="825" prefHeight="645.0" prefWidth="825.0" style="-fx-background-color: #1d7c2f;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="savethebunniesclient.controller.gui.WelcomeController">
+<AnchorPane maxHeight="645.0" maxWidth="825" minHeight="645.0" minWidth="825" prefHeight="645.0" prefWidth="825.0" style="-fx-background-color: #1d7c2f; -fx-background-radius: 30;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="savethebunniesclient.controller.gui.WelcomeController">
    <children>
       <AnchorPane prefHeight="104.0" prefWidth="825.0">
          <children>
@@ -59,21 +59,21 @@
             </ImageView>
          </children>
       </AnchorPane>
-      <Button fx:id="buttonStory" layoutX="545.0" layoutY="194.0" mnemonicParsing="false" onMousePressed="#actionButtonStory" prefHeight="72.0" prefWidth="157.0" text="Story">
+      <Button fx:id="buttonStory" layoutX="456.0" layoutY="194.0" mnemonicParsing="false" onMousePressed="#actionButtonStory" prefHeight="72.0" prefWidth="246.0" text="Story">
          <font>
             <Font name="Times New Roman" size="29.0" />
          </font>
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor></Button>
-      <Button fx:id="buttonOnline" layoutX="545.0" layoutY="323.0" mnemonicParsing="false" onMousePressed="#actionButtonOnline" prefHeight="72.0" prefWidth="158.0" text="Online">
+      <Button fx:id="buttonOnline" layoutX="457.0" layoutY="323.0" mnemonicParsing="false" onMousePressed="#actionButtonOnline" prefHeight="72.0" prefWidth="246.0" text="Online">
          <font>
             <Font name="Times New Roman" size="26.0" />
          </font>
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor></Button>
-      <Button fx:id="buttonMyLevels" layoutX="545.0" layoutY="452.0" mnemonicParsing="false" onMousePressed="#actionButtonMyLevels" prefHeight="72.0" prefWidth="158.0" text="My levels">
+      <Button fx:id="buttonMyLevels" layoutX="457.0" layoutY="452.0" mnemonicParsing="false" onMousePressed="#actionButtonMyLevels" prefHeight="72.0" prefWidth="246.0" text="My levels">
          <font>
             <Font name="Times New Roman" size="22.0" />
          </font>
@@ -81,9 +81,14 @@
             <Cursor fx:constant="HAND" />
          </cursor></Button>
       <Separator layoutX="5.0" layoutY="124.0" prefHeight="3.0" prefWidth="817.0" />
-      <ImageView fitHeight="313.0" fitWidth="318.0" layoutX="63.0" layoutY="184.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="313.0" fitWidth="318.0" layoutX="63.0" layoutY="276.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../util/img/Icon_bunny.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="345.0" fitWidth="513.0" layoutX="63.0" layoutY="104.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../util/img/Save%20the%20Bunnies_Welcome.png" />
          </image>
       </ImageView>
    </children>

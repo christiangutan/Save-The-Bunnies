@@ -26,7 +26,7 @@ public class ToPlay {
 	public ToPlay(Level level) {
 		this.level = level;
 		board = level.getBoard();
-		this.size = level.getSize();				
+		this.size = level.getSize();		
 	}
 	
 	/**
@@ -131,6 +131,9 @@ public class ToPlay {
     }
     public LevelDifficulty getDifficulty() {
     	return level.getDifficulty();
+    }
+    public String getName() {
+    	return level.getName();
     }
     
     

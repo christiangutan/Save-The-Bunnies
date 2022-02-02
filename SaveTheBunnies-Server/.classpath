@@ -17,7 +17,6 @@
 			<attribute name="maven.pomderived" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="C:/Users/chris/eclipse-workspace/SaveTheBunnies/Jars/DataPackageRegistrationUser.jar"/>
-	<classpathentry kind="lib" path="C:/Users/chris/eclipse-workspace/SaveTheBunnies/Jars/DataPackageLoginUser.jar"/>
+	<classpathentry kind="lib" path="C:/Users/chris/eclipse-workspace/SaveTheBunnies/Jars/SaveTheBunnies-Library.jar"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>

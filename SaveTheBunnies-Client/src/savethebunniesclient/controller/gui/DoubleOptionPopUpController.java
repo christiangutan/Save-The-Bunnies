@@ -7,6 +7,8 @@ import javafx.scene.control.Button;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import savethebunniesclient.controller.music.Music;
+import savethebunniesclient.model.music.SoundType;
 import savethebunniesclient.util.OnActionData;
 
 public class DoubleOptionPopUpController{
@@ -28,6 +30,7 @@ public class DoubleOptionPopUpController{
 	
 	@FXML
 	public void actionButton1(ActionEvent event) {
+		Music.playSound(SoundType.BUTTON);
 		this.getActionButton1().onAction();
 		Node source = (Node) event.getSource();
 		Stage stage = (Stage) source.getScene().getWindow();
@@ -35,6 +38,7 @@ public class DoubleOptionPopUpController{
 	}
 	@FXML
 	public void actionButton2(ActionEvent event) {
+		Music.playSound(SoundType.BUTTON);
 		this.getActionButton2().onAction();
 		Node source = (Node) event.getSource();
 		Stage stage = (Stage) source.getScene().getWindow();

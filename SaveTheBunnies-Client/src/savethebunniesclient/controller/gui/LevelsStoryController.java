@@ -2,6 +2,8 @@ package savethebunniesclient.controller.gui;
 
 import savethebunniesclient.app.GuiApp;
 import savethebunniesclient.controller.User;
+import savethebunniesclient.controller.music.Music;
+import savethebunniesclient.model.music.SoundType;
 import savethebunniesclient.model.view.ConfigurationPopUpWindow;
 import savethebunniesclient.model.view.DoubleOptionPopUpWindow;
 import savethebunniesclient.model.view.InformationPopUpWindow;
@@ -72,13 +74,14 @@ public class LevelsStoryController {
 		menuStoryLevel8 = new MenuStoryLevel(paneChooseLevel8);
 		menuStoryLevel9 = new MenuStoryLevel(paneChooseLevel9);
 		
-	    username.setText(User.getUsername());
-	    name.setText(User.getName());
+	    username.setText(User.getUsername().toUpperCase());
+	    name.setText(User.getName().toUpperCase());
 	    
     }
 		
 	@FXML
 	public void actionButtonBack() {
+		Music.playSound(SoundType.BUTTON);
 		try{
 			GuiApp.main.createView("Welcome.fxml","css-Welcome.css");
 		}catch(IOException e) {
@@ -89,6 +92,7 @@ public class LevelsStoryController {
 	
 	@FXML
 	public void actionButtonPower() {
+		Music.playSound(SoundType.BUTTON);
 		DoubleOptionPopUpWindow window = new DoubleOptionPopUpWindow("ARE YOU SURE?");
 		window.setTextButton1("YES");
 		window.setTextButton2("NO");
@@ -107,6 +111,7 @@ public class LevelsStoryController {
 	}
 	@FXML
 	public void actionLinkProjectSaveTheBunnies() {
+		Music.playSound(SoundType.BUTTON);
 		try {
 			Desktop.getDesktop().browse(new URI("https://github.com/christiangutan/Save-The-Bunnies"));
 		} catch (IOException | URISyntaxException e) {
@@ -115,12 +120,14 @@ public class LevelsStoryController {
 	}
 	@FXML
 	public void actionButtonConfiguration() {
+		Music.playSound(SoundType.BUTTON);
 		ConfigurationPopUpWindow window = new ConfigurationPopUpWindow();
 		window.createView();
 	}
 		
 	@FXML
 	public void actionButtonInformation() {
+		Music.playSound(SoundType.BUTTON);
 		InformationPopUpWindow window = new InformationPopUpWindow();
 		window.createView();
 	}

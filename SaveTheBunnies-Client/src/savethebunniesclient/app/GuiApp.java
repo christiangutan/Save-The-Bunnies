@@ -11,8 +11,10 @@ import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.Region;
+import javafx.scene.paint.Color;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 import savethebunniesclient.controller.InfoController;
 import savethebunniesclient.model.game.LevelException;
 import savethebunniesclient.model.view.ErrorPopUpWindow;
@@ -37,6 +39,8 @@ public class GuiApp extends Application {
 		stage.setTitle("Save the Bunnies - Login");
 		
 		stage.setResizable(false);      
+		getStage().initStyle(StageStyle.UNDECORATED);
+		getStage().initStyle(StageStyle.TRANSPARENT);
 		createView("login.fxml", "css-Login-Registration.css"); 
 		try {
 			InfoController.loadMainInformation();
@@ -65,11 +69,9 @@ public class GuiApp extends Application {
 	    
         // Show the scene containing the root layout.	    	    
         Scene scene = new Scene(rootLayout);  
+        scene.setFill(Color.TRANSPARENT);
         
         if(css!=null && css!="") scene.getStylesheets().add(Resources.CSS + css);
-        
-        //stage.getIcons().add(new Image(getClass().getResourceAsStream("/Icon_bunny.png")));
-        //stage.getIcons().add(new Image("file: Icon_bunny(1).png"));
                
         stage.setScene(scene);	
         stage.show();    

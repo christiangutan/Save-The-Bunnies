@@ -10,9 +10,9 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="savethebunniesclient.controller.gui.LevelsStoryController">
+<AnchorPane style="-fx-background-color: #1d7c2f; -fx-background-radius: 30;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="savethebunniesclient.controller.gui.LevelsStoryController">
    <children>
-      <AnchorPane maxHeight="645.0" maxWidth="825" minHeight="645.0" minWidth="825" prefHeight="645.0" prefWidth="825.0" style="-fx-background-color: #1d7c2f;">
+      <AnchorPane maxHeight="645.0" maxWidth="825" minHeight="645.0" minWidth="825" prefHeight="645.0" prefWidth="825.0" style="-fx-background-color: #1d7c2f; -fx-background-radius: 30;">
          <children>
             <Separator layoutX="5.0" layoutY="124.0" prefHeight="3.0" prefWidth="817.0" />
             <ImageView fitHeight="63.0" fitWidth="88.0" layoutX="376.0" layoutY="572.0" onMouseReleased="#actionButtonBack" pickOnBounds="true" preserveRatio="true">

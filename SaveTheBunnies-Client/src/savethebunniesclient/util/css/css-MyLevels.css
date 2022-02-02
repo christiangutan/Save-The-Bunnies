@@ -6,28 +6,44 @@
     -fx-text-background-color: red;
 }
 .table-row-cell:odd{
-    -fx-background-color: #93f9b911;
+    -fx-background-color: #93f9b9;
 }
 .table-row-cell:even{
-    -fx-background-color: #1dbbdd11;
+    -fx-background-color: #1dbbdd;
 }
 
 .table-view, .table-view:focused {
-  	-fx-background-color: transparent;
+  	-fx-background-color: #33FFBD;
   	-fx-background-insets: -1.4, 0, 1;
   	-fx-background-radius: 1.4, 0, 0;
 }
 
 .table-view:focused .table-view:row-selection .table-row-cell:filled:focused:selected { 
-    -fx-background-color: #58b9da;
+    -fx-background-color: #40FF33;
    	-fx-text-fill: #000000;
    	-fx-background-color: #000000;
 }
 
 .table-row-cell:filled:focused:selected {
-    -fx-background-color: #58b9da;
+    -fx-background-color: #40FF33;
     -fx-text-fill: #000000;
     -fx-text-background-color: #000000;
 }
 
+.button:hover {
+	-fx-background-color: linear-gradient(from 25px 25px to 100px 100px, #dc143c, #32cd32);
+}
+.button {
+	-fx-background-color: #55f063;
+	-fx-background-radius: 10 1 10 1;
+}
 
+#buttonPower:focused{
+	-fx-image: url("../img/power3.png");
+}
+#buttonPower:hover{
+	-fx-image: url("../img/power2.png");
+}
+#buttonPower{
+	-fx-image: url("../img/power.png");
+}

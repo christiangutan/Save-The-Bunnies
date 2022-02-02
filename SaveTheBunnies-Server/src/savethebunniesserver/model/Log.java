@@ -4,6 +4,7 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 import javafx.application.Platform;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontPosture;
@@ -12,10 +13,14 @@ import javafx.scene.text.TextFlow;
 
 public class Log {
 	private static TextFlow textFlow;
+	private static ScrollPane scroll;
 	
 	public static void setTextFlow(TextFlow textFlow) {
 		Log.textFlow = textFlow;
 		Log.addInfoCorrect("Correct");
+	}
+	public static void setScroll(ScrollPane scroll) {
+		Log.scroll = scroll;
 	}
 
 	public static void startServices() {
@@ -29,8 +34,9 @@ public class Log {
 		Platform.runLater(new Runnable() {                          
             @Override
             public void run() {
-            	//System.out.println("Esto se está ejecutando");
+            	//System.out.println("Esto se estï¿½ ejecutando");
             	textFlow.getChildren().add(finaltext);
+            	updateScroll();
             }
         });
 				
@@ -47,6 +53,7 @@ public class Log {
 		finaltext.setFill(Color.SILVER);
 		
 		textFlow.getChildren().add(finaltext);
+		updateScroll();
 	}
 	
 	public static void addInfoActivityPanel(String text, Color color) {
@@ -59,6 +66,7 @@ public class Log {
 			finaltext.setFill(color);
 		
 			textFlow.getChildren().add(finaltext);
+			updateScroll();
 		});	
 	}
 	
@@ -69,5 +77,15 @@ public class Log {
 	public static void addInfoCorrect(String text) {
 		Log.addInfoActivityPanel(text, Color.GREEN);
 	}
+	private static void updateScroll() {
+		scroll.setVvalue(1);
+	}
 	
+	public static String getTextLog() {
+		StringBuilder sb = new StringBuilder();
+			textFlow.getChildren().stream()
+		            .filter(t -> Text.class.equals(t.getClass()))
+		            .forEach(t -> sb.append(((Text) t).getText()));
+		return sb.toString();
+	}
 }

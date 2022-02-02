@@ -7,6 +7,8 @@ import javafx.scene.control.Button;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import savethebunniesclient.controller.music.Music;
+import savethebunniesclient.model.music.SoundType;
 import savethebunniesclient.util.OnActionData;
 
 public class ErrorPopUpController {
@@ -24,6 +26,7 @@ public class ErrorPopUpController {
 	
 	@FXML
 	public void actionButtonOkey(ActionEvent event) {
+		Music.playSound(SoundType.BUTTON);
 		this.getActionButton().onAction();
 		Node source = (Node) event.getSource();
 		Stage stage = (Stage) source.getScene().getWindow();
@@ -44,7 +47,7 @@ public class ErrorPopUpController {
 		return actionButton;
 	}
 	
-	//sino funciona lo otro para cerrar utilizamos este método stage.close();
+	//sino funciona lo otro para cerrar utilizamos este mï¿½todo stage.close();
 	public Stage getStage() {
 		return (Stage) this.pane.getScene().getWindow();
 	}
