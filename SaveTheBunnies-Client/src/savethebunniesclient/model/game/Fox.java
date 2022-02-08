@@ -2,8 +2,8 @@ package savethebunniesclient.model.game;
 
 /** 
 * A Fox piece class.
-* @author David García Solórzano
-* @version 1.0 
+* @author Christian_gutan
+* 
 */
 public abstract class Fox extends Piece implements Movable{
 

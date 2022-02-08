@@ -1,6 +1,8 @@
 package savethebunniesclient.model.view;
 
 import java.io.IOException;
+import java.net.MalformedURLException;
+import java.net.URL;
 
 import com.jfoenix.controls.JFXSlider;
 
@@ -23,6 +25,11 @@ import savethebunniesclient.controller.gui.ConfigurationPopUpController;
 import savethebunniesclient.controller.music.Music;
 import savethebunniesclient.util.Resources;
 
+/**
+ * PopUpWindow. Configuration of the application: music and logout
+ * @author christian_gutan
+ *
+ */
 public class ConfigurationPopUpWindow extends Application{
 
 	private Stage stage;
@@ -53,8 +60,15 @@ public class ConfigurationPopUpWindow extends Application{
 				Scene scene = null;
 				
 				// Load root layout from fxml file.
+				String urlString = "file:" +  System.getProperty("user.dir") + "\\src\\savethebunniesclient\\view\\" + view;
+				URL url = null;
+				try {
+					url = new URL(urlString.replace("\\", "/"));
+				} catch (MalformedURLException e1) {
+					e1.printStackTrace();
+				}
 				final FXMLLoader loader = new FXMLLoader();  
-				loader.setLocation(this.getClass().getResource(Resources.FXML + view));	
+				loader.setLocation(url);	
 				try {
 					rootLayout = (Region) loader.load();
 					scene = new Scene(rootLayout);

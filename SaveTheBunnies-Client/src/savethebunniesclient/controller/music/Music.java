@@ -7,6 +7,11 @@ import javafx.scene.media.MediaPlayer;
 import savethebunniesclient.model.music.SoundType;
 import savethebunniesclient.util.Resources;
 
+/**
+ * Music Controller
+ * @author christian_gutan
+ *
+ */
 public class Music {
 	  
 	private static double volumeEffects = 0.5;

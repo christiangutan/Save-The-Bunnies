@@ -10,6 +10,11 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.effect.DropShadow;
+import javafx.scene.image.Image;
+import javafx.scene.paint.Color;
+import javafx.scene.paint.ImagePattern;
+import javafx.scene.shape.Circle;
 import javafx.scene.text.Text;
 import savethebunniesclient.app.GuiApp;
 import savethebunniesclient.controller.ConnectionServer;
@@ -26,6 +31,11 @@ import savethebunniesclient.model.view.InformationPopUpWindow;
 import savethebunniesclient.util.CreateFile;
 import savethebunniesclient.util.OnActionData;
 
+/**
+ * Controller of the view where you can modify, delete and create your own levels
+ * @author christian_gutan
+ *
+ */
 public class MyLevelsController {
 	
 	@FXML
@@ -45,7 +55,13 @@ public class MyLevelsController {
 	private Button buttonDeleteLevel;
 	
 	@FXML
-    public void initialize() {		
+	private Circle circleImageProfile;
+	
+	@FXML
+    public void initialize() {	
+		GuiApp.setPlaying(false);
+
+		
 		buttonModifyLevel.setDisable(true);
 		buttonDeleteLevel.setDisable(true);
 		username.setText(User.getUsername().toUpperCase());
@@ -69,7 +85,13 @@ public class MyLevelsController {
 				}
 	    	 });
 	    	 window.createView();
-	    }	     
+	    }	  
+	    
+	    circleImageProfile.setStroke(Color.SEAGREEN);
+        Image im = User.getImageProfile();
+        circleImageProfile.setFill(new ImagePattern(im));
+        circleImageProfile.setEffect(new DropShadow(+25d, 0d, +2d, Color.DARKSEAGREEN));
+   
 	}	
 	
 	@FXML

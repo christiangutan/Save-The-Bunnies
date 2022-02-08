@@ -14,6 +14,11 @@ import javafx.stage.Stage;
 import savethebunniesclient.controller.music.Music;
 import savethebunniesclient.model.music.SoundType;
 
+/**
+ * Controller of the view where you can see information of the proyect 
+ * @author christian_gutan
+ *
+ */
 public class InformationPopUpController{
 	
 	@FXML

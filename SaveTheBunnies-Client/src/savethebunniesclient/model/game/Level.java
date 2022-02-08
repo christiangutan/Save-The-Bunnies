@@ -13,8 +13,8 @@ import savethebunniesclient.util.CreateFile;
 
 /** 
  * Level class.
- * @author Christian Gutiérrez Antolín
- * @version 1.0  
+ * @author christian_gutan
+ * 
  */
 public class Level {
 	/**

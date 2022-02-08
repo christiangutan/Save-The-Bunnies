@@ -19,11 +19,20 @@ import java.net.URI;
 import java.net.URISyntaxException;
 
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
+import javafx.scene.effect.DropShadow;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.paint.Color;
+import javafx.scene.paint.ImagePattern;
+import javafx.scene.shape.Circle;
 import javafx.scene.text.Text;
 
+/**
+ * Controller of the view where you can play levels of others players
+ * @author christian_gutan
+ *
+ */
 public class LevelsOnlineController {
 	
 	@FXML 
@@ -76,9 +85,19 @@ public class LevelsOnlineController {
 	private int countPages = 0;
 	
 	@FXML
+	private Circle circleImageProfile;
+	
+	@FXML
     public void initialize() {
-		InfoController.setTesting(false);
+		circleImageProfile.setStroke(Color.SEAGREEN);
+        Image im = User.getImageProfile();
+        circleImageProfile.setFill(new ImagePattern(im));
+        circleImageProfile.setEffect(new DropShadow(+25d, 0d, +2d, Color.DARKSEAGREEN));
+   
 		
+		InfoController.setTesting(false);
+		GuiApp.setPlaying(false);
+			
 		menuOnlineLevel1 = new MenuOnlineLevel(paneChooseLevel1);
 		menuOnlineLevel2 = new MenuOnlineLevel(paneChooseLevel2);
 		menuOnlineLevel3 = new MenuOnlineLevel(paneChooseLevel3);
@@ -97,6 +116,7 @@ public class LevelsOnlineController {
 	    numLevels = InfoController.getOnlineLevels().length;	
 	    
 	    updatePage();
+	    
     }
 		
 	@FXML

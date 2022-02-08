@@ -20,6 +20,7 @@
         <version>3.8.1</version>
         <configuration>
           <release>14</release>
+          <skip>true</skip>
         </configuration>
       </plugin>
     </plugins>
@@ -49,6 +50,11 @@
 	<dependency>
     	<groupId>org.openjfx</groupId>
    	 	<artifactId>javafx-graphics</artifactId>
+    	<version>16</version>
+	</dependency>
+	<dependency>
+    	<groupId>org.openjfx</groupId>
+   	 	<artifactId>javafx-media</artifactId>
     	<version>16</version>
 	</dependency>
 	

@@ -2,8 +2,10 @@ package savethebunniesclient.model.view;
 
 import java.awt.Desktop;
 import java.io.IOException;
+import java.net.MalformedURLException;
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.net.URL;
 
 import javafx.application.Application;
 import javafx.application.Platform;
@@ -18,6 +20,11 @@ import javafx.stage.StageStyle;
 import savethebunniesclient.app.GuiApp;
 import savethebunniesclient.util.Resources;
 
+/**
+ * PopUp View. Shows information about the proyect
+ * @author christian_gutan
+ *
+ */
 public class InformationPopUpWindow extends Application{
 
 	private Stage stage;
@@ -49,7 +56,16 @@ public class InformationPopUpWindow extends Application{
 				
 				// Load root layout from fxml file.
 				final FXMLLoader loader = new FXMLLoader();  
-				loader.setLocation(this.getClass().getResource(Resources.FXML + view));	
+				
+				String urlString = "file:" +  System.getProperty("user.dir") + "\\src\\savethebunniesclient\\view\\" + view;
+				URL url = null;
+				try {
+					url = new URL(urlString.replace("\\", "/"));
+				} catch (MalformedURLException e1) {
+					e1.printStackTrace();
+				}
+				
+				loader.setLocation(url);
 				try {
 					rootLayout = (Region) loader.load();
 					scene = new Scene(rootLayout);

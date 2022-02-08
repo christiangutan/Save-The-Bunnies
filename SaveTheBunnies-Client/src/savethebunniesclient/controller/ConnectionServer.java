@@ -1,18 +1,32 @@
 package savethebunniesclient.controller;
 
+import java.awt.image.BufferedImage;
+import java.io.ByteArrayInputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.sql.SQLException;
+
+import javax.imageio.ImageIO;
 
 import savethebunniesclient.model.game.LevelException;
 import savethebunniesclient.util.CreateFile;
 import savethebunniesclient.util.Resources;
 import serverPackage.*;
 import clientPackage.*;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.image.PixelWriter;
+import javafx.scene.image.WritableImage;
 
-
+/**
+ * Connection with server
+ * @author christian_gutan
+ *
+ */
 public class ConnectionServer {
 	
 	private static String messageAnswer;
@@ -162,6 +176,42 @@ public class ConnectionServer {
 		}
 	}
 	
+	public static String getImageProfile(String username) {
+		try {
+			clientPackage.DataPackageImageProfileUser data = new clientPackage.DataPackageImageProfileUser(username);
+
+			Socket socket = new Socket(Resources.IP, Resources.PORTMAINSERVER);
+			
+			ObjectOutputStream outputStream = new ObjectOutputStream(socket.getOutputStream());
+			
+			outputStream.writeObject(data);
+			
+			socket.close();
+			
+			return openServerSocketGetImageProfile();
+		} catch (IOException e) {
+			return "No connection with Server";
+		}
+	}
+	
+	public static String sendNewProfileImage(String username, byte[] image, String type) {
+		try {
+			clientPackage.DataPackageSendNewProfileImage data = new clientPackage.DataPackageSendNewProfileImage(username, image, type);
+
+			Socket socket = new Socket(Resources.IP, Resources.PORTMAINSERVER);
+			
+			ObjectOutputStream outputStream = new ObjectOutputStream(socket.getOutputStream());
+			
+			outputStream.writeObject(data);
+			
+			socket.close();
+			
+			return openServerSocketSendNewProfileImage();
+		} catch (IOException e) {
+			return "No connection with Server";
+		}
+	}
+	
 	private static String openServerSocketRegisteredUser() {
 		Thread threadServerWaitingAnswer = new Thread(new Runnable() {
 			@Override
@@ -246,7 +296,6 @@ public class ConnectionServer {
 								User.setLastLevelPassedStory(((DataPackageLoggedUser) inputObjectData).getLastLevelPassedStory());
 								User.setName(((DataPackageLoggedUser) inputObjectData).getName());
 								User.setUsername(((DataPackageLoggedUser) inputObjectData).getUsername());
-								//User.setLevels(((DataPackageLoggedUser) inputObjectData).getLevelsBuilt());
 							} else {
 								ConnectionServer.setMessageAnswer( ((DataPackageLoggedUser) inputObjectData).getMessageInfo());
 							}
@@ -650,6 +699,147 @@ public class ConnectionServer {
 		return ConnectionServer.getMessageAnswer();
 	}
 	
+	private static String openServerSocketGetImageProfile() {
+		Thread threadServerWaitingAnswer = new Thread( new Runnable() {
+			@Override
+			public void run() {
+				ServerSocket server = null;
+				Socket socket = null;
+				ObjectInputStream inputStream = null;
+				Object inputObjectData = null;
+				ConnectionServer.setMessageAnswer("");
+				try {
+					server = new ServerSocket(Resources.PORTSERVERCREATED);
+					socket = server.accept();
+
+					inputStream = new ObjectInputStream(socket.getInputStream());
+					
+					try {
+						inputObjectData = inputStream.readObject();
+						
+						if (inputObjectData instanceof serverPackage.DataPackageImageProfileUser) {
+							if(!((serverPackage.DataPackageImageProfileUser) inputObjectData).isStateImgageProfileUser()) {
+								ConnectionServer.setMessageAnswer("INTERNAL ERROR");
+							} else {
+								
+								byte[] b =  ((serverPackage.DataPackageImageProfileUser) inputObjectData).getImageProfileUser();
+								
+								InputStream in = new ByteArrayInputStream(b);
+										 
+								BufferedImage image = null;
+								try {
+									image = ImageIO.read(in);
+								} catch (IOException e) {
+									e.printStackTrace();
+								}
+								
+								WritableImage wr = null;
+								if (image != null) {
+								    wr = new WritableImage(image.getWidth(), image.getHeight());
+								    PixelWriter pw = wr.getPixelWriter();
+								    for (int x = 0; x < image.getWidth(); x++) {
+								        for (int y = 0; y < image.getHeight(); y++) {
+								            pw.setArgb(x, y, image.getRGB(x, y));
+								        }
+								    }
+								}
+
+								Image img = new ImageView(wr).getImage();
+										
+								User.setImageProfile(img);
+							}
+						} else {
+							ConnectionServer.setMessageAnswer("You are using an old version");
+						}						
+					} catch (ClassNotFoundException | IOException e1) {
+						e1.printStackTrace();
+						ConnectionServer.setMessageAnswer("Error");
+					}
+					
+				} catch (IOException e1) {
+					e1.printStackTrace();
+					ConnectionServer.setMessageAnswer("Error connection with Server");
+				} finally {
+					try {
+						server.close();
+						socket.close();
+					} catch (IOException e) {
+						e.printStackTrace();
+					}
+				}	
+			}
+			
+		});
+		
+		threadServerWaitingAnswer.start();
+		
+		try {
+			threadServerWaitingAnswer.join();
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+		
+		return ConnectionServer.getMessageAnswer();
+	}
+	
+	private static String openServerSocketSendNewProfileImage() {
+		Thread threadServerWaitingAnswer = new Thread(new Runnable() {
+			@Override
+			public void run() {
+				ServerSocket server = null;
+				Socket socket = null;
+				ObjectInputStream inputStream = null;
+				Object inputObjectData = null;
+				ConnectionServer.setMessageAnswer("");
+				try {
+					server = new ServerSocket(Resources.PORTSERVERCREATED);
+					socket = server.accept();
+
+					inputStream = new ObjectInputStream(socket.getInputStream());
+					
+					try {
+						inputObjectData = inputStream.readObject();
+						
+						if (inputObjectData instanceof serverPackage.DataPackageSendNewProfileImage) {
+							if(!((serverPackage.DataPackageSendNewProfileImage) inputObjectData).isStateNewProfileImage()) {
+								ConnectionServer.setMessageAnswer("INTERNAL ERROR");
+							}
+						} else {
+							ConnectionServer.setMessageAnswer("You are using an old version");
+						}						
+					} catch (ClassNotFoundException | IOException e1) {
+						e1.printStackTrace();
+						ConnectionServer.setMessageAnswer("Error");
+					}
+					
+				} catch (IOException e1) {
+					e1.printStackTrace();
+					ConnectionServer.setMessageAnswer("Error connection with Server");
+				} finally {
+					try {
+						server.close();
+						socket.close();
+					} catch (IOException e) {
+						e.printStackTrace();
+					}
+				}	
+			}
+			
+		});
+		
+		threadServerWaitingAnswer.start();
+		
+		try {
+			threadServerWaitingAnswer.join();
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+		
+		return ConnectionServer.getMessageAnswer();
+	}
+	
+	
+	
 	public static String getMessageAnswer() {
 		return ConnectionServer.messageAnswer;
 	}
@@ -657,5 +847,6 @@ public class ConnectionServer {
 	public static void setMessageAnswer(String messageAnswer) {
 		ConnectionServer.messageAnswer = messageAnswer;
 	}
+
 	
 }

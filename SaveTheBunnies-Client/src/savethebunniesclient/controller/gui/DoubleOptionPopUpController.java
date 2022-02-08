@@ -11,6 +11,11 @@ import savethebunniesclient.controller.music.Music;
 import savethebunniesclient.model.music.SoundType;
 import savethebunniesclient.util.OnActionData;
 
+/**
+ * Controller of a view with 2 buttons. You can set the acction of them
+ * @author chris
+ *
+ */
 public class DoubleOptionPopUpController{
 	
 	private OnActionData actionButton1;

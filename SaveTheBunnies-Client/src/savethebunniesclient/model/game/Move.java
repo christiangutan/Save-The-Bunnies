@@ -1,11 +1,9 @@
 package savethebunniesclient.model.game;
 
 /**
- * This class represents the move coordinates for the game. Since move will be
- * used in multiple classes (mainly movable pieces) it is easier to represent the start and end points of
- * a move using one object.
+ * This class represents the move coordinates for the game
+ * @author christian_gutan
  * 
- * @author David García Solórzano
  */
 public class Move {
 	/**

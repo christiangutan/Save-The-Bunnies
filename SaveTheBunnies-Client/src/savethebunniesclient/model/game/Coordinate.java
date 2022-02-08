@@ -2,7 +2,7 @@ package savethebunniesclient.model.game;
 
 /** 
 * A Coordinate class.
-* @author David García Solórzano
+* @author Christian_gutan
 * @version 1.0 
 */
 public class Coordinate implements Comparable<Coordinate>{

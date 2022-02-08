@@ -9,6 +9,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import savethebunniesclient.app.GuiApp;
 import savethebunniesclient.controller.ConnectionServer;
+import savethebunniesclient.controller.User;
 import savethebunniesclient.controller.music.Music;
 import savethebunniesclient.model.music.SoundType;
 import savethebunniesclient.model.view.DoubleOptionPopUpWindow;
@@ -16,6 +17,11 @@ import savethebunniesclient.model.view.ErrorPopUpWindow;
 import savethebunniesclient.model.view.InfoPopUpWindow;
 import savethebunniesclient.util.OnActionData;
 
+/**
+ * Controller of the login view
+ * @author christian_gutan
+ *
+ */
 public class LoginController {
 	
 	@FXML
@@ -31,11 +37,13 @@ public class LoginController {
 	
 	@FXML
     public void initialize() {
-		
+		GuiApp.setPlaying(false);
+
 	}
 	
 	@FXML
 	public void actionLogin() {
+		
 		Music.playSound(SoundType.BUTTON);
 		Thread threadLoginUser = new Thread (new Runnable() {
 			@Override
@@ -43,6 +51,7 @@ public class LoginController {
 				String state = ConnectionServer.loginUser(usernameTextField.getText(), passwordTextField.getText());
 				if(state.equals("")) {
 					InfoPopUpWindow window = new InfoPopUpWindow("User logged");
+					ConnectionServer.getImageProfile(User.getUsername());
 					window.createView();
 					window.setOnAction(new OnActionData() {
 						@Override

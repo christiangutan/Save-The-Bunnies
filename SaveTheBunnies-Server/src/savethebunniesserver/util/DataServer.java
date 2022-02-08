@@ -1,5 +1,10 @@
 package savethebunniesserver.util;
 
+/**
+ * Data server. They are updated when the DDBB is modified
+ * @author christian_gutan
+ *
+ */
 public class DataServer {
 	private int numUsers;
 	private int numLevels;

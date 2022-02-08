@@ -2,9 +2,8 @@ package savethebunniesclient.model.game;
 
 /** 
  * Symbol enumeration.
- * sAn enumeration representing the pair "ASCII symbol - image source" for each piece (and status).
- * @author David García Solórzano
- * @version 1.0  
+ * @author christian_gutan
+ * 
  */
 public enum Symbol {
 

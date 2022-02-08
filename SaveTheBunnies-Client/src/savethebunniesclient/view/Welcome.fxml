@@ -6,6 +6,7 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Circle?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
@@ -13,10 +14,6 @@
    <children>
       <AnchorPane prefHeight="104.0" prefWidth="825.0">
          <children>
-            <ImageView fx:id="imageProfile" fitHeight="111.0" fitWidth="111.0" layoutX="43.0" layoutY="7.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../util/img/usernameIcon.png" />
-               </image></ImageView>
             <Text fx:id="username" layoutX="163.0" layoutY="49.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Username" wrappingWidth="221.1279296875">
                <font>
                   <Font name="Times New Roman" size="21.0" />
@@ -57,6 +54,11 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </ImageView>
+            <Circle fx:id="circleImageProfile" fill="DODGERBLUE" layoutX="99.0" layoutY="62.0" onMouseReleased="#actionButtonProfile" radius="56.0" stroke="BLACK" strokeType="INSIDE">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Circle>
          </children>
       </AnchorPane>
       <Button fx:id="buttonStory" layoutX="456.0" layoutY="194.0" mnemonicParsing="false" onMousePressed="#actionButtonStory" prefHeight="72.0" prefWidth="246.0" text="Story">

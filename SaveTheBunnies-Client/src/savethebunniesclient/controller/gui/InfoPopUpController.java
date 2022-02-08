@@ -11,6 +11,11 @@ import savethebunniesclient.controller.music.Music;
 import savethebunniesclient.model.music.SoundType;
 import savethebunniesclient.util.OnActionData;
 
+/**
+ * Controller of InfoPopUp view
+ * @author christian_gutan
+ *
+ */
 public class InfoPopUpController{
 	
 	private OnActionData actionButton;

@@ -1,5 +1,10 @@
 package savethebunniesserver.model;
 
+/**
+ * ServerException clas
+ * @author christian_gutan
+ *
+ */
 public class ServerException extends Exception{
 	public static String ERROR_LOGIN_USER_NOT_USER_FOUND = "This user is not registered";
 	public static String ERROR_LOGIN_USER_INCORRECT_PASSWORD = "Incorrect Password";

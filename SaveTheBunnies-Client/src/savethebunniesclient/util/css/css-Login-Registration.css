@@ -1,12 +1,22 @@
-.text-field:focused {
+.text-field-correct:focused {
     -fx-background-color: #d3fefc;
 }
 
-.text-field:hover {
+.text-field-correct:hover {
 	-fx-background-color: #45adbe;
 }
 
+.text-field-correct {
+	-fx-background-color: #f5ebcb;
+}
 
+
+.text-field-error{
+	-fx-background-color: #FF0000;
+}
+.text-field-correct {
+	-fx-background-color: #f5ebcb;
+}
 
 #buttonLogin:hover {
 	-fx-background-color: #d3fefc;
@@ -41,4 +51,5 @@
 #cancelButton {
 	-fx-background-color:  #fe8a69;
 }
+
 

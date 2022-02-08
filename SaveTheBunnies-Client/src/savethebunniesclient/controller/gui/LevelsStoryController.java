@@ -16,9 +16,19 @@ import java.net.URI;
 import java.net.URISyntaxException;
 
 import javafx.fxml.FXML;
+import javafx.scene.effect.DropShadow;
+import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.paint.Color;
+import javafx.scene.paint.ImagePattern;
+import javafx.scene.shape.Circle;
 import javafx.scene.text.Text;
 
+/**
+ * Controller of view where you can play the default levels
+ * @author christian_gutan
+ *
+ */
 public class LevelsStoryController {
 	
 	@FXML 
@@ -63,7 +73,17 @@ public class LevelsStoryController {
 	private Text name;
 	
 	@FXML
+	private Circle circleImageProfile;
+	
+	@FXML
     public void initialize() {
+		circleImageProfile.setStroke(Color.SEAGREEN);
+        Image im = User.getImageProfile();
+        circleImageProfile.setFill(new ImagePattern(im));
+        circleImageProfile.setEffect(new DropShadow(+25d, 0d, +2d, Color.DARKSEAGREEN));
+		
+		GuiApp.setPlaying(false);
+		
 		menuStoryLevel1 = new MenuStoryLevel(paneChooseLevel1);
 		menuStoryLevel2 = new MenuStoryLevel(paneChooseLevel2);
 		menuStoryLevel3 = new MenuStoryLevel(paneChooseLevel3);

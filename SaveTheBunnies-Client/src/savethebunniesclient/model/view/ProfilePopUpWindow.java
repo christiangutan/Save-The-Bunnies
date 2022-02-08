@@ -4,69 +4,49 @@ import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
 
+import com.jfoenix.controls.JFXSlider;
+
 import javafx.application.Application;
 import javafx.application.Platform;
+import javafx.beans.InvalidationListener;
+import javafx.beans.Observable;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.Region;
 import javafx.scene.paint.Color;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import savethebunniesclient.app.GuiApp;
-import savethebunniesclient.controller.gui.DoubleOptionPopUpController;
-import savethebunniesclient.util.OnActionData;
+import savethebunniesclient.controller.gui.ConfigurationPopUpController;
+import savethebunniesclient.controller.music.Music;
 import savethebunniesclient.util.Resources;
 
 /**
- * PopUp window. You can set the actions of the two buttons with the class OnActionData.
+ * PopUpWindow. You can change the profile photo here
  * @author christian_gutan
  *
  */
-public class DoubleOptionPopUpWindow extends Application{
-	private String text;
-	private String textButton1;
-	private String textButton2;
-	private Stage stage;
-	private OnActionData onAction1;
-	private OnActionData onAction2;
+public class ProfilePopUpWindow extends Application{
 
-	public DoubleOptionPopUpWindow(String text) {
-		setText(text);
+	private Stage stage;
+
+	public ProfilePopUpWindow() {
+		
+		
 	}
 	@Override
 	public void start(Stage primaryStage) throws IOException {
 	}
-		
-	private String getText() {
-		return text;
-	}
-	private void setText(String text) {
-		this.text = text;
-	}
-	public String getTextButton1() {
-		return textButton1;
-	}
-	public void setTextButton1(String textButton1) {
-		this.textButton1 = textButton1;
-	}
-	public String getTextButton2() {
-		return textButton2;
-	}
-	public void setTextButton2(String textButton2) {
-		this.textButton2 = textButton2;
-	}
+
 	private Stage getStage() {
 		return stage;
 	}
 	private void initStage() {
 		this.stage = new Stage();
-	}
-	public void setOnAction1(OnActionData onAction1) {
-		this.onAction1 = onAction1;
-	}
-	public void setOnAction2(OnActionData onAction2) {
-		this.onAction2 = onAction2;
 	}
 	
 	public void createView() {
@@ -75,13 +55,12 @@ public class DoubleOptionPopUpWindow extends Application{
 			public void run() {
 				initStage();
 				Region rootLayout;
-				String view = "DoubleOptionPopUp.fxml";
+				String view = "ProfilePopUpWindow.fxml";
 				String css = "css-PopUpWindow.css";
 				Scene scene = null;
 				
 				// Load root layout from fxml file.
 				final FXMLLoader loader = new FXMLLoader();  
-				
 				String urlString = "file:" +  System.getProperty("user.dir") + "\\src\\savethebunniesclient\\view\\" + view;
 				URL url = null;
 				try {
@@ -90,7 +69,7 @@ public class DoubleOptionPopUpWindow extends Application{
 					e1.printStackTrace();
 				}
 				
-				loader.setLocation(url);	
+				loader.setLocation(url);
 				try {
 					rootLayout = (Region) loader.load();
 					scene = new Scene(rootLayout);
@@ -98,13 +77,6 @@ public class DoubleOptionPopUpWindow extends Application{
 				} catch (IOException e) {
 					e.printStackTrace();
 				} 
-			
-				final DoubleOptionPopUpController controller = loader.getController();
-				controller.setOnAction1(onAction1);	
-				controller.setOnAction2(onAction2);
-				controller.setText(text);
-				controller.setTextButton1(textButton1);
-				controller.setTextButton2(textButton2);
 				
 				getStage().initModality(Modality.APPLICATION_MODAL);
 				getStage().initOwner(GuiApp.main.getStage());

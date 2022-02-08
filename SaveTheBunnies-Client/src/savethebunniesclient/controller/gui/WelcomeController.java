@@ -7,16 +7,28 @@ import java.net.URISyntaxException;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.effect.DropShadow;
+import javafx.scene.image.Image;
+import javafx.scene.paint.Color;
+import javafx.scene.paint.ImagePattern;
+import javafx.scene.shape.Circle;
 import javafx.scene.text.Text;
 import savethebunniesclient.app.GuiApp;
+import savethebunniesclient.controller.ConnectionServer;
 import savethebunniesclient.controller.User;
 import savethebunniesclient.controller.music.Music;
 import savethebunniesclient.model.music.SoundType;
 import savethebunniesclient.model.view.ConfigurationPopUpWindow;
 import savethebunniesclient.model.view.DoubleOptionPopUpWindow;
 import savethebunniesclient.model.view.InformationPopUpWindow;
+import savethebunniesclient.model.view.ProfilePopUpWindow;
 import savethebunniesclient.util.OnActionData;
 
+/**
+ * Main view after registering. You can choose between 3 modes: story, online, your levels
+ * @author christian_gutan
+ *
+ */
 public class WelcomeController {
 	@FXML
 	private Button buttonStory;
@@ -24,12 +36,22 @@ public class WelcomeController {
 	private Text username;
 	@FXML
 	private Text name;
+	@FXML
+	private Circle circleImageProfile;
 	
 	@FXML
     public void initialize() {
+		GuiApp.setPlaying(false);
+
         username.setText(User.getUsername().toUpperCase());
         name.setText(User.getName().toUpperCase());
-    }
+        
+        circleImageProfile.setStroke(Color.SEAGREEN);
+        Image im = User.getImageProfile();
+        circleImageProfile.setFill(new ImagePattern(im));
+        circleImageProfile.setEffect(new DropShadow(+25d, 0d, +2d, Color.DARKSEAGREEN));
+   
+	}
 	
 	@FXML
 	public void actionButtonStory() {		
@@ -106,5 +128,10 @@ public class WelcomeController {
 		window.createView();
 	}
 	
+	@FXML
+	public void actionButtonProfile() {
+		ProfilePopUpWindow window = new ProfilePopUpWindow();
+		window.createView();
+	}
 
 }

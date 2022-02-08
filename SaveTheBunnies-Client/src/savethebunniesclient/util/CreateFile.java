@@ -4,6 +4,11 @@ import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 
+/**
+ * Create files of levels
+ * @author christian_gutan
+ *
+ */
 public class CreateFile {
 	public static void createFile(String text, int id) {
 		File file = null;

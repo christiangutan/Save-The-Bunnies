@@ -2,8 +2,8 @@ package savethebunniesclient.model.game;
 
 /** 
 * A Grass piece class.
-* @author David García Solórzano
-* @version 1.0 
+* @author christian_gutan
+*
 */
 public class Grass extends Piece{
 	

@@ -2,8 +2,8 @@ package savethebunniesclient.model.game;
 
 /** 
  * Piece class.
- * @author David García Solórzano
- * @version 1.0  
+ * @author christian_gutan
+ * 
  */
 public abstract class Piece implements Cloneable{
 	

@@ -45,9 +45,9 @@ public class Server {
 						Socket socket = null;
 						found = false;
 						try {
-							System.out.println("Socket.accept()");
+							//System.out.println("Socket.accept()");
 							socket = server.accept();
-							System.out.println("Socket Accepted");
+							//System.out.println("Socket Accepted");
 						} catch (IOException e) {
 							Log.addInfoError("ERROR - Server.accept");
 							e.printStackTrace();
@@ -73,7 +73,6 @@ public class Server {
 						}
 						
 						if (inputObjectData instanceof DataPackageRegistrationUser && found == false) {
-							System.out.println("DataPackageRegistrationUser");
 							found = true;
 							
 							DataPackageRegisteredUser dataSend = null;		
@@ -106,7 +105,6 @@ public class Server {
 						}
 
 						if (inputObjectData instanceof DataPackageLoginUser && found == false) {
-							System.out.println("DataPackageLoginUser");
 							found = true;
 							
 							DataPackageLoggedUser dataSend = null;
@@ -134,6 +132,58 @@ public class Server {
 								socketSend.close();
 							} catch (IOException e) {
 								Log.addInfoError("ERROR - Socket DataPackageLoggedUser");
+							} 
+						}
+						
+						if (inputObjectData instanceof clientPackage.DataPackageImageProfileUser && found == false) {
+							found = true;
+							
+							serverPackage.DataPackageImageProfileUser dataSend = null;
+							
+							clientPackage.DataPackageImageProfileUser dataUser = null;
+							
+							dataUser = (clientPackage.DataPackageImageProfileUser)inputObjectData;
+							
+							dataSend = ConnectionDDBB.getImageProfileUser(dataUser);
+
+							try {
+								Log.addInfoActivityPanel("Sending to " + dataUser.getIp() + " ImageProfileUser", Color.BLUE);
+								Socket socketSend;
+								socketSend = new Socket(dataUser.getIp(), Resources.PORTSOCKET);
+								ObjectOutputStream outputStream = new ObjectOutputStream(socketSend.getOutputStream());
+								outputStream.writeObject(dataSend);
+								socketSend.close();
+							} catch (IOException e) {
+								Log.addInfoError("ERROR - Socket DataPackageImageProfileUser: " + e.getMessage());
+							} 
+						}
+						
+						if (inputObjectData instanceof clientPackage.DataPackageSendNewProfileImage && found == false) {
+							found = true;
+							
+							serverPackage.DataPackageSendNewProfileImage dataSend = null;
+							
+							clientPackage.DataPackageSendNewProfileImage dataUser = null;
+							
+							dataUser = (clientPackage.DataPackageSendNewProfileImage)inputObjectData;
+							
+							try {
+								ConnectionDDBB.setNewImageProfileUser(dataUser);
+								dataSend = new 	serverPackage.DataPackageSendNewProfileImage("", true);
+							} catch (ServerException e1) {
+								dataSend = new 	serverPackage.DataPackageSendNewProfileImage(e1.getMessage(), false);
+								e1.printStackTrace();
+							}
+
+							try {
+								Log.addInfoActivityPanel("Sending to " + dataUser.getIp() + " SendNewProfileImager", Color.BLUE);
+								Socket socketSend;
+								socketSend = new Socket(dataUser.getIp(), Resources.PORTSOCKET);
+								ObjectOutputStream outputStream = new ObjectOutputStream(socketSend.getOutputStream());
+								outputStream.writeObject(dataSend);
+								socketSend.close();
+							} catch (IOException e) {
+								Log.addInfoError("ERROR - Socket DataPackageSendNewImageProfileUser: " + e.getMessage());
 							} 
 						}
 						

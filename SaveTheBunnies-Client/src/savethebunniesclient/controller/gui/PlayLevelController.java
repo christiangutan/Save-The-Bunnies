@@ -10,10 +10,14 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
+import javafx.scene.effect.DropShadow;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
+import javafx.scene.paint.Color;
+import javafx.scene.paint.ImagePattern;
+import javafx.scene.shape.Circle;
 import javafx.scene.text.Text;
 import savethebunniesclient.app.GuiApp;
 import savethebunniesclient.controller.ConnectionServer;
@@ -34,6 +38,11 @@ import savethebunniesclient.model.view.ConfigurationPopUpWindow;
 import savethebunniesclient.model.view.DoubleOptionPopUpWindow;
 import savethebunniesclient.util.OnActionData;
 
+/**
+ * Controller of the view where you can play not also the story levels, and your levels but also the levels of the others players 
+ * @author christian_gutan
+ *
+ */
 public class PlayLevelController {
 
 	public static final int CANVAS_WIDTH = 1024;
@@ -57,8 +66,13 @@ public class PlayLevelController {
 	private Text labelLevelDifficulty;
 	
 	@FXML
+	private Circle circleImageProfile;
+	
+	@FXML
     private void initialize() throws FileNotFoundException, LevelException{  
-    	move = new ArrayList<Coordinate>();
+		GuiApp.setPlaying(true);
+		
+		move = new ArrayList<Coordinate>();
     	idLevel = InfoController.getCurrentLevelId();
     	
     	if(InfoController.isTesting()) {
@@ -72,7 +86,6 @@ public class PlayLevelController {
     	loadLevel();
     	
     	if(onlineMode) {
-    		System.out.println("Online Level");
 			labelLevelName.setText(InfoController.getCurrentLevel().getName());
 			labelLevelDifficulty.setText(InfoController.getCurrentLevel().getDifficulty().toString().toUpperCase());						
     	} else if (storyMode){
@@ -82,6 +95,12 @@ public class PlayLevelController {
     		labelLevelName.setText(InfoController.getCurrentLevel().getName().toUpperCase());
     		labelLevelDifficulty.setText(InfoController.getCurrentLevel().getDifficulty().toString().toUpperCase());
     	}
+    	
+    	circleImageProfile.setStroke(Color.SEAGREEN);
+        Image im = User.getImageProfile();
+        circleImageProfile.setFill(new ImagePattern(im));
+        circleImageProfile.setEffect(new DropShadow(+25d, 0d, +2d, Color.DARKSEAGREEN));
+   
 	}
 	
 	/**

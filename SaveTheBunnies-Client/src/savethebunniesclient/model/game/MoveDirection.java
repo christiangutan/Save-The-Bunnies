@@ -2,8 +2,7 @@ package savethebunniesclient.model.game;
 
 /** 
  * MoveDirection enumeration.
- * An enumeration representing the direction in which a piece wants to move or is moving.
- * @author David García Solórzano
+ * @author christian_gutan
  * @version 1.0  
  */
 public enum MoveDirection {

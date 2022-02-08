@@ -11,6 +11,11 @@ import savethebunniesclient.controller.music.Music;
 import savethebunniesclient.model.music.SoundType;
 import savethebunniesclient.util.OnActionData;
 
+/**
+ * Controller of error view
+ * @author christian_gutan
+ *
+ */
 public class ErrorPopUpController {
 	
 	private OnActionData actionButton;

@@ -4,8 +4,8 @@ import savethebunniesclient.controller.ToPlay;
 
 /** 
 * A FoxTail piece class.
-* @author Christian Gutiérrez Antolín
-* @version 1.0 
+* @author christian_gutan
+* 
 */
 public class FoxTail extends Fox{
 	

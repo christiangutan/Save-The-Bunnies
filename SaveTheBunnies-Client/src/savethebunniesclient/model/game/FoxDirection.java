@@ -3,8 +3,8 @@ package savethebunniesclient.model.game;
 /** 
  * MoveDirection enumeration.
  * An enumeration representing the direction the fox is facing.
- * @author David García Solórzano
- * @version 1.0  
+ * @author christian_gutan
+ * 
  */
 public enum FoxDirection {
     LEFT, 

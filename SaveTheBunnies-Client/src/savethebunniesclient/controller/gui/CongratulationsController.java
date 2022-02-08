@@ -7,7 +7,6 @@ import savethebunniesclient.model.music.SoundType;
 import savethebunniesclient.model.view.ConfigurationPopUpWindow;
 import savethebunniesclient.model.view.DoubleOptionPopUpWindow;
 import savethebunniesclient.model.view.InformationPopUpWindow;
-import savethebunniesclient.model.view.MenuStoryLevel;
 import savethebunniesclient.util.OnActionData;
 
 import java.awt.Desktop;
@@ -16,21 +15,37 @@ import java.net.URI;
 import java.net.URISyntaxException;
 
 import javafx.fxml.FXML;
-import javafx.scene.layout.AnchorPane;
+import javafx.scene.effect.DropShadow;
+import javafx.scene.image.Image;
+import javafx.scene.paint.Color;
+import javafx.scene.paint.ImagePattern;
+import javafx.scene.shape.Circle;
 import javafx.scene.text.Text;
 
+/**
+ * Controller of the view where the game is finished
+ * @author christian_gutan	
+ *
+ */
 public class CongratulationsController {
 	
 	@FXML
 	private Text username;
 	@FXML
 	private Text name;
+	@FXML
+	private Circle circleImageProfile;
 	
 	@FXML
     public void initialize() {		
 	    username.setText(User.getUsername().toUpperCase());
 	    name.setText(User.getName().toUpperCase());
-	    
+		GuiApp.setPlaying(false);
+		circleImageProfile.setStroke(Color.SEAGREEN);
+        Image im = User.getImageProfile();
+        circleImageProfile.setFill(new ImagePattern(im));
+        circleImageProfile.setEffect(new DropShadow(+25d, 0d, +2d, Color.DARKSEAGREEN));
+    
     }
 		
 	@FXML

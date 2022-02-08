@@ -2,8 +2,8 @@ package savethebunniesclient.model.game;
 
 /** 
 * Level Exception class.
-* @author Christian_gutan
-* @version 1.0 
+* @author christian_gutan
+*
 */
 public class LevelException extends Exception{
 	

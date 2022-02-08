@@ -4,8 +4,8 @@ import savethebunniesclient.controller.ToPlay;
 
 /** 
  * Movable interface.
- * @author Christian Gutiérrez Antolín
- * @version 1.0  
+ * @author christian_gutan
+ *  
  */
 public interface Movable {
 	

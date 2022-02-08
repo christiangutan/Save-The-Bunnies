@@ -18,6 +18,11 @@ import savethebunniesclient.controller.User;
 import savethebunniesclient.model.game.LevelDifficulty;
 import savethebunniesclient.util.OnActionData;
 
+/**
+ * Menu for being used in onlineLevels view
+ * @author christian_gutan
+ *
+ */
 public class MenuOnlineLevel {
 	private LevelDifficulty difficulty;	
 	

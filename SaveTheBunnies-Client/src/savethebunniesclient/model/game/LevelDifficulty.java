@@ -2,8 +2,8 @@ package savethebunniesclient.model.game;
 
 /** 
  * LevelDifficulty enumeration.
- * @author Christian Gutiérrez Antolín
- * @version 1.0  
+ * @author christian_gutan
+ * 
  */
 public enum LevelDifficulty {
 	BUILDERMODE,

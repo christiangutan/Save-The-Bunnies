@@ -11,6 +11,11 @@ import javafx.scene.text.FontPosture;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextFlow;
 
+/**
+ * Log class
+ * @author christian_gutan
+ *
+ */
 public class Log {
 	private static TextFlow textFlow;
 	private static ScrollPane scroll;

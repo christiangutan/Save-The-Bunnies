@@ -1,5 +1,7 @@
 package savethebunniesserver.model;
 
+import java.io.IOException;
+import java.io.InputStream;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.DriverManager;
@@ -16,6 +18,11 @@ import savethebunniesserver.util.DataServer;
 import savethebunniesserver.util.Util;
 import serverPackage.DataPackageLoggedUser;
 
+/**
+ * Connection to DDBB and all in relation with it
+ * @author christian_gutan
+ *
+ */
 public class ConnectionDDBB {
 	private static final String user = "root";
 	private static final String password= "";
@@ -135,8 +142,8 @@ public class ConnectionDDBB {
 		try {
 			PreparedStatement statement = ConnectionDDBB.getConnection()
 					.prepareStatement("UPDATE `users` SET `lastLevenPassedStory` = ?  WHERE username = ?");
-			statement.setInt(1, info.getLastLevel());	//Last level
-			statement.setString(2, info.getUsername());	//username
+			statement.setInt(1, info.getLastLevel());		//Last level
+			statement.setString(2, info.getUsername());		//username
 			statement.executeUpdate();
 		} catch (SQLException e) {
 			Log.addInfoError(e.getMessage());
@@ -189,6 +196,8 @@ public class ConnectionDDBB {
 	}
 
 	public static serverPackage.DataPackageMyLevels getMyLevelsInfo(clientPackage.DataPackageMyLevels info) {
+		Log.addInfoCorrect("GetMyLevelsInfo - ConnectionDDBB");
+
 		try {
 			PreparedStatement statement = ConnectionDDBB.getConnection()
 					.prepareStatement("SELECT * FROM savethebunnies.levels WHERE username = ? ");
@@ -212,12 +221,14 @@ public class ConnectionDDBB {
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
-			Log.addInfoActivityPanel("My Levels NOT Send - User: " + info.getUsername(), Color.PURPLE);
+			Log.addInfoError("My Levels NOT Send - User: " + info.getUsername());
 			return new serverPackage.DataPackageMyLevels (null, null, false, "Internal ERROR");
 		}
 	}
 
 	public static serverPackage.DataPackageAvailableLevels getAvailableLevelsInfo(clientPackage.DataPackageAvailableLevels info) {
+		Log.addInfoCorrect("GetAvailableLevels - ConnectionDDBB");
+
 		try {
 			PreparedStatement statement = ConnectionDDBB.getConnection()
 					.prepareStatement("SELECT * FROM savethebunnies.levels");
@@ -243,12 +254,92 @@ public class ConnectionDDBB {
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
-			Log.addInfoActivityPanel("Available Levels NOT Send - User: " + info.getUsername(), Color.PURPLE);
+			Log.addInfoError("Available Levels NOT Send - User: " + info.getUsername());
 			return new serverPackage.DataPackageAvailableLevels (null, null, false, "Internal ERROR");
 		}
 	}	
 	
+	public static serverPackage.DataPackageImageProfileUser getImageProfileUser(clientPackage.DataPackageImageProfileUser info) {
+		Log.addInfoCorrect("GetImageProfileUser - ConnectionDDBB");
+
+		try {
+			
+			PreparedStatement statement = ConnectionDDBB.getConnection()
+						.prepareStatement("SELECT files.content, files.type " + 
+								"FROM users JOIN files ON USERS.imageProfile = FILES.idFile " + 
+								"WHERE USERS.username = ?");
+			
+			statement.setString(1, info.getUsername());	
+			statement.executeQuery();
+					
+			ResultSet rs = statement.executeQuery();
+			rs.next();
+			
+			Log.addInfoActivityPanel("ImageProfileUser Send - User: " + info.getUsername(), Color.PURPLE);
+			
+			java.sql.Blob blob = rs.getBlob(1);  
+			
+			InputStream in = blob.getBinaryStream();  
+		
+			serverPackage.DataPackageImageProfileUser ret = new serverPackage.DataPackageImageProfileUser(in.readAllBytes(), "", true);
+			
+			return ret;
+			
+		} catch(SQLException | IOException e) {
+			e.printStackTrace();
+			Log.addInfoError("ImageProfileUser NOT Send - User: " + info.getUsername() + " - Cause: " + e.getMessage());
+			return new serverPackage.DataPackageImageProfileUser(null, e.getMessage(), false);	
+		}
+	}
+	
+	public static void setNewImageProfileUser(clientPackage.DataPackageSendNewProfileImage info) throws ServerException {
+		Log.addInfoCorrect("SetNewProfileImage - ConnectionDDBB");
+		
+		try {
+			PreparedStatement statementUpdateDefaultProfilePhoto = ConnectionDDBB.getConnection()
+					.prepareStatement("UPDATE `users` SET `imageProfile` = '1' WHERE `users`.`username` = ?");
+			statementUpdateDefaultProfilePhoto.setString(1, info.getUsername());
+			statementUpdateDefaultProfilePhoto.executeUpdate();
+			
+			
+			
+			PreparedStatement statementDeleteRow = ConnectionDDBB.getConnection()
+					.prepareStatement("DELETE FROM `files` WHERE name = ?");
+			statementDeleteRow.setString(1, info.getUsername());
+			statementDeleteRow.executeUpdate();
+			
+
+			PreparedStatement statement = ConnectionDDBB.getConnection()
+					.prepareStatement("INSERT INTO `files` (`idFile`, `name`, `type`, `content`) VALUES (NULL, ?, ?, ?)");
+			statement.setString(1, info.getUsername());										//Username
+			statement.setString(2, info.getType());	    									//type file
+			java.sql.Blob blob = new javax.sql.rowset.serial.SerialBlob(info.getImage());
+			statement.setBlob(3, blob);														//image
+			statement.executeUpdate();
+
+			int idImage = 0;
+			
+			PreparedStatement statementGetIdImage= ConnectionDDBB.getConnection()
+					.prepareStatement("SELECT idFile FROM `files` WHERE name = ?");
+			statementGetIdImage.setString(1, info.getUsername());	
+			ResultSet rs = statementGetIdImage.executeQuery();
+			if(rs.next()) idImage = rs.getInt(1);
+			
+			PreparedStatement statementUpdateUserData = ConnectionDDBB.getConnection()
+					.prepareStatement("UPDATE `users` SET `imageProfile` = ? WHERE `users`.`username` = ?");
+			statementUpdateUserData.setInt(1, idImage);
+			statementUpdateUserData.setString(2, info.getUsername());
+			statementUpdateUserData.executeUpdate();
+			
+		} catch (SQLException e) {
+			Log.addInfoError(e.getMessage());
+			throw new ServerException(ServerException.ERROR_DDBB);
+		}
+	}
+	
 	public static DataServer getDataServerUsersLevels() {
+		Log.addInfoCorrect("DataServer - ConnectionDDBB");
+
 		DataServer ds = new DataServer(0,0);
 		try {
 			PreparedStatement statement = ConnectionDDBB.getConnection()
@@ -268,6 +359,8 @@ public class ConnectionDDBB {
 		return ds;
 	}
 	
+	
+	
 	public static void closeConnection() {
 		try {
 			connection.close();
@@ -281,4 +374,6 @@ public class ConnectionDDBB {
 	public static Connection getConnection() {
 		return connection;
 	}
+
+	
 }

@@ -3,10 +3,16 @@ package savethebunniesclient.controller;
 import java.io.File;
 import java.io.FileNotFoundException;
 
+import javafx.scene.image.Image;
 import savethebunniesclient.model.game.Level;
 import savethebunniesclient.model.game.LevelException;
 import savethebunniesclient.util.Resources;
 
+/**
+ * User info. It's loaded after loggin
+ * @author christian_gutan
+ *
+ */
 public class User {
 	
 	private static String username;
@@ -16,6 +22,7 @@ public class User {
 	private static int[] levelsBuilt;
 	private static int lastLevelPassedStory;
 	private static int idImageProfile;
+	private static Image imageProfile;
 	
 	private static Level[] levels;
 	
@@ -78,5 +85,11 @@ public class User {
 			levels[i].setId(Integer.parseInt(nameWithoutExtension));
 		}
 		return levels;
+	}
+	public static Image getImageProfile() {
+		return imageProfile;
+	}
+	public static void setImageProfile(Image image) {
+		imageProfile = image;
 	}
 }

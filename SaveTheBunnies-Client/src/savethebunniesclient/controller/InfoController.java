@@ -8,6 +8,11 @@ import savethebunniesclient.model.game.LevelException;
 import savethebunniesclient.util.CreateFile;
 import savethebunniesclient.util.Resources;
 
+/**
+ * General information to run application
+ * @author christian_gutan
+ *
+ */
 public class InfoController {
 
 	public static final int NUMLEVELSTORY = new File(Resources.STORYLEVELS).list().length - 1;
@@ -22,8 +27,6 @@ public class InfoController {
 	private static boolean testedLevel;	
 	private static boolean testing;
 	
-	
-	
 	public static void loadMainInformation() throws FileNotFoundException, IllegalArgumentException, LevelException {
 		loadLevelsStory();
 	}
@@ -33,8 +36,6 @@ public class InfoController {
 		}
 	}
 	public static Level getCurrentLevel() throws FileNotFoundException, IllegalArgumentException, LevelException {
-		//System.out.println((new Level(Resources.TEMPFILES + currentLevelId + ".txt")).toString());
-		//System.out.println("Current Id: " + currentLevelId);
 		return new Level(Resources.TEMPFILES + currentLevelId + ".txt");
 	}
 	public static int getCurrentLevelId() {

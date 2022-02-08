@@ -1,9 +1,14 @@
 package savethebunniesclient.util;
 
+/**
+ * Resources of the application
+ * @author christian_gutan
+ *
+ */
 public class Resources {
-	  public static final String FXML = "/savethebunniesclient/view/";
-	  public static final String IMG = "/savethebunniesclient/util/img/";
-	  public static final String CSS = "/savethebunniesclient/util/css/";
+	  public static final String FXML = "src/savethebunniesclient/view/";
+	  public static final String IMG = "src/savethebunniesclient/util/img/";
+	  public static final String CSS = "file:src/savethebunniesclient/util/css/";
 	  public static final String STORYLEVELS = "src/savethebunniesclient/util/storylevels/";
 	  public static final String MYLEVELS = "src/savethebunniesclient/util/mylevels/";
 	  public static final String TEMPFILES = "src/savethebunniesclient/util/temp/";

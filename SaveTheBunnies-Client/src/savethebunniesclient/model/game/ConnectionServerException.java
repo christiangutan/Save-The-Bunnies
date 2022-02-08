@@ -1,5 +1,10 @@
 package savethebunniesclient.model.game;
 
+/**
+ * ConnectionServer Exceptions
+ * @author christian_gutan
+ *
+ */
 public class ConnectionServerException extends Exception{
 	
 	public ConnectionServerException() {

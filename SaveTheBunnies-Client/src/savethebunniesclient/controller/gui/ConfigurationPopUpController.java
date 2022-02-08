@@ -15,6 +15,11 @@ import savethebunniesclient.app.GuiApp;
 import savethebunniesclient.controller.music.Music;
 import savethebunniesclient.model.music.SoundType;
 
+/**
+ * Controller of PopUp where you can modify music and logout
+ * @author christian_gutan
+ *
+ */
 public class ConfigurationPopUpController{
 	
 	@FXML
@@ -36,7 +41,7 @@ public class ConfigurationPopUpController{
 	private Button buttonLogOut;
 	@FXML
 	private Button buttonBack;
-
+	
 	@FXML
 	public void actionLogOut(ActionEvent event) {
 		Node source = (Node) event.getSource();

@@ -10,20 +10,22 @@ import java.net.URISyntaxException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
-import javax.swing.JFileChooser;
-
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextFlow;
 import javafx.stage.DirectoryChooser;
-import savethebunniesserver.app.GuiApp;
 import savethebunniesserver.model.ConnectionDDBB;
 import savethebunniesserver.model.Log;
 import savethebunniesserver.model.Server;
 import savethebunniesserver.model.ServerException;
 import savethebunniesserver.util.DataServer;
 
+/**
+ * Controller of main view
+ * @author christian_gutan
+ *
+ */
 public class MainViewController {
 	
 	@FXML
@@ -40,7 +42,6 @@ public class MainViewController {
 	
 	@FXML
 	private Text numberOfLevels;
-	
 	
 	@FXML
 	public void initialize() {
@@ -94,9 +95,9 @@ public class MainViewController {
 	public void actionExportData() {
 		uptdateDataUsersAndLevels();
 		DirectoryChooser directoryChooser=new DirectoryChooser();
+		directoryChooser.setTitle("Save The Bunnies - Server");
 		File file = directoryChooser.showDialog(null);
 		String path = file.getPath ();
-		System.out.println(path);
 		try {
 			DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy_MM_dd-HH_mm_ss");
 			DateTimeFormatter dtf2 = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm");

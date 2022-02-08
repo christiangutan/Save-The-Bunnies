@@ -6,8 +6,7 @@ import savethebunniesclient.model.music.SoundType;
 
 /** 
 * A Bunny piece class.
-* @author Christian Gutiérrez Antolín
-* @version 1.0 
+* @author Christian_gutan
 */
 public class Bunny extends Piece implements Movable{
 	

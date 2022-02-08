@@ -40,12 +40,21 @@ import javafx.scene.control.Button;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
+import javafx.scene.effect.DropShadow;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
+import javafx.scene.paint.Color;
+import javafx.scene.paint.ImagePattern;
+import javafx.scene.shape.Circle;
 import javafx.scene.text.Text;
 
+/**
+ * Controller of the view where you can create new own levels
+ * @author christian_gutan
+ *
+ */
 public class CreateLevelController {
 	
 	@FXML
@@ -104,8 +113,16 @@ public class CreateLevelController {
 	private Coordinate coordinateSelected = null;
 	
 	@FXML
+	private Circle circleImageProfile;
+	
+	@FXML
     public void initialize() {
 		
+		circleImageProfile.setStroke(Color.SEAGREEN);
+	    Image im = User.getImageProfile();
+	    circleImageProfile.setFill(new ImagePattern(im));
+	    circleImageProfile.setEffect(new DropShadow(+25d, 0d, +2d, Color.DARKSEAGREEN));
+	    		
 		ToggleGroup groupPiece = new ToggleGroup();
 		radioButtonGrass.setToggleGroup(groupPiece);
 		radioButtonMushroom.setToggleGroup(groupPiece);
@@ -381,6 +398,8 @@ public class CreateLevelController {
 		textFieldNameLevel.textProperty().addListener((observable, oldValue, newValue) -> {
 				labelLevelName.setText(newValue.toUpperCase());
 		});
+		
+		GuiApp.setPlaying(true);
 		
 		radioButtonDifficultyStarter.setSelected(true);
 		

@@ -1,5 +1,10 @@
 package savethebunniesserver.util;
 
+/**
+ * Util class
+ * @author christian_gutan
+ *
+ */
 public class Util {
 	public static  int [] conversorStringToIntArrayLevels (String chainFromDataBase) {
 		String[] chain = chainFromDataBase.split(";");

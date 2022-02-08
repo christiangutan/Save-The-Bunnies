@@ -6,8 +6,8 @@ import savethebunniesclient.model.music.SoundType;
 
 /** 
 * A FoxHead piece class.
-* @author David García Solórzano
-* @version 1.0 
+* @author christian_gutan
+*  
 */
 public class FoxHead extends Fox{
 	

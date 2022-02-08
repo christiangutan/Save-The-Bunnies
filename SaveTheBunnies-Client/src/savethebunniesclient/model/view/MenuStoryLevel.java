@@ -18,6 +18,11 @@ import savethebunniesclient.model.game.LevelDifficulty;
 import savethebunniesclient.model.music.SoundType;
 import savethebunniesclient.util.OnActionData;
 
+/**
+ * Menu for being used in storyLevels view
+ * @author christian_gutan
+ *
+ */
 public class MenuStoryLevel {
 	private int level;
 	private LevelDifficulty difficulty;	

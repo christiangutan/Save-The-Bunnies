@@ -25,7 +25,7 @@
             <Reflection fraction="0.23" topOpacity="0.16" />
          </effect>
       </ImageView>
-      <Button fx:id="buttonBack" layoutX="80.0" layoutY="360.0" mnemonicParsing="false" onAction="#actionBack" prefHeight="42.0" prefWidth="144.0" text="Back">
+      <Button fx:id="buttonBack" layoutX="73.0" layoutY="360.0" mnemonicParsing="false" onAction="#actionBack" prefHeight="37.0" prefWidth="155.0" text="Back">
          <font>
             <Font name="Times New Roman" size="20.0" />
          </font></Button>
@@ -34,22 +34,22 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </JFXSlider>
-      <JFXSlider fx:id="sliderEffects" layoutX="99.0" layoutY="222.0" prefHeight="14.0" prefWidth="155.0" value="50.0">
+      <JFXSlider fx:id="sliderEffects" layoutX="99.0" layoutY="226.0" prefHeight="14.0" prefWidth="155.0" value="50.0">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
       </JFXSlider>
-      <Text layoutX="47.0" layoutY="135.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Music">
+      <Text layoutX="47.0" layoutY="133.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Music">
          <font>
             <Font name="Times New Roman" size="15.0" />
          </font>
       </Text>
-      <Text layoutX="47.0" layoutY="209.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Effects">
+      <Text layoutX="47.0" layoutY="211.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Effects">
          <font>
             <Font name="Times New Roman" size="15.0" />
          </font>
       </Text>
-      <Button fx:id="buttonLogOut" layoutX="80.0" layoutY="292.0" mnemonicParsing="false" onAction="#actionLogOut" prefHeight="42.0" prefWidth="144.0" text="Log out">
+      <Button fx:id="buttonLogOut" layoutX="73.0" layoutY="307.0" mnemonicParsing="false" onAction="#actionLogOut" prefHeight="37.0" prefWidth="155.0" text="Log out">
          <font>
             <Font name="Times New Roman" size="20.0" />
          </font>
@@ -65,7 +65,7 @@
             <Reflection />
          </effect>
       </ImageView>
-      <ImageView fx:id="volumeIconEffects" fitHeight="25.0" fitWidth="24.0" layoutX="45.0" layoutY="217.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="volumeIconEffects" fitHeight="25.0" fitWidth="24.0" layoutX="45.0" layoutY="221.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../util/img/speaker.png" />
          </image>
@@ -87,7 +87,7 @@
             <Reflection />
          </effect>
       </ImageView>
-      <ImageView fx:id="muteIconEffects" fitHeight="25.0" fitWidth="24.0" layoutX="45.0" layoutY="217.0" pickOnBounds="true" preserveRatio="true" visible="false">
+      <ImageView fx:id="muteIconEffects" fitHeight="25.0" fitWidth="24.0" layoutX="45.0" layoutY="221.0" pickOnBounds="true" preserveRatio="true" visible="false">
          <image>
             <Image url="@../util/img/mutedSpeaker.png" />
          </image>

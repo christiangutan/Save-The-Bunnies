@@ -13,10 +13,14 @@ import savethebunniesclient.model.game.Move;
 import savethebunniesclient.model.game.Mushroom;
 import savethebunniesclient.model.game.Piece;
 
+/**
+ * It's neccesary to play. When you create a new Game, this is controlled by this class
+ * @author christian_gutan
+ *
+ */
 public class ToPlay {
 	private Level level;
 	private int size;
-	//private int numNumberLevelStory = -1;
 	
 	/**
 	 * List of pieces that are on the board.	
@@ -118,9 +122,6 @@ public class ToPlay {
     			.allMatch(bunny -> bunny.isInHole());    			
     }
     
-    private void reload() {
-    	//board = level.getBoard();
-    }
     
     public List<Piece> getBoard(){
 		return board;

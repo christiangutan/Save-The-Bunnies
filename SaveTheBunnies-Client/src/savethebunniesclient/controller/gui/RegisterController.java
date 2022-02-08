@@ -2,6 +2,10 @@ package savethebunniesclient.controller.gui;
 
 import java.io.IOException;
 import java.util.concurrent.TimeUnit;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
+import com.sun.prism.paint.Color;
 
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -18,6 +22,11 @@ import savethebunniesclient.model.view.ErrorPopUpWindow;
 import savethebunniesclient.model.view.InfoPopUpWindow;
 import savethebunniesclient.util.OnActionData;
 
+/**
+ * Controller of the view where you can register as a new user
+ * @author christian_gutan
+ *
+ */
 public class RegisterController {
 	@FXML
 	private TextField usernameTextField;
@@ -35,8 +44,9 @@ public class RegisterController {
 	@FXML
 	private ImageView correctUsername;
 	
-	private boolean boolCorrectPassword;
-	private boolean boolCorrectUsername;
+	private boolean boolCorrectPassword = false;
+	private boolean boolCorrectEmail = false;
+	private boolean boolSuitablePassword = false;
 	
 	@FXML
 	private Button registerButton;
@@ -45,23 +55,27 @@ public class RegisterController {
 	
 	private boolean exit = false;
 	
-	private Thread threadCheckPasswords;
+	private Thread threadCheckParameters;
+	
+	@FXML
+	private ImageView exclamationEmail;
+	@FXML
+	private ImageView exclamationPassword;
+	@FXML
+	private ImageView exclamationConfirmPassword;
+	
+	public static final Pattern VALID_EMAIL_ADDRESS_REGEX = 
+		    Pattern.compile("^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,6}$", Pattern.CASE_INSENSITIVE);
 		
 	@FXML
-	public void initialize() {		
+	public void initialize() {	
+		GuiApp.setPlaying(false);
+	
+		registerButton.setDisable(true);
+
 		exit = false;
 		
-		usernameTextField.focusedProperty().addListener(new ChangeListener<Boolean>() {
-			@Override
-			public void changed(ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) {
-				if(newValue) {
-					//ConnectionServer.checkUsername(usernameTextField.getText());
-					
-					//que se checkee si el username es correcto, yo creo que es mejo al final
-				}
-			}			
-		});
-		threadCheckPasswords = new Thread (new Runnable() {
+		threadCheckParameters = new Thread (new Runnable() {
 			@Override
 			public void run() {
 				while(!exit) {
@@ -70,7 +84,32 @@ public class RegisterController {
 					} catch (InterruptedException e) {
 						e.printStackTrace();
 					}
+					
+					if(!(passwordTextField.getText().toString().length() < 8)) {
+						boolSuitablePassword = true;
+						exclamationPassword.setVisible(false);
+					} else {
+						boolSuitablePassword = false;
+						exclamationPassword.setVisible(true);
+					}
+					
 					if(confirmPasswordTextField.getText().equals(passwordTextField.getText())) {
+						boolCorrectEmail = true;
+						exclamationConfirmPassword.setVisible(false);
+					} else {
+						boolCorrectEmail = false;
+						exclamationConfirmPassword.setVisible(true);
+					}
+					
+					if (validateEmail(emailTextField.getText().toString())) {
+						exclamationEmail.setVisible(false);
+						boolCorrectPassword = true;
+					} else {
+						boolCorrectPassword = false;
+						exclamationEmail.setVisible(true);
+					}	
+					
+					if(boolCorrectPassword && boolCorrectEmail && boolSuitablePassword) {
 						registerButton.setDisable(false);
 					} else {
 						registerButton.setDisable(true);
@@ -79,8 +118,8 @@ public class RegisterController {
 			}
 			
 		});
-		threadCheckPasswords.setDaemon(true);
-		threadCheckPasswords.start();
+		threadCheckParameters.setDaemon(true);
+		threadCheckParameters.start();
 	}
 	
 	@FXML
@@ -90,7 +129,6 @@ public class RegisterController {
 			@Override
 			public void run() {
 				String state = ConnectionServer.registerUser(usernameTextField.getText(), nameTextField.getText(), emailTextField.getText(), passwordTextField.getText());
-				System.out.println("Resultado del registro: " + state);
 				if(state.equals("")) {
 					InfoPopUpWindow window = new InfoPopUpWindow("User registered");
 					window.createView();
@@ -149,5 +187,10 @@ public class RegisterController {
 			}
 		});
 		window.createView();
+	}
+	
+	public static boolean validateEmail(String emailStr) {
+        Matcher matcher = VALID_EMAIL_ADDRESS_REGEX.matcher(emailStr);
+        return matcher.find();
 	}
 }
