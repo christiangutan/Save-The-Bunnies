@@ -18,9 +18,9 @@ Project developed by Christian Gutiérrez Antolín
 
 <h3><p align="center">Login & register User</p></h3>
 	
-<center>
+<p align="center">
 	 <img src="https://user-images.githubusercontent.com/64666347/168700895-6067fd50-223f-46fb-9e7d-11851b4e4444.png" >
-</center>
+</p>
 	
 <center>
 	 <img src="https://user-images.githubusercontent.com/64666347/168700964-9ba1644c-d8bd-41c8-8fc6-6937350899ab.png" >
