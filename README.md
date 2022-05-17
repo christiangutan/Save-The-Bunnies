@@ -42,13 +42,16 @@ Project developed by Christian Gutiérrez Antolín
 
 <p align="center">
 	 <img src="https://user-images.githubusercontent.com/64666347/168701178-20fa4c15-9b73-4d58-88a4-71fd2269f14e.png" >
-</p>	
-	
+</p>		
 
 <h3><p align="center">Creator Mode</p></h3>
-
-<p align="center">![imagen](https://user-images.githubusercontent.com/64666347/168701105-31f9a422-1ae4-4c75-af49-6926ce75c010.png)</p>
+	
+<p align="center">
+	 <img src="https://user-images.githubusercontent.com/64666347/168701105-31f9a422-1ae4-4c75-af49-6926ce75c010.png" >
+</p>
 
 <h3><p align="center">Playing Level</p></h3>
-
-<p align="center">![imagen](https://user-images.githubusercontent.com/64666347/168701205-755e585a-298e-47f4-ac09-6d97016ee90b.png)</p>
+	
+<p align="center">
+	 <img src="https://user-images.githubusercontent.com/64666347/168701205-755e585a-298e-47f4-ac09-6d97016ee90b.png" >
+</p>
