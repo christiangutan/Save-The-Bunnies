@@ -11,14 +11,20 @@ Project developed by Christian Gutiérrez Antolín
 </center>
 
 <h3><p align="center">Final State Sever</p><h3>
-
-![imagen](https://user-images.githubusercontent.com/64666347/168693738-650bc26e-052b-481c-8114-f7a9a7afcdfe.png)
+	
+<center>
+	 <img src="https://user-images.githubusercontent.com/64666347/168693738-650bc26e-052b-481c-8114-f7a9a7afcdfe.png" >
+</center>
 
 <h3><p align="center">Login & register User</p></h3>
-
-<p align="center">![imagen](https://user-images.githubusercontent.com/64666347/168700895-6067fd50-223f-46fb-9e7d-11851b4e4444.png)</p>
-
-<p align="center">![imagen](https://user-images.githubusercontent.com/64666347/168700964-9ba1644c-d8bd-41c8-8fc6-6937350899ab.png)</p>
+	
+<center>
+	 <img src="https://user-images.githubusercontent.com/64666347/168700895-6067fd50-223f-46fb-9e7d-11851b4e4444.png" >
+</center>
+	
+<center>
+	 <img src="https://user-images.githubusercontent.com/64666347/168700964-9ba1644c-d8bd-41c8-8fc6-6937350899ab.png" >
+</center>
 
 <h3><p align="center">Welcome Menu</p></h3>
 
