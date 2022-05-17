@@ -6,7 +6,7 @@ Project developed by Christian Gutiérrez Antolín
 
 <h3><p align="center">Initial State Server</p></h3>
 
-<p align="center"> ![imagen](https://user-images.githubusercontent.com/64666347/168693686-0a311e7a-34f6-4812-8453-8943b4ae8390.png) </p>
+<center>![imagen](https://user-images.githubusercontent.com/64666347/168693686-0a311e7a-34f6-4812-8453-8943b4ae8390.png) </center>
 
 <h3><p align="center">Final State Sever</p><h3>
 
