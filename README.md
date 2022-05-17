@@ -12,7 +12,7 @@ Project developed by Christian Gutiérrez Antolín
 
 <h3><p align="center">Final State Sever</p><h3>
 
-<p align="center">![imagen](https://user-images.githubusercontent.com/64666347/168693738-650bc26e-052b-481c-8114-f7a9a7afcdfe.png)</p>
+![imagen](https://user-images.githubusercontent.com/64666347/168693738-650bc26e-052b-481c-8114-f7a9a7afcdfe.png)
 
 <h3><p align="center">Login & register User</p></h3>
 
