@@ -4,13 +4,11 @@ Project developed by Christian Gutiérrez Antolín
 
 Some images of the project.
 
-Server:
-
-Initial State
+<p align="center">Initial State Server</p>
 
 ![imagen](https://user-images.githubusercontent.com/64666347/168693686-0a311e7a-34f6-4812-8453-8943b4ae8390.png)
 
-Final State
+Final State Sever
 
 ![imagen](https://user-images.githubusercontent.com/64666347/168693738-650bc26e-052b-481c-8114-f7a9a7afcdfe.png)
 
