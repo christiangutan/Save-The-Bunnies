@@ -2,7 +2,8 @@
 
 Project developed by Christian Gutiérrez Antolín
 
-<h3>It's a simple game based on a traditional board game: </h3> <h3><a "href=https://www.amazon.es/dp/B00005JS7E?psc=1&th=1&linkCode=gs2&tag=gamecows2005-21">Link</a></h3> 
+It's a simple game based on a traditional board game: 
+<a "href=https://www.amazon.es/dp/B00005JS7E?psc=1&th=1&linkCode=gs2&tag=gamecows2005-21">Link</a>
 
 <h2>Some images of the project</h2>
 
